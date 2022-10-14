@@ -33,7 +33,7 @@
 }
 .container
 {
-	background-image: url("../resources/images/ecran.jpg");
+	background-image: url("../images/ecran.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -77,6 +77,17 @@ p.hero {
   text-align: center;
   margin-top: -400px;
 }
+p.desc
+{
+	font-family: 'Crimson Text', serif;
+  font-style: italic;
+  color: #fff;
+  font-size: 25px;
+  line-height: 32px;
+  color: white;
+  text-align: center;
+  margin-top: 150px;
+}
 .hero-btn {
   margin-top: 30px;
   text-align: center;
@@ -102,11 +113,21 @@ p.hero {
 .generalInsc fieldset {
   border: 5px solid white;
   background-color: transparent;
-  width: 600px; 
-  height: 380px;
   text-align: justify;
+
+}
+.insc fieldset
+{
+	 width: 600px; 
+  height: 580px;
+  margin-top: -150px;
 }
 
+.conex fieldset
+{
+	 width: 600px; 
+  height: 380px;
+}
 .generalInsc legend {
   color: white;
   padding: 5px 10px;
@@ -246,6 +267,12 @@ nav ul li a:hover
 	border-radius: 6px;
 }
 
+.navg
+{
+	background: #f0f0f0;
+	border-radius: 6px;
+}
+
 .choix
 {
 	background: #f0f0f0;
@@ -261,7 +288,6 @@ footer
 	height: auto;
 	width: 100vw;
 	font-family: "Open sans";
-	padding-top: 40px;
 	color: #000000;
 }
 
@@ -283,9 +309,147 @@ footer
 	opacity: .4;
 	font-weight: 200;
 }
+.error {
+    color: red;
+}
+.list tr:nth-child(even) 
+{
+	
+	background-color: #dddddd;
+}
+th{
+ color: white;
+}
+.list td,th 
+{
+	border: 1px solid #dddddd;
+	padding: 8px;
+	text-align: center;
+}
+.list
+{
+	border-collapse: collapse;
+	width: 80%;
+}
+.tab-member
+{
+	
+	position: relative;
+	top: 150px;
+	margin-left: 200px;
+}
 
+.Big-button
+{
+	text-align: center;
+	position: relative;
+	top: 100px ;
+	bottom: 150px ;
+}
 
+.link
+{
+	text-decoration: none;
+	color: black;
+}
+.button1
+{
+	margin: 20px 10px;
+	margin-left: -10px;
+	height: 90px;
+	width: 330px; 
+}
+.button2
+{
+	margin: 20px 16px;
+	height: 90px;
+	width: 330px;
+}
+.button3
+{
+	margin: 18px 14px;
 
+	height: 90px;
+	width: 300px; 
+}
+.button4
+{
+	margin: 18px 14px;
+	margin-left: -10px;
+	height: 90px;
+	width: 330px; 
+}
+.button5
+{
+	margin: 18px 14px;
+	height: 90px;
+	width: 330px; 
+}
+.button6
+{
+	margin: 18px 14px;
 
+	height: 90px;
+	width: 300px; 
+}
+.button 
+{
+	background: transparent;
+	
+  	padding: 30px 12px;
+  	text-align: center;
+  	color: white;
+ 	text-decoration: none;
+ 	display: inline-block;
+ 	font-size: 25px;
+  	cursor: pointer;
+}
+.Big-button a button :hover
+{
+	background: #f0f0f0;
+	border-radius: 6px;
+}
+.titreInsc
+{
+	font-size: 30px;
+	position: relative;
+  bottom: 300px;
+	
+}
+.tabVelo
+{
+	background-color: transparent;
+	position: relative;
+	left: 90px;
+	top: 30px;
+	color: white;
+}
+.insc-membre fieldset
+{
+	 border: 5px solid white;
+  background-color: transparent;
+  text-align: justify;
+   width: 600px; 
+  height: 280px;
+  position: relative;
+  top: 200px;
+  left: 650px;  
+  
+}
+.endbutton
+{
 
-
+	text-align: right;
+	margin-top: 50px;
+	margin-right: 60px;
+}
+.buttonEnd
+{
+	color: white;
+	border-color: white;
+	padding: 15px 42px;
+  text-align: center;
+  font-size: 15px;
+  cursor: pointer;
+  background: transparent;
+}

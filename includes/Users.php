@@ -22,7 +22,7 @@ class Users extends DatabaseObjects
         $this->password = cleanUpInputs($password);
 
         $sql  = "SELECT * FROM utilisateur ";
-        $sql .= "WHERE loginUtilisateur = ?";
+        $sql .= "WHERE login_utilisateur = ?";
         //$sql .= "LIMIT 1";
         //$sql = "SELECT * FROM utilisateur  WHERE loginUtilisateur = 'borel' ";
 
@@ -35,7 +35,7 @@ class Users extends DatabaseObjects
         }
 
         //die(var_dump($this->verifyPassword($this->password,$resultArray['motDePasse'])));
-        if(!empty($resultArray) && $this->verifyPassword($this->password,$resultArray['motDePasse'])){
+        if(!empty($resultArray) && $this->verifyPassword($this->password,$resultArray['mot_de_passe'])){
             $_SESSION['logIn'] = 'logged';
             //die(var_dump($resultArray));
             return array_shift($resultArray);
@@ -78,8 +78,8 @@ class Users extends DatabaseObjects
         global $database;
 
         $this->username = cleanUpInputs($username);
-        $sql  = "SELECT * FROM users ";
-        $sql .= "WHERE username = ? ";
+        $sql  = "SELECT * FROM utilisateur ";
+        $sql .= "WHERE login_utilisateur = ? ";
         $sql .= "LIMIT 1";
 
         $resultSet = $database->openConnection()->prepare($sql);

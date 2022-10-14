@@ -24,23 +24,13 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
 	<div class="container">
 		<?php
 
-    		$page = "home";
+    		$page = "association-list";
 
     		$active = "navg";
 
     		include_once "../layouts/navigationAdmin.php";
 		?>
-
-		<div class="Big-button">
-			<div class="">
-				<a href="inscrireMembre.php" class="link" > <button class="button1 button " >   Nouveau Membre  </button> </a> 
-				<a href="inscrireAssociation.php" class="link" > <button  class="button2 button ">  Nouvelle Association  </button> </a>
-			</div>
-			<div class="">
-				<a  href="inscrireMembreAssociation.php" class="link" > <button class="button4 button" > ajouter un membre a une association  </button> </a>
-				<a  href="listeMembre" class="link" > <button class="button5 button" >  Desactiver un membre  </button> </a>
-			</div>
-		</div>
+		
 		
 		<?php include_once "../layouts/footer.php"; ?>
 	</div>	

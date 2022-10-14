@@ -64,8 +64,8 @@ if(isset($_POST['submit'])){
 			<fieldset >
 				<legend>La lecture d’un roman jette sur la vie une lumière</legend>
 				<table class="tab-insc" cellpadding="10" cellspacing="5">
-					<tr><td><label for="email">Login:</label></td><td><input type="text" id="" name="username" value="<?php echo htmlentities($username);?>" required/></td></tr>
-					<tr><td><label for="birthday">Mot de passe:  </label> </td> <td> <input type="password" id="" name="password" value="<?php echo htmlentities($password);?>" required/></td></tr>
+					<tr><td><label >Login:</label></td><td><input type="text" id="" name="username" value="<?php echo htmlentities($username);?>" required/></td></tr>
+					<tr><td><label >Mot de passe:  </label> </td> <td> <input type="password" id="" name="password" value="<?php echo htmlentities($password);?>" required/></td></tr>
 				</table>
 				<div class="btn-insc">
 					 <button type="submit" name="submit" class="btn btn-clean"> connexion </button> <br> <br>

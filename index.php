@@ -29,6 +29,7 @@ require_once("includes/session.php");
 		<h1> La lecture est à l'esprit ce que l'exercice est au corps</h1>
 		<div class="div-line"></div>
 		<p class="hero">Joseph Addison</p>
+		<p class="desc"> Un petit groupe  écrit et parle à propos de livres qui ont un lien entre eux. <br> On veut que ces jeunes lecteurs  bâtissent des outils puissants pour comprendre l’univers de leur livre.</p>
 		<?php include_once "layouts/footer.php"; ?>
 	</div>
 </body>
