@@ -17,29 +17,34 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
 
 $users = new Users();
 $userList = $users->findAll();
+/*
+ * essaye de modifier pour ne pas avoir de code qui se répète.
+ */
 if ($userList[$_GET['id']-1]->etatUtilisateur == 'A'){
     //die(var_dump($userArray));
-    $var = I;
+    $var = 'I';
     $result = $users->updateEtat($_GET['id'],$var);
     if ($result['success']){
-        $message = "Il y a eu une erreur lors du changement d'etat.";
+        $_SESSION['nessage'] = '';
         redirect_to("../admin/listeMembre.php");
     }
     else{
-        
-        
+        $_SESSION['nessage'] = "Il y a eu une erreur lors du changement d'etat.";
+        redirect_to("../admin/listeMembre.php");
     }
 }
 else
 {
     //die(var_dump($userArray));
-    $var = A;
+    $var = 'A';
     $result = $users->updateEtat($_GET['id'],$var);
     if ($result['success']){
+        $_SESSION['nessage'] = '';
         redirect_to("../admin/listeMembre.php");
     }
     else{
-        $message = "Il y a eu une erreur lors du changement d'etat.";
+        $_SESSION['nessage'] = "Il y a eu une erreur lors du changement d'etat.";
+        redirect_to("../admin/listeMembre.php");
         
     }
 }

@@ -32,10 +32,10 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
     		include_once "../layouts/navigationAdmin.php";
 		?>
 		<?php
-            if ($message){
-                echo 
+            if ($_SESSION['nessage']){
+                echo
                 	'<div class=" error-message">'.
-                    		outputMessage($message).
+                    		outputMessage($_SESSION['nessage']).
                     '</div>';
             }
         ?>

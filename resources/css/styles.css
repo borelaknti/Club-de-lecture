@@ -42,6 +42,8 @@
 	height: 100vh;
 }
 .error-message {
+	position: relative;
+	top: 90px;
     color: red;
     background-color: #ffbbbb;
     padding: 10px 2px 0 2px;
