@@ -1,0 +1,46 @@
+<?php
+session_start();
+ini_set('display_errors', 'on');
+ini_set('log_errors', 1);
+ini_set('error_reporting', E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED);
+ob_start();
+date_default_timezone_set('America/New_York');
+
+require_once("../includes/functions.php");
+require_once("../includes/Users.php");
+require_once("../includes/session.php");
+require_once("../formProcessing/liste_membre.php");
+
+if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
+    redirect_to("../connexion");
+}
+
+$users = new Users();
+$userList = $users->findAll();
+if ($userList[$_GET['id']-1]->etatUtilisateur == 'A'){
+    //die(var_dump($userArray));
+    $var = I;
+    $result = $users->updateEtat($_GET['id'],$var);
+    if ($result['success']){
+        $message = "Il y a eu une erreur lors du changement d'etat.";
+        redirect_to("../admin/listeMembre.php");
+    }
+    else{
+        
+        
+    }
+}
+else
+{
+    //die(var_dump($userArray));
+    $var = A;
+    $result = $users->updateEtat($_GET['id'],$var);
+    if ($result['success']){
+        redirect_to("../admin/listeMembre.php");
+    }
+    else{
+        $message = "Il y a eu une erreur lors du changement d'etat.";
+        
+    }
+}
+?>

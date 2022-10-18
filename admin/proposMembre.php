@@ -14,6 +14,10 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
     redirect_to("../connexion");
 }
 
+
+$users = new Users();
+$userList = $users->findAll();
+//die(var_dump($userList[$_GET['id']-1]));
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,7 +26,36 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
 </head>
 <body>
 	<div class="container">
-		
+		<div class="titreInsc">
+			<h1>A propos de <?php echo $userList[$_GET['id']-1]->nomUtilisateur;?> </h1>
+		</div>
+		<div class="insc-membre">
+			<fieldset>
+				<table class="tabVelo" cellpadding="10" cellspacing="5">
+					<tr>
+						<td><label class="nom"> Nom :</label></td> <td> <?php echo $userList[$_GET['id']-1]->nomUtilisateur;?> </td>
+					</tr>
+					<tr>
+						<td><label class="nom"> Prenom :</label></td> <td> <?php echo $userList[$_GET['id']-1]->prenomUtilisateur;?> </td>
+					</tr>
+					<tr>
+						<td><label class="nom"> Date de naissance :</label></td> <td> <?php echo $userList[$_GET['id']-1]->dateNaissance;?> </td>
+					</tr>
+					<tr>
+						<td><label class="nom"> Adresse :</label></td> <td> <?php echo $userList[$_GET['id']-1]->adresseUtilisateur;?> </td>
+					</tr>
+					<tr>
+						<td><label class="nom"> Sexe :</label></td> <td> <?php echo $userList[$_GET['id']-1]->sexeUtilisateur;?> </td> 
+					</tr>
+					<tr>
+						<td><label class="nom"> Adresse Mail : </label></td> <td> <?php echo $userList[$_GET['id']-1]->utilisateur_email;?> </td>
+					</tr>
+				</table>
+				<div class="endbutton">
+					<a  href="listeMembre.php"  > <button type="button" class="buttonEnd " >  Fermer  </button> </a>
+				</div>
+			</fieldset>
+		</div>
 	</div>	
 </body>
 </html>

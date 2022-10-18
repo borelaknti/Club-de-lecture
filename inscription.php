@@ -147,6 +147,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<div class="title">
 			<i class='fas  fa-angle-left '></i> <a class="back" href="index.php"> Page d'acceuil</a>
 		</div>
+        <?php
+            if ($message){
+                echo 
+                    '<div class=" error-message">'.
+                            outputMessage($message).
+                    '</div>';
+            }
+        ?>
 		<form id="login" action="inscription.php" method="post">
 			<fieldset>
 				<legend>La lecture d’un roman jette sur la vie une lumière</legend>

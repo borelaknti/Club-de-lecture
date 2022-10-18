@@ -6,6 +6,7 @@ class Users extends DatabaseObjects
 
     private string $username;
     private string $password;
+    protected static string $tableName = "utilisateur";
 
 
     /**

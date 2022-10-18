@@ -8,10 +8,19 @@ class DatabaseObjects{
     /**
      * @return array|null
      */
-    public static function findAll($limit): ?array
+    public static function findAll(): ?array
     {
-        return static::findBySql("SELECT * FROM ".static::$tableName." LIMIT $limit");
+        return static::findBySql("SELECT * FROM ".static::$tableName);
     }
+
+    /**
+     * @return array|null
+     */
+    public static function findAllAvailable(): ?array
+    {
+        return static::findBySql("SELECT * FROM ".static::$tableName." WHERE utilisateur.etatUtilisateur = 'A'");
+    }
+
 
     /**
      * @param string $sql
@@ -30,6 +39,28 @@ class DatabaseObjects{
         }
 
         return $results;
+    }
+
+    /**
+    * @param $velo
+    * @return array
+    */
+    public function updateEtat($velo,$etat)
+    {
+       
+        $sql = "UPDATE utilisateur SET etatUtilisateur= '".$etat."' WHERE utilisateur.numUtilisateur= $velo";
+        //die(var_dump($sql));
+        global $database;
+        $req = $database->openConnection()->prepare($sql);
+        //die(var_dump($clientsArray));
+        $result = $req->execute();
+        if ($result){
+            return ['success'=>true];
+        }
+        else{
+            return ['success'=>false];
+        }
+
     }
 
 }
