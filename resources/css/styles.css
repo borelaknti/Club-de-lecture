@@ -453,3 +453,9 @@ th{
   cursor: pointer;
   background: transparent;
 }
+
+.rest fieldset
+{
+	width: 600px; 
+  height: 380px;
+}

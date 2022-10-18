@@ -22,9 +22,27 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
 </head>
 <body>
 	<div class="container">
-		
-		
-		
+		<div class="titreInsc">
+			<h1>Inscrire un membre dans une association</h1>
+		</div>
+		<div class="insc-membre">
+			<form>
+			<fieldset>
+					<table class="tabVelo" cellpadding="10" cellspacing="5">
+						<tr>
+							<td><label class="nom"> Membre :</label></td> <td> <select> <option> </option>  <option> Feminin </option></select> </td> 
+						</tr>
+						<tr>
+							<td><label class="nom"> Association :</label></td> <td> <select> <option> Eclair</option>  <option> Vision </option></select> </td> 
+						</tr>
+					</table>
+					<div class="endbutton">
+						<button class="buttonEnd " >  Soumettre le formulaire  </button>
+						<a  href="index.php"  > <button type="button" class="buttonEnd " >  Retour au menu  </button> </a>
+					</div>
+				</fieldset>
+			</form>
+		</div>
 		<?php include_once "../layouts/footer.php"; ?>
 	</div>	
 </body>

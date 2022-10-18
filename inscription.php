@@ -22,23 +22,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$address = ""; 
     $username = "";
     $password = "";
+    $sexe = "";
     $email = "";
     $passwordConfirmation = "";
 
     if(isset($_POST['submit'])){
 
-    	$fname = trim($_POST['name']);
-		$lname = "";
-		$birthday = ""; 
-		$address = ""; 
+    	$fname = trim($_POST['fname']);
+		$lname = trim($_POST['lname']);;
+		$birthday = trim($_POST['birthday']);; 
+		$address = trim($_POST['address']);; 
         $username = trim($_POST['username']);
+        $sexe = trim($_POST['sexe']);
         $email = trim($_POST['email']);
         $password = trim($_POST['password']);
         $passwordConfirmation = trim($_POST['password-confirmation']);
-
+        
         $user = new Users();
 
-        if (empty($name)) {
+        if (empty($fname)) {
             $nameErr = "* Le nom est obligatoire";
         } else {
             $name = cleanUpInputs($name);
@@ -94,7 +96,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($message) && empty($nameErr) && empty($usernameErr) && empty($emailErr) && empty($passwordErr) && empty($passwordConfirmationErr)){
 
             $user = new Users();
-            $userArray = $user->createUserArray($name,$username,$email,$password);
+            $userArray = $user->createUserArray($fname, $lname, $birthday, $address, $sexe,$username, $password, $email);
+            //die(var_dump($userArray));
             $result = $user->createUser($userArray);
             if ($result['success']){
                 $session->newUserloggedIn($result['userid']);
@@ -128,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					<tr><td><label for="lname">Last name:</label></td> <td><input type="text" id="lname" name="lname" maxlength="100"  value="<?php echo htmlentities($lname);?>" required /> <span class="error"> <?php echo $lname;?></span> </td> </tr>
 					<tr><td><label for="email">Email:</label></td><td><input type="email" id="email" name="email" value="<?php echo htmlentities($email);?>" required /> <span class="error"> <?php echo $email;?></span></td></tr>
 					<tr><td><label for="birthday">Birthday:</label> </td> <td> <input type="date" id="birthday" name="birthday" value="<?php echo htmlentities($birthday);?>" required /> <span class="error"> <?php echo $birthday;?></span> </td></tr>
-					<tr> <td><label for="sexe">Sexe:</label> </td> <td> <select> <option> Masculin</option>  <option> Feminin </option></select> </td></tr>
+					<tr> <td><label for="sexe">Sexe:</label> </td> <td> <select  name="sexe" id="sexe"> <option value="masculin"> Masculin</option>  <option value="feminin"> Feminin </option></select> </td></tr>
 					<tr><td><label for="adress">Address: </label> </td> <td> <input type="text" id="address" name="address" maxlength="150"  value="<?php echo htmlentities($address);?>" required /> <span class="error"> <?php echo $address;?></span> </td></tr>
 					<tr><td><label for="username">Username : </label> </td> <td> <input type="text" id="username" name="username" maxlength="30"  value="<?php echo htmlentities($username);?>" required /> <span class="error"> <?php echo $username;?></span></td></tr>
 					<tr><td><label for="password">Password:</label> </td> <td> <input type="password" id="password" name="password" maxlength="30"  value="<?php echo htmlentities($password);?>" required /> <span class="error"> <?php echo $password;?></span> </td></tr>

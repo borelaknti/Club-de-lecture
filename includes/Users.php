@@ -53,17 +53,17 @@ class Users extends DatabaseObjects
     {
         global $database;
 
-        $userArray['password'] = $this->setPassword($userArray['password']);
+        $userArray['mot_de_passe'] = $this->setPassword($userArray['mot_de_passe']);
 
         $values = array_values($userArray);
 
-        $sql = "INSERT INTO users (name, username, email, password) VALUES (?,?,?,?)";
+        $sql = "INSERT INTO utilisateur ( nomUtilisateur, prenomUtilisateur, dateNaissance, etatUtilisateur, adresseUtilisateur, sexeUtilisateur,login_utilisateur, mot_de_passe, utilisateur_email) VALUES (?,?,?,?,?,?,?,?,?)";
 
         $resultSet = $database->openConnection()->prepare($sql);
         $resultSet->execute($values);
 
         if ($database->lastInsertId() > 0){
-            return ['success'=>true, 'userid'=>$database->lastInsertId()];
+            return ['success'=>true, 'numUtilisateur'=>$database->lastInsertId()];
         }
         return false;
 
@@ -104,9 +104,10 @@ class Users extends DatabaseObjects
      * @param $password
      * @return array
      */
-    public function createUserArray($name, $username, $email, $password): array
+    public function createUserArray( $nom, $prenom, $dateNaissance, $adresse, $sexe,$login, $mot_de_passe, $email): array
     {
-        return ['name'=>$name, 'username'=>$username, 'email'=>$email, 'password'=>$password];
+        $etat = 'A';
+        return  ['nomUtilisateur'=>$nom, 'prenomUtilisateur'=>$prenom, 'dateNaissance'=>$dateNaissance, 'etatUtilisateur'=>$etat, 'adresseUtilisateur'=>$adresse, 'sexeUtilisateur'=>$sexe,'login_utilisateur'=>$login, 'mot_de_passe'=>$mot_de_passe, 'utilisateur_email'=>$email];
 
     }
 
@@ -126,11 +127,11 @@ class Users extends DatabaseObjects
      */
     private function verifyPassword(string $password,string $hashedPassword): bool
     {
-       //return password_verify ($password, $hashedPassword); utiliser lors de la creation d'un utilisateur a partir du formulaire pour l'encryption
-        if(strcmp($password,$hashedPassword) == 0 )
-            return true;
-        else
-            return false;
+       return password_verify ($password, $hashedPassword); //utiliser lors de la creation d'un utilisateur a partir du formulaire pour l'encryption
+        //if(strcmp($password,$hashedPassword) == 0 )
+           // return true;
+        //else
+          //  return false;
     }
 
 }

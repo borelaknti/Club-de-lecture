@@ -54,9 +54,7 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
 				</div>
 			</fieldset>
 		</form>
-		</div>
-		
-		
+	</div>	
 		<?php include_once "../layouts/footer.php"; ?>
 	</div>	
 </body>
