@@ -5,3 +5,4 @@ class Association extends DatabaseObjects
 {
     protected static string $tableName = "association";
 }
+?>

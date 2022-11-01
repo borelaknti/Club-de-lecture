@@ -70,6 +70,30 @@ class Users extends DatabaseObjects
 
     }
 
+     /**
+     * @param $userArray
+     * @return array|false
+     */
+    public function createMember($userArray)
+    {
+        global $database;
+
+        $sql = "INSERT INTO utilisateur ( nomUtilisateur, prenomUtilisateur, dateNaissance, etatUtilisateur, adresseUtilisateur, sexeUtilisateur,login_utilisateur, mot_de_passe, utilisateur_email) VALUES (?,?,?,?,?,?,?,?,?)";
+
+        $resultSet = $database->openConnection()->prepare($sql);
+        $results = $resultSet->execute(array($userArray["nomUtilisateur"],$userArray["prenomUtilisateur"],$userArray["dateNaissance"],$userArray["etatUtilisateur"],$userArray["adresseUtilisateur"],$userArray["sexeUtilisateur"],$userArray["login_utilisateur"],$userArray["mot_de_passe"],$userArray["utilisateur_email"]));
+        //die(var_dump($results));
+        if ($results){
+            if ($database->lastInsertId() > 0)
+            {
+                return ['success'=>true, 'numUtilisateur'=>$database->lastInsertId()];
+            }
+        }else
+            return ['success'=>false];
+
+    }
+
+
     /**
      * @param $username
      * @return bool
@@ -99,10 +123,32 @@ class Users extends DatabaseObjects
     }
 
     /**
-     * @param $name
-     * @param $username
      * @param $email
-     * @param $password
+     * @return array|false
+     */
+    public function passwordTime($email): array
+    {
+        global $database;
+        $timeStamp = [':timestamp' =>time() ];
+        $sql = "UPDATE utilisateur SET timestamp = '".$timeStamp."' Where utilisateur.utilisateur_email = $email ";
+        $resultSet = $database->openConnection()->prepare($sql);
+        if($resultSet->execute())
+        {
+            return ['success'=> true];
+        }
+        return false;
+
+    }
+
+    /**
+     * @param $nom
+     * @param $prenom
+     * @param $dateNaissance
+     * @param $adresse
+     * @param $sexe
+     * @param $login
+     * @param $mot_de_passe
+     * @param $email
      * @return array
      */
     public function createUserArray( $nom, $prenom, $dateNaissance, $adresse, $sexe,$login, $mot_de_passe, $email): array
@@ -110,6 +156,23 @@ class Users extends DatabaseObjects
         $etat = 'A';
         return  ['nomUtilisateur'=>$nom, 'prenomUtilisateur'=>$prenom, 'dateNaissance'=>$dateNaissance, 'etatUtilisateur'=>$etat, 'adresseUtilisateur'=>$adresse, 'sexeUtilisateur'=>$sexe,'login_utilisateur'=>$login, 'mot_de_passe'=>$mot_de_passe, 'utilisateur_email'=>$email];
 
+    }
+
+    /**
+     * @param $nom
+     * @param $prenom
+     * @param $dateNaissance
+     * @param $adresse
+     * @param $sexe
+     * @param $login
+     * @param $mot_de_passe
+     * @param $email
+     * @return array
+     */
+    public function createUserMember( $nom, $prenom, $dateNaissance, $adresse, $sexe, $email): array
+    {
+        $etat = 'A';
+        return  ['nomUtilisateur'=>$nom, 'prenomUtilisateur'=>$prenom, 'dateNaissance'=>$dateNaissance, 'etatUtilisateur'=>$etat, 'adresseUtilisateur'=>$adresse, 'sexeUtilisateur'=>$sexe,'login_utilisateur'=>NUll, 'mot_de_passe'=>NUll, 'utilisateur_email'=>$email];
     }
 
     /**

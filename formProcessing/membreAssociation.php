@@ -5,7 +5,7 @@ include_once realpath(dirname(__DIR__)) .  '/includes/functions.php';
 include_once realpath(dirname(__DIR__)) .  '/layouts/header.php';
 
 $users = new Users();
-$userList = $users->findAllMember();   
+$userList = $users->findMemberAssociation($_GET['id']);   
 //die(var_dump(count($userList))); // verifier le parametre quand le tableau est vide
 ?>
 <?php
@@ -14,7 +14,7 @@ $htmlTable =  '<table border="1" class="list">
                     <tr>
                         <th> numero </th> <th> Nom </th> <th> Prenom </th>  <th>etat</th> <th>email</th> <th colspan="2">action</th>
                     </tr>';
-if(count($userList) > 0 )
+if( isset($userList) )
 {   
     foreach ($userList as $user)
     {

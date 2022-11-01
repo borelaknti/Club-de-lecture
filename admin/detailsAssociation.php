@@ -7,14 +7,17 @@ ob_start();
 date_default_timezone_set('America/New_York');
 
 require_once("../includes/functions.php");
-require_once("../includes/Users.php");
+require_once("../includes/Association.php");
 require_once("../includes/session.php");
-require_once("../formProcessing/liste_membre.php");
+require_once("../formProcessing/membreAssociation.php");
 
 if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
     redirect_to("../connexion");
 }
 
+$asso = new Association();
+$user = $asso->findAssociation($_GET['id']);
+//die(var_dump($user));
 ?>
 <!DOCTYPE html>
 <html>
@@ -40,6 +43,9 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
             }
         ?>
 		<div class="tab-member">
+			<div>
+				<h5 > Liste des Membres de l'association <?php echo $user[0]->nomAssociation; ?> </h5>
+			</div>
 			<?php echo $htmlTable; ?>
 		</div>
 		<?php include_once "../layouts/footer.php"; ?>

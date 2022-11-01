@@ -22,12 +22,10 @@ if ($userList[$_GET['id']-1]->etatUtilisateur == 'A'){
     $var = I;
     $result = $users->updateEtat($_GET['id'],$var);
     if ($result['success']){
-        $message = "Il y a eu une erreur lors du changement d'etat.";
         redirect_to("../admin/listeMembre.php");
     }
     else{
-        
-        
+        $_SESSION['message'] = "Il y a eu une erreur lors du changement d'etat.";
     }
 }
 else

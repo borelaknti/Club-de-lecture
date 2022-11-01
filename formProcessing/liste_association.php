@@ -11,7 +11,7 @@ $associationList = $associations->findAll();
 
 $htmlTable =  '<table border="1" class="list"> 
                     <tr>
-                        <th> numero </th> <th> Nom </th> <th>adresse</th> <th>Date de creation</th> <th>nom du createur</th>
+                        <th> numero </th> <th> Nom </th> <th>adresse</th> <th>Date de creation</th> <th>nom du createur</th> <th colspan="2">action</th>
                     </tr>';
 if(count($associationList) > 0)
 {
@@ -23,6 +23,8 @@ if(count($associationList) > 0)
             $htmlTable .=  '<td>'. $asso->adresseAssociation .'</td>';
             $htmlTable .=  '<td>'. $asso->Datecreation .'</td>';
             $htmlTable .=  '<td >'. $asso->nomCreateur .'</td>';
+            $htmlTable .=  '<td > <a  href="detailsAssociation.php?id='. $asso->numAssociation.'" class="link"> <i class="fas fa-info-circle">  </i> </a></td>';
+            $htmlTable .=  '<td > <a  href="/formProcessing/supprimerAssociation.php?id='. $asso->numAssociation.'" class="link"> <i class="fas fa-trash">  </i> </a> </td>';
             $htmlTable .=  '</tr>';
     }
 }

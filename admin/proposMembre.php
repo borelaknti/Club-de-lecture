@@ -8,6 +8,7 @@ date_default_timezone_set('America/New_York');
 
 require_once("../includes/functions.php");
 require_once("../includes/Users.php");
+require_once("../includes/Association.php");
 require_once("../includes/session.php");
 
 if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
@@ -16,8 +17,10 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
 
 
 $users = new Users();
+$asso = new Association();
 $userList = $users->findAll();
-//die(var_dump($userList[$_GET['id']-1]));
+$user = $asso->findAssociationMember($_GET['id']);
+//die(var_dump($user));
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,6 +52,20 @@ $userList = $users->findAll();
 					</tr>
 					<tr>
 						<td><label class="nom"> Adresse Mail : </label></td> <td> <?php echo $userList[$_GET['id']-1]->utilisateur_email;?> </td>
+					</tr>
+					<tr>
+						<td><label class="nom"> Membre de l'association : </label></td> <td>
+					<?php 
+					if(isset($user))
+					{
+						foreach ($user as $index)
+    					{
+    						echo " * ".$index->nomAssociation;
+					 	}
+					}else
+						echo "Aucune";
+					 ?>
+					 </td>
 					</tr>
 				</table>
 				<div class="endbutton">

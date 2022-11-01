@@ -26,30 +26,30 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
 			<h1>Inscrire un nouveau membre</h1>
 		</div>
 		<div class="insc-membre">
-		<form>
+		<form id="inscrire" action="../formProcessing/inscrire_Membre.php" method="post">
 			<fieldset>
 				<table class="tabVelo" cellpadding="10" cellspacing="5">
 					<tr>
-						<td><label class="nom"> Nom :</label></td> <td><input type="text" name="" size="40"></td>
+						<td><label class="nom"> Nom :</label></td> <td><input type="text" name="nom" id="nom" size="40" maxlength="100"  value="<?php echo htmlentities($nom);?>" required > <span class="error"> <?php echo $nomErr;?></span> </td>
 					</tr>
 					<tr>
-						<td><label class="nom"> Prenom :</label></td> <td><input type="text" name="" size="40"></td>
+						<td><label class="nom"> Prenom :</label></td> <td><input type="text" name="prenom" id="prenom" maxlength="100"  value="<?php echo htmlentities($prenom);?>" required size="40"> <span class="error"> <?php echo $prenomErr;?></span> </td>
 					</tr>
 					<tr>
-						<td><label class="nom"> Date de naissance :</label></td> <td><input type="date" name="" > </td>
+						<td><label class="nom"> Date de naissance :</label></td> <td><input type="date" name="date" id="date" maxlength="100"  value="<?php echo htmlentities($date);?>" required size="40"> <span class="error"> <?php echo $dateErr;?></span> </td>
 					</tr>
 					<tr>
-						<td><label class="nom"> Adresse :</label></td> <td><input type="text" name="" size="40"> </td>
+						<td><label class="nom"> Adresse :</label></td> <td><input type="text" name="adresse" id="adresse" size="40" maxlength="100"  value="<?php echo htmlentities($adresse);?>" required size="40"> <span class="error"> <?php echo $adresseErr;?></span> </td>
 					</tr>
+					<tr> 
+                        <td><label for="sexe">Sexe:</label> </td> <td> <select  name="sexe" id="sexe"> <option value="masculin"> Masculin</option>  <option value="feminin"> Feminin </option></select> </td>
+                    </tr>
 					<tr>
-						<td><label class="nom"> Sexe :</label></td> <td> <select> <option> Masculin</option>  <option> Feminin </option></select> </td> 
-					</tr>
-					<tr>
-						<td><label class="nom"> Adresse Mail : </label></td> <td><input type="text" name="" size="40"> </td>
+						<td><label class="nom"> Adresse Mail : </label></td> <td><input type="text" name="email" id="email" size="40" value="<?php echo htmlentities($email);?>" required size="40"> <span class="error"> <?php echo $emailErr;?></span> </td>
 					</tr>
 				</table>
 				<div class="endbutton">
-					<button class="buttonEnd " >  Soumettre le formulaire  </button>
+					<button class="buttonEnd " type="submit" name="submit">  Soumettre le formulaire  </button>
 					<a  href="index.php"  > <button type="button" class="buttonEnd " >  Retour au menu  </button> </a>
 				</div>
 			</fieldset>
