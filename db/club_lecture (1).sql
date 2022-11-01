@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : mar. 18 oct. 2022 à 12:07
+-- Généré le : mar. 01 nov. 2022 à 14:56
 -- Version du serveur : 8.0.21
 -- Version de PHP : 7.4.9
 
@@ -44,7 +44,8 @@ INSERT INTO `association` (`numAssociation`, `nomAssociation`, `adresseAssociati
 (2, 'Cardio', '95 Rue jasques cartier', '2022-10-19', 'Binam'),
 (3, 'Stikers', '96 Rue jacques cartier', '2022-10-21', 'rodrigo'),
 (4, 'binance', '97 rue Jacques cartier', '2022-10-21', 'jiji'),
-(5, 'voyageur', '98 Rue jacques cartier', '2022-10-19', 'nancy');
+(5, 'voyageur', '98 Rue jacques cartier', '2022-10-19', 'nancy'),
+(7, 'qwert', '54 rue boul vert', '2022-10-28', 'raphael');
 
 -- --------------------------------------------------------
 
@@ -60,21 +61,28 @@ CREATE TABLE `utilisateur` (
   `etatUtilisateur` char(1) COLLATE utf8mb4_general_ci NOT NULL,
   `adresseUtilisateur` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
   `sexeUtilisateur` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `login_utilisateur` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `mot_de_passe` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `utilisateur_email` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `login_utilisateur` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `mot_de_passe` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `utilisateur_email` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email_time` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`numUtilisateur`, `nomUtilisateur`, `prenomUtilisateur`, `dateNaissance`, `etatUtilisateur`, `adresseUtilisateur`, `sexeUtilisateur`, `login_utilisateur`, `mot_de_passe`, `utilisateur_email`) VALUES
-(1, 'NTI AkOUMBA', 'Borel Giovanni', '2000-08-21', 'A', '94 rue jacques cartier', 'M', 'borel', 'borel2021', NULL),
-(2, 'philip', 'morris', '2022-09-08', 'A', '94 rue jacques cartier', 'M', 'morris', 'morris2021', NULL),
-(3, 'dom', 'perrin', '2022-10-12', 'A', 'dfffhdfsg', 'm', 'koko', '$2y$10$ORwOA.AYWlsgSkQ8bJLVI.bImNGXEwwEFQsBpgNUwdk5J5uT0853O', 'borelaknti@gmail.com'),
-(4, 'gabriel', 'jesus', '2022-10-19', 'A', '96 rue jacques cartier', 'masculin', 'gabi', '$2y$10$HjhJ5duRJd2DIWr92uenjOQB82RTIRFoqXu9WAzjWCo0No8zX8/8a', 'gabriel@gmail.com'),
-(5, 'john', 'anderson', '2022-10-19', 'A', '97 rue jacques cartier', 'feminin', 'john', '$2y$10$ZVAIWopJoOQ2KApjVcLwqe/oQ9IApBBYEd32dDpoO1rQAOztJ6vRK', 'john@gmail.com');
+INSERT INTO `utilisateur` (`numUtilisateur`, `nomUtilisateur`, `prenomUtilisateur`, `dateNaissance`, `etatUtilisateur`, `adresseUtilisateur`, `sexeUtilisateur`, `login_utilisateur`, `mot_de_passe`, `utilisateur_email`, `email_time`) VALUES
+(1, 'NTI AkOUMBA', 'Borel Giovanni', '2000-08-21', 'A', '94 rue jacques cartier', 'M', 'borel', 'borel2021', NULL, NULL),
+(2, 'philip', 'morris', '2022-09-08', 'I', '94 rue jacques cartier', 'M', 'morris', 'morris2021', NULL, NULL),
+(3, 'dom', 'perrin', '2022-10-12', 'A', 'dfffhdfsg', 'm', 'koko', '$2y$10$ORwOA.AYWlsgSkQ8bJLVI.bImNGXEwwEFQsBpgNUwdk5J5uT0853O', 'borelaknti@gmail.com', NULL),
+(4, 'gabriel', 'jesus', '2022-10-19', 'I', '96 rue jacques cartier', 'masculin', 'gabi', '$2y$10$HjhJ5duRJd2DIWr92uenjOQB82RTIRFoqXu9WAzjWCo0No8zX8/8a', 'gabriel@gmail.com', '0000-00-00 00:00:00'),
+(5, 'john', 'anderson', '2022-10-19', 'A', '97 rue jacques cartier', 'feminin', 'john', '$2y$10$ZVAIWopJoOQ2KApjVcLwqe/oQ9IApBBYEd32dDpoO1rQAOztJ6vRK', 'john@gmail.com', '0000-00-00 00:00:00'),
+(6, 'emet', 'jonathan', '2022-10-19', 'A', 'dfffhdfsg', 'masculin', 'emet', '$2y$10$nxRhG4N79u1VQem7dvlUFufytFvaafbvuJhZ3bCeNRSa72SxKcwjG', 'emet@hotmail.com', '0000-00-00 00:00:00'),
+(7, 'ewtret', 'anderson', '2022-10-18', 'A', '96 rue jacques cartier', 'masculin', 'anderson', '$2y$10$/MYn/5I13/kIm93BXBE4se4WkOdsjgbU8qfmdg4dUZjvGDvjSAgKq', 'emet@hotmail.com', '0000-00-00 00:00:00'),
+(8, 'borel', 'perrin', '2022-10-19', 'A', '96 rue jacques cartier', 'masculin', 'jiji', '$2y$10$.07y9ccm9faM6/YuIRh86O5UNJiLe0lHFOieQfyd/5fddHpgs9YHK', 'emet@hotmail.com', '0000-00-00 00:00:00'),
+(9, 'sale', 'bonet', '2022-10-22', 'A', '94 rue jacques cartier', 'masculin', NULL, NULL, 'sale@gmail.com', NULL),
+(10, 'fits', 'dev', '2022-10-22', 'I', 'assdadsa', 'masculin', NULL, NULL, 'emet@hotmail.com', '0000-00-00 00:00:00'),
+(11, 'fits', 'dev', '2022-10-22', 'A', 'assdadsa', 'masculin', NULL, NULL, 'emet@hotmail.com', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -83,6 +91,7 @@ INSERT INTO `utilisateur` (`numUtilisateur`, `nomUtilisateur`, `prenomUtilisateu
 --
 
 CREATE TABLE `utilisateurassocier` (
+  `id` int NOT NULL,
   `fknumAssociation` int NOT NULL,
   `fknumUtilisateur` int NOT NULL,
   `dateAjout` date DEFAULT NULL
@@ -92,12 +101,12 @@ CREATE TABLE `utilisateurassocier` (
 -- Déchargement des données de la table `utilisateurassocier`
 --
 
-INSERT INTO `utilisateurassocier` (`fknumAssociation`, `fknumUtilisateur`, `dateAjout`) VALUES
-(2, 4, '0000-00-00'),
-(3, 1, '0000-00-00'),
-(3, 2, '0000-00-00'),
-(4, 4, '0000-00-00'),
-(4, 5, '0000-00-00');
+INSERT INTO `utilisateurassocier` (`id`, `fknumAssociation`, `fknumUtilisateur`, `dateAjout`) VALUES
+(3, 1, 9, NULL),
+(4, 1, 9, NULL),
+(5, 4, 9, NULL),
+(6, 5, 11, NULL),
+(7, 2, 11, NULL);
 
 --
 -- Index pour les tables déchargées
@@ -119,7 +128,8 @@ ALTER TABLE `utilisateur`
 -- Index pour la table `utilisateurassocier`
 --
 ALTER TABLE `utilisateurassocier`
-  ADD PRIMARY KEY (`fknumAssociation`,`fknumUtilisateur`),
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_numAssociation` (`fknumAssociation`),
   ADD KEY `fk_numUtilisateur` (`fknumUtilisateur`);
 
 --
@@ -130,13 +140,19 @@ ALTER TABLE `utilisateurassocier`
 -- AUTO_INCREMENT pour la table `association`
 --
 ALTER TABLE `association`
-  MODIFY `numAssociation` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `numAssociation` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `numUtilisateur` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `numUtilisateur` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT pour la table `utilisateurassocier`
+--
+ALTER TABLE `utilisateurassocier`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Contraintes pour les tables déchargées

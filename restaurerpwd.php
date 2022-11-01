@@ -41,7 +41,7 @@ if(isset($_POST['submit'])){
     			
         		$emailMessage = '<a href="'.$url.'"> cliquer ici pour changer le mot de passe. </a>';
         		//die(var_dump($emailMessage));
-  	    		$mail->send_mail_by_PHPMailer($email,"borelaknti@gmail.com",'courriel de changement de mot de passe',$emailMessage);
+  	    		$mail->send_mail_by_PHPMailer($email,"fitsdev21@gmail.com",'courriel de changement de mot de passe',$emailMessage);
         		$_SESSION['forgot'] = "le courriel de changement de mot de passe a ete envoye";
         		 
         		redirect_to('/connexion.php');
