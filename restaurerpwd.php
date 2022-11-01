@@ -17,35 +17,39 @@ require_once("includes/PhpMail.php");
 $message = "";
 $emailErr = "";
 
-if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
+if(empty($_SESSION['logIn']) && $_SESSION['logIn'] == 'logged'){
     redirect_to("../admin/index.php");
 }
-	die("23");
+	//die("23");
 
 if(isset($_POST['submit'])){
+
    	$email = cleanUpInputs($_POST['email']);
    	$user = new Users();
-    $userList = $user->findAllMember();
-    $res = $user->founduser($email,$userList);
-    die("30");
+    $userList = $user->findAll();
+    $res = founduser($email,$userList);
+
+    
     if($res)
     {
     	$result = $user->passwordTime($email); 
     	if($result["success"])
     	{
-    		$mail = new PHPMail();
-    		//try{
-    			$url = $_SERVER['HTTP_ORIGIN'].'/password-reset';
-        		$emailMessage = '<a href="'.$url.'">cliquer ici pour changer le mot de passe. </a>';
-  	    		$mail->send_mail_by_PHPMAILER($email,"borelaknti@gmail.com",'courriel de changement de mot de passe',$emailMessage);
+    		$mail = new PhpMail();
+    		try{
+    			$url = $_SERVER['HTTP_ORIGIN'].'/reinitialiserpwd.php';
+    			
+        		$emailMessage = '<a href="'.$url.'"> cliquer ici pour changer le mot de passe. </a>';
+        		//die(var_dump($emailMessage));
+  	    		$mail->send_mail_by_PHPMailer($email,"borelaknti@gmail.com",'courriel de changement de mot de passe',$emailMessage);
         		$_SESSION['forgot'] = "le courriel de changement de mot de passe a ete envoye";
         		 
-        		//redirect_to('/connexion.php');
-        	//}
-        	//catch($e)
-		    //{
-		    //	$e.errorMessage();
-		    //}
+        		redirect_to('/connexion.php');
+        	}
+        	catch(Exception $e)
+		    {
+		    	$e.errorMessage();
+		    }
 		}
 
 		}

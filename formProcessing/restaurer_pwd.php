@@ -26,7 +26,8 @@ if(isset($_POST['submit'])){
     $email = cleanUpInputs($_POST['email']);
     $user = new Users();
     $userList = $user->findAllMember();
-    $res = $user->founduser($email,$userList);
+    $res = founduser($email,$userList);
+    
     if($res)
     {
         $result = $user->passwordTime($email); 

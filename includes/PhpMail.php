@@ -27,13 +27,17 @@ class PhpMail
         $mail->isHTML(true); // use HTML message
         $mail->Subject = $subject;
         $mail->Body = $message;
-
+        //var_dump($message);
+        //var_dump($subject);
+        //var_dump($from);
+        //die(var_dump($to));
 
         // SEND
         if( !$mail->send() ){
 
             // render error if it is
             $tab = array('error' => 'Mailer Error: '.$mail->ErrorInfo );
+            die(var_dump($tab));
             echo json_encode($tab);
             exit;
         }

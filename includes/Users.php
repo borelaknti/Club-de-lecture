@@ -126,11 +126,11 @@ class Users extends DatabaseObjects
      * @param $email
      * @return array|false
      */
-    public function passwordTime($email): array
+    public function passwordTime($email)
     {
         global $database;
         $timeStamp = [':timestamp' =>time() ];
-        $sql = "UPDATE utilisateur SET timestamp = '".$timeStamp."' Where utilisateur.utilisateur_email = $email ";
+        $sql = "UPDATE utilisateur SET email_time = '".$timeStamp."' Where utilisateur_email = '".$email."' ";
         $resultSet = $database->openConnection()->prepare($sql);
         if($resultSet->execute())
         {

@@ -56,7 +56,7 @@ function founduser($email,$userList)
 {
     foreach($userList as $user)
     {
-        if($user->utilisateur_email == $email)
+        if($user->utilisateur_email == $email && $user->login_utilisateur != NULL && $user->mot_de_passe!=NULL)
             return true;
     }
 
