@@ -14,7 +14,9 @@ require_once("includes/PhpMail.php");
 
 //$page = "forget-password";
 //$active = "active";
-$message = "";
+$message = $_SESSION['message'] ?? '';;
+$forgot = $_SESSION['forgot'] ?? '';
+$msg = $_SESSION['msg'] ?? '';
 $emailErr = "";
 
 if(empty($_SESSION['logIn']) && $_SESSION['logIn'] == 'logged'){
@@ -28,8 +30,7 @@ if(isset($_POST['submit'])){
    	$user = new Users();
     $userList = $user->findAll();
     $res = founduser($email,$userList);
-
-    
+ 
     if($res)
     {
     	$result = $user->passwordTime($email); 
@@ -43,22 +44,25 @@ if(isset($_POST['submit'])){
         		//die(var_dump($emailMessage));
   	    		$mail->send_mail_by_PHPMailer($email,"fitsdev21@gmail.com",'courriel de changement de mot de passe',$emailMessage);
         		$_SESSION['forgot'] = "le courriel de changement de mot de passe a ete envoye";
-        		 
+        		$_SESSION['msg']= "";
         		redirect_to('/connexion.php');
         	}
         	catch(Exception $e)
 		    {
 		    	$e.errorMessage();
 		    }
+		}else
+		{
+			$message = "erreur de reinitialisation du mot de passe";
 		}
 
 		}
-    }
     else
     {
+    	$message = "L'email ne correspond a aucun utilisateur";
     	$email="";
     }
-
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -70,6 +74,27 @@ if(isset($_POST['submit'])){
 		<div class="title">
 			<i class='fas  fa-angle-left '></i> <a class="back" href="index.php"> Page d'acceuil</a>
 		</div>
+		<?php
+		//die(var_dump($msg));
+            if ($message){
+                echo 
+                	'<div class=" error-message">'.
+                    		outputMessage($message).
+                    '</div>';
+            }
+            if ($msg){
+                echo 
+                	'<div class=" error-message">'.
+                    		outputMessage($msg).
+                    '</div>';
+            }
+            if ($forgot){
+                echo 
+                	'<div class=" error-message">'.
+                    		outputMessage($forgot).
+                    '</div>';
+            }
+        ?>
 		<div class="rest">
 			<form id="restaurer" action="restaurerpwd.php" method="post">
 				<fieldset>

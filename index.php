@@ -8,6 +8,10 @@ date_default_timezone_set('America/New_York');
 
 require_once("includes/functions.php");
 require_once("includes/session.php");
+
+$_SESSION['forgot'] = '';
+$_SESSION['msg'] = '';
+
 //$img = "../resources/images/index.jpg";
 ?>
 <!DOCTYPE html>

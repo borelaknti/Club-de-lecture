@@ -22,6 +22,15 @@ class DatabaseObjects{
         return static::findBySql("SELECT * FROM ".static::$tableName." WHERE utilisateur.login_utilisateur IS NULL and utilisateur.mot_de_passe IS NULL ");
     }
 
+     //common database methods
+    /**
+     * @return array|null
+     */
+    public static function findAllAdministrator(): ?array
+    {
+        return static::findBySql("SELECT * FROM ".static::$tableName." WHERE utilisateur.login_utilisateur IS NOT NULL and utilisateur.mot_de_passe IS NOT NULL ");
+    }
+
     //common database methods
     /**
      * @return array|null

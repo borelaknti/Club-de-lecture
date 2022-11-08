@@ -14,6 +14,17 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
     redirect_to("../connexion");
 }
 
+$_SESSION['msg'] = '';
+$_SESSION['nomErr'] = '';
+$_SESSION['prenomErr'] = '';
+$_SESSION['dateErr'] = '';
+$_SESSION['adresseErr'] = '';
+$_SESSION['emailErr'] = '';
+$_SESSION['adressErr'] = '';
+$_SESSION['createurErr'] = '';
+$_SESSION['memberErr'] = '';
+$_SESSION['associationErr'] = '';
+
 ?>
 <!DOCTYPE html>
 <html>

@@ -20,7 +20,7 @@ class PhpMail
         $mail->SMTPAuth = true;
         $mail->Username = 'c7f95e6b9b8132';
         $mail->Password = 'f4f187de05b06a';
-        $mail->Port = 2525;
+        $mail->Port = 587;
         $mail->setFrom($from); // sender
         $mail->addAddress($to); // Add receiver
         $mail->addReplyTo($from); // Address to reply

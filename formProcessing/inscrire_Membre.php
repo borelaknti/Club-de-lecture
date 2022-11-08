@@ -9,8 +9,8 @@ require_once("../includes/functions.php");
 require_once("../includes/Users.php");
 require_once("../includes/session.php");
 
-$message = '';
-$nomErr = $prenomErr = $emailErr =  $dateErr = $adresseErr = $sexeErr =  "";
+$_SESSION['msg'] = '';
+$_SESSION['nomErr'] = $_SESSION['prenomErr'] = $_SESSION['emailErr'] =  $_SESSION['dateErr'] = $_SESSION['adresseErr'] = $_SESSION['sexeErr'] =  "";
 
 if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
     redirect_to("../admin/index.php");
@@ -35,51 +35,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = new Users();
         //die(var_dump($birthday));
         if (empty($nom)) {
-            $nomErr = "* Le nom est obligatoire";
+            $_SESSION['nomErr'] = "* Le nom est obligatoire";
         } else {
             $nom = cleanUpInputs($nom);
             // check if name only contains letters and whitespace
-            if (!preg_match("/^[a-zA-Z-' ]*$/",$fnom)) {
-                $nomErr = "* Seules les lettres et les espaces blancs sont autorisés";
+            if (!preg_match("/^[a-zA-Z-' ]*$/",$nom)) {
+                $_SESSION['nomErr'] = "* Seules les lettres et les espaces blancs sont autorisés";
             }
             if (strlen($nom) > 100) {
-                $nomErr = "* Le nom doit comporter un maximum de 100 caractères.";
+                $_SESSION['nomErr'] = "* Le nom doit comporter un maximum de 100 caractères.";
             }
         }if (empty($prenom)) {
-            $prenomErr = "* Le prenom est obligatoire";
+            $_SESSION['prenomErr'] = "* Le prenom est obligatoire";
         } else {
             $prenom = cleanUpInputs($prenom);
             // check if name only contains letters and whitespace
             if (!preg_match("/^[a-zA-Z-' ]*$/",$prenom)) {
-                $prenomErr = "* Seules les lettres et les espaces blancs sont autorisés";
+                $_SESSION['prenomErr'] = "* Seules les lettres et les espaces blancs sont autorisés";
             }
             if (strlen($prenom) > 100) {
-                $prenomErr = "* Le prenom doit comporter un maximum de 100 caractères.";
+                $_SESSION['prenomErr'] = "* Le prenom doit comporter un maximum de 100 caractères.";
             }
         }
         if (empty($date)) {
-            $dateErr = "* La date de naissance est obligatoire";
+            $_SESSION['dateErr'] = "* La date de naissance est obligatoire";
         } 
         if (empty($adresse)) {
-            $adresseErr = "* l'adresse est obligatoire";
+            $_SESSION['adresseErr'] = "* l'adresse est obligatoire";
         }
         if (empty($email)) {
-            $emailErr = "* Le nom est obligatoire";
+            $_SESSION['emailErr'] = "* Le nom est obligatoire";
         } else {
             $email = cleanUpInputs($email);
 
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $emailErr = "* Seules les lettres et les chiffres sont autorisés";
+                $_SESSION['emailErr'] = "* Seules les lettres et les chiffres sont autorisés";
             }
         } 
 
-        if (empty($message) && empty($nomErr) && empty($prenomErr) && empty($dateErr) && empty($emailErr) ){
+        if (empty($_SESSION['msg']) && empty($_SESSION['nomErr']) && empty($_SESSION['prenomErr']) && empty($_SESSION['dateErr']) && empty($_SESSION['emailErr']) ){
 
             $user = new Users();
             $userList = $user->findAllMember();
             if(searchMember($nom,$userList))
             {
-                $message = "Il y a deja un membre qui existe a ce nom.";
+                $_SESSION['msg'] = "Il y a deja un membre qui existe a ce nom.";
                 redirect_to("../admin/inscrireMembre.php");;
             }else
             {
@@ -90,13 +90,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     redirect_to("../admin/listeMembre.php");
                 }
                 else{
-                    $message = "Il y a eu une erreur lors de la création de l'usager.";
+                    $_SESSION['msg'] = "Il y a eu une erreur lors de la création de l'usager.";
                     redirect_to("../admin/inscrireMembre.php");;
                 }
             }
             
         }else{
-                $message = "Il y a eu une erreur lors de la création de l'usager.";
+                $_SESSION['msg'] = "Il y a eu une erreur lors de la création de l'usager.";
                 redirect_to("../admin/inscrireMembre.php");;
             }
     }

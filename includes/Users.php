@@ -129,7 +129,8 @@ class Users extends DatabaseObjects
     public function passwordTime($email)
     {
         global $database;
-        $timeStamp = [':timestamp' =>time() ];
+        //$timeStamp = [':timestamp' =>time()];
+        $timeStamp = time();
         $sql = "UPDATE utilisateur SET email_time = '".$timeStamp."' Where utilisateur_email = '".$email."' ";
         $resultSet = $database->openConnection()->prepare($sql);
         if($resultSet->execute())
@@ -159,6 +160,46 @@ class Users extends DatabaseObjects
     }
 
     /**
+     * @param $username
+     * @param $password 
+     * @return array
+     */
+    public function createResetPasswordArray($username, $password) :array
+    {
+        return  ['login_utilisateur'=>$username,'mot_de_passe'=>$password];
+    }
+
+    /**
+     * @param $username
+     * @param $time 
+     * @return bool
+     */
+    public function checkLinkExpired($username,$time) :bool
+    {
+        global $database;
+        $time = cleanUpInputs($time);
+        $sql = "SELECT * from utilisateur ";
+        $sql .= "where login_utilisateur= ? ";
+        $sql .= "LIMIT 1";
+
+        $resultSet = $database->openConnection()->prepare($sql);
+        $resultSet->execute(array($username));
+
+        $storedTime = '';
+        while ($row = $resultSet->fetchAll())
+        {
+            $storedTime = $row[0]['email_time'];
+        }
+        //die(var_dump($time));
+        if(($time-$storedTime)/60 < 60)
+        {
+            return true;
+        }else
+        {
+            return false;
+        }
+    }
+    /**
      * @param $nom
      * @param $prenom
      * @param $dateNaissance
@@ -173,6 +214,24 @@ class Users extends DatabaseObjects
     {
         $etat = 'A';
         return  ['nomUtilisateur'=>$nom, 'prenomUtilisateur'=>$prenom, 'dateNaissance'=>$dateNaissance, 'etatUtilisateur'=>$etat, 'adresseUtilisateur'=>$adresse, 'sexeUtilisateur'=>$sexe,'login_utilisateur'=>NUll, 'mot_de_passe'=>NUll, 'utilisateur_email'=>$email];
+    }
+
+    /**
+     * @param $userPasswordArray
+     * @return array|false
+     */
+    public function updatePwd($userPasswordArray) 
+    {
+        global $database;
+
+        $pwd = [':password' =>$this->setPassword($userPasswordArray['mot_de_passe'])];
+        $sql = "UPDATE utilisateur set mot_de_passe = :password where login_utilisateur = '".$userPasswordArray['login_utilisateur']."'";
+        $resultSet = $database->openConnection()->prepare($sql);
+        if($resultSet->execute($pwd))
+        {
+            return ['success'=> true];
+        }
+        return false;
     }
 
     /**

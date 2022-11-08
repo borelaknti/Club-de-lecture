@@ -13,7 +13,12 @@ require_once("../includes/session.php");
 if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
     redirect_to("../connexion");
 }
-
+$message = $_SESSION['msg'] ?? '';
+$nomErr = $_SESSION['nomErr'] ?? '';
+$prenomErr = $_SESSION['prenomErr'] ?? '';
+$dateErr = $_SESSION['dateErr'] ?? '';
+$adresseErr = $_SESSION['adresseErr'] ?? '';
+$emailErr = $_SESSION['emailErr'] ?? '';
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,6 +30,15 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
 		<div class="titreInsc">
 			<h1>Inscrire un nouveau membre</h1>
 		</div>
+		<?php
+		//die(var_dump($message));
+            if ($message){
+                echo 
+                    '<div class=" error-message">'.
+                            outputMessage($message).
+                    '</div>';
+            }
+        ?>
 		<div class="insc-membre">
 		<form id="inscrire" action="../formProcessing/inscrire_Membre.php" method="post">
 			<fieldset>

@@ -9,8 +9,8 @@ require_once("../includes/functions.php");
 require_once("../includes/Association.php");
 require_once("../includes/session.php");
 
-$message = '';
-$nomErr = $adressErr = $dateErr =  $createurErr =  "";
+$_SESSION['msg'] = '';
+$_SESSION['nomErr'] = $_SESSION['adressErr'] = $_SESSION['dateErr'] =  $_SESSION['createurErr'] =  "";
 
 if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
     redirect_to("../admin/index.php");
@@ -31,43 +31,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $association = new Association();
         //die(var_dump($nom,$prenom,$date,$adress));
         if (empty($nom)) {
-            $nomErr = "* Le nom de l'association est obligatoire";
+            $_SESSION['nomErr'] = "* Le nom de l'association est obligatoire";
         } else {
             $nom = cleanUpInputs($nom);
             // check if name only contains letters and whitespace
-            if (!preg_match("/^[a-zA-Z-' ]*$/",$fnom)) {
-                $nomErr = "* Seules les lettres et les espaces blancs sont autorisés";
+            if (!preg_match("/^[a-zA-Z-' ]*$/",$nom)) {
+                $_SESSION['nomErr'] = "* Seules les lettres et les espaces blancs sont autorisés";
             }
             if (strlen($nom) > 100) {
-                $nomErr = "* Le nom  de l'association doit comporter un maximum de 100 caractères.";
+                $_SESSION['nomErr'] = "* Le nom  de l'association doit comporter un maximum de 100 caractères.";
             }
         }
         if (empty($date)) {
-            $dateErr = "* La date de naissance est obligatoire";
+            $_SESSION['dateErr'] = "* La date de naissance est obligatoire";
         } 
         if (empty($adress)) {
-            $adressErr = "* l'adresse est obligatoire";
+            $_SESSION['adressErr'] = "* l'adresse est obligatoire";
         }
         if (empty($createur)) {
-            $createurErr = "* Le nom du createur est obligatoire";
+            $_SESSION['createurErr'] = "* Le nom du createur est obligatoire";
         } else {
             $createur = cleanUpInputs($createur);
             // check if name only contains letters and whitespace
             if (!preg_match("/^[a-zA-Z-' ]*$/",$createur)) {
-                $createurErr = "* Seules les lettres et les espaces blancs sont autorisés";
+                $_SESSION['createurErr'] = "* Seules les lettres et les espaces blancs sont autorisés";
             }
             if (strlen($createur) > 100) {
-                $createurErr = "* Le nom du createur de l'association doit comporter un maximum de 100 caractères.";
+                $_SESSION['createurErr'] = "* Le nom du createur de l'association doit comporter un maximum de 100 caractères.";
             }
         } 
-        //die(var_dump($nomErr,$prenom,$date,$adress));
-        if (empty($message) && empty($nomErr) && empty($createurErr) && empty($dateErr) && empty($adressErr) ){
+        //die(var_dump($_SESSION['nomErr'],$prenom,$date,$adress));
+        if (empty($_SESSION['msg']) && empty($_SESSION['nomErr']) && empty($_SESSION['createurErr']) && empty($_SESSION['dateErr']) && empty($_SESSION['adressErr']) ){
 
             $association = new Association();
             $associationList = $association->findAll();
             if(searchAssociation($nom,$associationList)) 
             {
-                $message = "Il y a deja une association a ce nom";
+                $_SESSION['msg'] = "Il y a deja une association a ce nom";
                 redirect_to("../admin/inscrireAssociation.php");
             } else
             {
@@ -78,13 +78,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     redirect_to("../admin/listeAssociation.php");
                 }
                 else{
-                    $message = "Il y a eu une erreur lors de la création de l'association.";
+                    $_SESSION['msg'] = "Il y a eu une erreur lors de la création de l'association.";
                     redirect_to("../admin/inscrireAssociation.php");
                 }
             }
             
         } else{
-                $message = "Il y a eu une erreur lors de la création de l'association.";
+                $_SESSION['msg'] = "Il y a eu une erreur lors de la création de l'association.";
                 redirect_to("../admin/inscrireAssociation.php");
             }
     }

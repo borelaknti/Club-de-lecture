@@ -9,7 +9,7 @@ require_once("includes/functions.php");
 require_once("includes/Users.php");
 require_once("includes/session.php");
 
-$message = '';
+//$message = '';
 
 $page = "connexion";
 
@@ -19,6 +19,12 @@ if($_SESSION['logIn']=='logged'){
     redirect_to("admin/index");
     //header("Location: admin/index.php");
 }
+
+//$session = new Session();
+
+$message = '';
+$forgot = $_SESSION['forgot'] ?? '';
+$msg = $_SESSION['msg'] ?? '';
 
 if(isset($_POST['submit'])){
     $username = trim($_POST['username']);
@@ -53,10 +59,23 @@ if(isset($_POST['submit'])){
 			<i class='fas  fa-angle-left '></i> <a class="back" href="index.php"> Page d'acceuil</a>
 		</div>
 		<?php
+		//die(var_dump($msg));
             if ($message){
                 echo 
                 	'<div class=" error-message">'.
                     		outputMessage($message).
+                    '</div>';
+            }
+            if ($msg){
+                echo 
+                	'<div class=" error-message">'.
+                    		outputMessage($msg).
+                    '</div>';
+            }
+            if ($forgot){
+                echo 
+                	'<div class=" error-message">'.
+                    		outputMessage($forgot).
                     '</div>';
             }
         ?>

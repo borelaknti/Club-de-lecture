@@ -14,6 +14,12 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
     redirect_to("../connexion");
 }
 
+$message = $_SESSION['msg'] ?? '';
+$nomErr = $_SESSION['nomErr'] ?? '';
+$dateErr = $_SESSION['dateErr'] ?? '';
+$adressErr = $_SESSION['adressErr'] ?? '';
+$createurErr = $_SESSION['createurErr'] ?? '';
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,6 +31,15 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
 		<div class="titreInsc">
 			<h1>Inscrire une nouvelle association</h1>
 		</div>
+		<?php
+		//die(var_dump($message));
+            if ($message){
+                echo 
+                    '<div class=" error-message">'.
+                            outputMessage($message).
+                    '</div>';
+            }
+        ?>
 		<div class="insc-membre">
 			<form id="inscrire-association" action="../formProcessing/inscrire_Association.php" method="post">
 			<fieldset>

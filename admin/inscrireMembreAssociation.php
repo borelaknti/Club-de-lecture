@@ -15,6 +15,10 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
     redirect_to("../connexion");
 }
 
+$message = $_SESSION['msg'] ?? '';
+$memberErr= $_SESSION['memberErr'] ?? '';
+$associationErr = $_SESSION['associationErr'] ?? '';
+
 $users = new Users();
 $associations = new Association();
 $associationList = $associations->findAll();   
@@ -31,6 +35,15 @@ $userList = $users->findActifMember();
 		<div class="titreInsc">
 			<h1>Inscrire un membre dans une association</h1>
 		</div>
+		<?php
+		//die(var_dump($message));
+            if ($message){
+                echo 
+                    '<div class=" error-message">'.
+                            outputMessage($message).
+                    '</div>';
+            }
+        ?>
 		<div class="insc-membre">
 			<form id="inscrire-mb-as" action="../formProcessing/inscrire_Membre_Association.php" method="post">
 			<fieldset>

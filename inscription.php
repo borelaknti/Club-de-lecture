@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $date = '2012-01-01';
             //die(var_dump($date < $birthday));
             if( $date < $birthday){
-                 $birthdayErr = "*la date est trop recente";
+                 $birthdayErr = "*la date est trop recente 2012-01-01";
                  
             }
         }
@@ -120,18 +120,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($message) && empty($lnameErr)&& empty($fnameErr) && empty($usernameErr) && empty($birthdayErr) && empty($emailErr) && empty($passwordErr) && empty($passwordConfirmationErr)){
 
             $user = new Users();
+            $userList = $user->findAllAdministrator(); 
+            $res = searchUser($fname,$lname,$userList);
+            if(!$res)
+            {
             $userArray = $user->createUserArray($fname, $lname, $birthday, $address, $sexe,$username, $password, $email);
             //die(var_dump($userArray));
             $result = $user->createUser($userArray);
-            if ($result['success']){
+            //die(var_dump($res));
+            
+               if ($result['success']){
                 $session->newUserloggedIn($result['userid']);
                 $_SESSION['logIn'] = 'logged';
+                //$message = "Il y a eu une erreur lors de la création de l'usager.";
                 redirect_to("admin/index");
-            }
-            else{
-                $message = "Il y a eu une erreur lors de la création de l'usager.";
+                }
+                else{
+                    $message = "Il y a eu une erreur lors de la création de l'usager.";
+                    $_SESSION['logIn'] = 'false';
+                } 
+            }else
+            {
+                $_SESSION['msg']="l'administrateur existe deja.";
+                $_SESSION['forgot']="";
                 $_SESSION['logIn'] = 'false';
+                redirect_to("connexion.php");
             }
+            
         }
     }
 

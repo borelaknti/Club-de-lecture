@@ -62,3 +62,13 @@ function founduser($email,$userList)
 
     return false;
 }
+
+function searchUser($fname,$lname,$userList)
+{
+    foreach($userList as $user)
+    {
+        if(($fname == $user->nomUtilisateur && $lname == $user->prenomUtilisateur) )
+            return true;
+    }
+    return false;
+}

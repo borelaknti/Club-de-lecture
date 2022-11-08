@@ -9,8 +9,8 @@ require_once("../includes/functions.php");
 require_once("../includes/utilisateurassocier.php");
 require_once("../includes/session.php");
 
-$message = '';
-$memberErr = $associationErr = "";
+$_SESSION['msg'] = '';
+$_SESSION['memberErr'] = $_SESSION['associationErr'] = "";
 
 if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
     redirect_to("../admin/index.php");
@@ -27,20 +27,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $partner = new UtilisateurAssocier();
         //die(var_dump($nom,$prenom,$date,$adress));
         if (empty($member)) {
-            $memberErr = "* Le choix du membre est obligatoire";
+            $_SESSION['memberErr'] = "* Le choix du membre est obligatoire";
         } 
         if (empty($association)) {
-            $associationErr = "* Le choix d'une association est obligatoire";
+            $_SESSION['associationErr'] = "* Le choix d'une association est obligatoire";
         } 
         //die(var_dump($nomErr,$prenom,$date,$adress));
-        if (empty($message) && empty($memberErr) && empty($associationErr)){
+        if (empty($_SESSION['msg']) && empty($_SESSION['memberErr']) && empty($_SESSION['associationErr'])){
 
             $partner = new UtilisateurAssocier();
             $partnerList = $partner->findAll();
             //die(var_dump($partnerList));
             if(searchPartner($member,$association,$partnerList))
             {
-                $message = "ce membre appartient deja a ce club.";
+                $_SESSION['msg'] = "ce membre appartient deja a ce club.";
                 redirect_to("../admin/inscrireMembreAssociation.php");
             }
             else
@@ -52,13 +52,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     redirect_to("../admin/listeMembre.php");
                 }
                 else{
-                    $message = "Il y a eu une erreur lors de l'ajout d'un membre dans une association.";
+                    $_SESSION['msg'] = "Il y a eu une erreur lors de l'ajout d'un membre dans une association.";
                     redirect_to("../admin/inscrireMembreAssociation.php");
                 }
             }
             
         } else{
-                $message = "Il y a eu une erreur lors de l'ajout d'un membre dans une association.";
+                $_SESSION['msg'] = "Il y a eu une erreur lors de l'ajout d'un membre dans une association.";
                 redirect_to("../admin/inscrireMembreAssociation.php");
             }
     }
