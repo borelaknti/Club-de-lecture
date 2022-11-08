@@ -10,7 +10,7 @@ $userList = $users->findAllMember();
 ?>
 <?php
 
-$htmlTable =  '<table border="1" class="list"> 
+$htmlTable =  '<table class="list"> 
                     <tr>
                         <th> numero </th> <th> Nom </th> <th> Prenom </th>  <th>etat</th> <th>email</th> <th colspan="2">action</th>
                     </tr>';

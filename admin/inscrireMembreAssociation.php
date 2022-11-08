@@ -86,6 +86,7 @@ $userList = $users->findActifMember();
 				</fieldset>
 			</form>
 		</div>
+
 		<?php include_once "../layouts/footer.php"; ?>
 	</div>	
 </body>

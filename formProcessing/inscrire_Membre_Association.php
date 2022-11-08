@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 //die(var_dump($partnerArray));
                 $result = $partner->createPartner($partnerArray);
                 if ($result['success']){
-                    redirect_to("../admin/listeMembre.php");
+                    redirect_to("../admin/inscrireMembreAssociation.php");
                 }
                 else{
                     $_SESSION['msg'] = "Il y a eu une erreur lors de l'ajout d'un membre dans une association.";

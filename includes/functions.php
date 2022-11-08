@@ -8,7 +8,8 @@ function cleanUpInputs($inputs): string
     return htmlspecialchars($inputs);
 }
 
-function outputMessage($message = ""){
+function outputMessage($message = "") :string
+{
     if(!empty($message)){
         return "<p class=\"message text-danger\">{$message}</p>";
     }else{
@@ -22,7 +23,7 @@ function redirect_to($location, $status=302)
    exit();
 }
 
-function searchMember($nom,$clientList)
+function searchMember($nom,$clientList) :bool
 {
     foreach ($clientList as $client)
     {
@@ -32,7 +33,7 @@ function searchMember($nom,$clientList)
     return false;
 }
 
-function searchAssociation($nom,$associationList)
+function searchAssociation($nom,$associationList) :bool
 {
     foreach ($associationList as $asso)
     {
@@ -42,7 +43,7 @@ function searchAssociation($nom,$associationList)
     return false;
 }
 
-function searchPartner($member,$association,$partnerList)
+function searchPartner($member,$association,$partnerList) :bool
 {
     foreach ($partnerList as $partner)
     {
@@ -52,7 +53,7 @@ function searchPartner($member,$association,$partnerList)
     return false;
 }
 
-function founduser($email,$userList)
+function founduser($email,$userList) :bool
 {
     foreach($userList as $user)
     {
@@ -63,7 +64,7 @@ function founduser($email,$userList)
     return false;
 }
 
-function searchUser($fname,$lname,$userList)
+function searchUser($fname,$lname,$userList) :bool
 {
     foreach($userList as $user)
     {
@@ -71,4 +72,13 @@ function searchUser($fname,$lname,$userList)
             return true;
     }
     return false;
+}
+
+function aPropos($id,$clientList) 
+{
+    foreach($clientList as $client)
+    {
+        if($client->numUtilisateur == $id)
+            return $client;
+    }
 }

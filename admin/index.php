@@ -24,6 +24,14 @@ $_SESSION['adressErr'] = '';
 $_SESSION['createurErr'] = '';
 $_SESSION['memberErr'] = '';
 $_SESSION['associationErr'] = '';
+$_SESSION['nom'] = '';
+$_SESSION['prenom'] = '';
+$_SESSION['email'] =  '';
+$_SESSION['date'] = '';
+$_SESSION['adresse'] = '';
+$_SESSION['sexe'] =  '';
+$_SESSION['adress'] = '';
+$_SESSION['createur'] = '';
 
 ?>
 <!DOCTYPE html>

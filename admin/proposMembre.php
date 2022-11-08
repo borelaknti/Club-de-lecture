@@ -18,9 +18,10 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
 
 $users = new Users();
 $asso = new Association();
-$userList = $users->findAll();
+$userList = $users->findAllMember();
+$member = aPropos($_GET['id'],$userList);
 $user = $asso->findAssociationMember($_GET['id']);
-//die(var_dump($user));
+//die(var_dump($member));
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,22 +37,22 @@ $user = $asso->findAssociationMember($_GET['id']);
 			<fieldset>
 				<table class="tabVelo" cellpadding="10" cellspacing="5">
 					<tr>
-						<td><label class="nom"> Nom :</label></td> <td> <?php echo $userList[$_GET['id']-1]->nomUtilisateur;?> </td>
+						<td><label class="nom"> Nom :</label></td> <td> <?php echo $member->nomUtilisateur;?> </td>
 					</tr>
 					<tr>
-						<td><label class="nom"> Prenom :</label></td> <td> <?php echo $userList[$_GET['id']-1]->prenomUtilisateur;?> </td>
+						<td><label class="nom"> Prenom :</label></td> <td> <?php echo $member->prenomUtilisateur;?> </td>
 					</tr>
 					<tr>
-						<td><label class="nom"> Date de naissance :</label></td> <td> <?php echo $userList[$_GET['id']-1]->dateNaissance;?> </td>
+						<td><label class="nom"> Date de naissance :</label></td> <td> <?php echo $member->dateNaissance;?> </td>
 					</tr>
 					<tr>
-						<td><label class="nom"> Adresse :</label></td> <td> <?php echo $userList[$_GET['id']-1]->adresseUtilisateur;?> </td>
+						<td><label class="nom"> Adresse :</label></td> <td> <?php echo $member->adresseUtilisateur;?> </td>
 					</tr>
 					<tr>
-						<td><label class="nom"> Sexe :</label></td> <td> <?php echo $userList[$_GET['id']-1]->sexeUtilisateur;?> </td> 
+						<td><label class="nom"> Sexe :</label></td> <td> <?php echo $member->sexeUtilisateur;?> </td> 
 					</tr>
 					<tr>
-						<td><label class="nom"> Adresse Mail : </label></td> <td> <?php echo $userList[$_GET['id']-1]->utilisateur_email;?> </td>
+						<td><label class="nom"> Adresse Mail : </label></td> <td> <?php echo $member->utilisateur_email;?> </td>
 					</tr>
 					<tr>
 						<td><label class="nom"> Membre de l'association : </label></td> <td>

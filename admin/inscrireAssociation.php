@@ -19,6 +19,10 @@ $nomErr = $_SESSION['nomErr'] ?? '';
 $dateErr = $_SESSION['dateErr'] ?? '';
 $adressErr = $_SESSION['adressErr'] ?? '';
 $createurErr = $_SESSION['createurErr'] ?? '';
+$nom = $_SESSION['nom'] ?? '';
+$date = $_SESSION['date'] ?? '';
+$adress = $_SESSION['adress'] ?? '';
+$createur = $_SESSION['createur'] ?? '';
 
 ?>
 <!DOCTYPE html>
@@ -35,7 +39,7 @@ $createurErr = $_SESSION['createurErr'] ?? '';
 		//die(var_dump($message));
             if ($message){
                 echo 
-                    '<div class=" error-message">'.
+                    '<div class="error-message">'.
                             outputMessage($message).
                     '</div>';
             }
@@ -45,16 +49,16 @@ $createurErr = $_SESSION['createurErr'] ?? '';
 			<fieldset>
 				<table class="tabVelo" cellpadding="10" cellspacing="5">
 					<tr>
-						<td><label class="nom"> Nom de l'association:</label></td> <td><input type="text" name="nom" id="nom" size="40" value="<?php echo htmlentities($nom);?>" required> <?php echo $nomErr;?></span> </td>
+						<td><label class="nom"> Nom de l'association:</label></td> <td><input type="text" name="nom" id="nom" size="40" value="<?php echo htmlentities($nom);?>" required> <span class="error"> <?php echo $nomErr;?></span> </td>
 					</tr>
 					<tr>
-						<td><label class="nom"> Adresse :</label></td> <td><input type="text" name="adress" id="adress"  size="40" value="<?php echo htmlentities($adress);?>" required> <?php echo $adressErr;?></span> </td>
+						<td><label class="nom"> Adresse :</label></td> <td><input type="text" name="adress" id="adress"  size="40" value="<?php echo htmlentities($adress);?>" required> <span class="error"> <?php echo $adressErr;?></span> </td>
 					</tr>
 					<tr>
-						<td><label class="nom"> Date de creation :</label></td> <td><input type="date" name="date" id="date" value="<?php echo htmlentities($date);?>" required> <?php echo $dateErr;?></span> </td> 
+						<td><label class="nom"> Date de creation :</label></td> <td><input type="date" name="date" id="date" value="<?php echo htmlentities($date);?>" required> <span class="error"> <?php echo $dateErr;?></span> </td> 
 					</tr>
 					<tr>
-						<td><label class="nom"> Nom du createur : </label></td> <td><input type="text" name="createur" id="createur" size="40" value="<?php echo htmlentities($createur);?>" required> <?php echo $createurErr;?></span> </td>
+						<td><label class="nom"> Nom du createur : </label></td> <td><input type="text" name="createur" id="createur" size="40" value="<?php echo htmlentities($createur);?>" required> <span class="error"> <?php echo $createurErr;?></span> </td>
 					</tr>
 				</table>
 				<div class="endbutton">

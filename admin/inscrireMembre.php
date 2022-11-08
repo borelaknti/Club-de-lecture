@@ -19,6 +19,13 @@ $prenomErr = $_SESSION['prenomErr'] ?? '';
 $dateErr = $_SESSION['dateErr'] ?? '';
 $adresseErr = $_SESSION['adresseErr'] ?? '';
 $emailErr = $_SESSION['emailErr'] ?? '';
+$nom = $_SESSION['nom'] ?? '';
+$prenom = $_SESSION['prenom'] ?? '';
+$date = $_SESSION['date'] ?? '';
+$adresse = $_SESSION['adresse'] ?? '';
+$email = $_SESSION['email'] ?? '';
+
+//die(var_dump( $nom ));
 ?>
 <!DOCTYPE html>
 <html>

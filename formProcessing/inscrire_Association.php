@@ -11,6 +11,7 @@ require_once("../includes/session.php");
 
 $_SESSION['msg'] = '';
 $_SESSION['nomErr'] = $_SESSION['adressErr'] = $_SESSION['dateErr'] =  $_SESSION['createurErr'] =  "";
+$_SESSION['nom'] = $_SESSION['adress'] = $_SESSION['date'] =  $_SESSION['createur'] =  "";
 
 if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
     redirect_to("../admin/index.php");
@@ -33,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($nom)) {
             $_SESSION['nomErr'] = "* Le nom de l'association est obligatoire";
         } else {
-            $nom = cleanUpInputs($nom);
+            $_SESSION['nom'] = cleanUpInputs($nom);
             // check if name only contains letters and whitespace
             if (!preg_match("/^[a-zA-Z-' ]*$/",$nom)) {
                 $_SESSION['nomErr'] = "* Seules les lettres et les espaces blancs sont autorisés";
@@ -43,15 +44,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
         if (empty($date)) {
-            $_SESSION['dateErr'] = "* La date de naissance est obligatoire";
-        } 
+            $_SESSION['dateErr'] = "* La date de creation est obligatoire";
+        }
+        else
+        {
+            $_SESSION['date'] = cleanUpInputs($date);
+            $dt = time();
+            $dt = date("Y-m-d", $dt);
+            if($date>$dt)
+                $_SESSION['dateErr'] = "* veillez entre une date de creation valide";
+            //die(var_dump($date>$dt));
+        }  
         if (empty($adress)) {
             $_SESSION['adressErr'] = "* l'adresse est obligatoire";
+        }
+        else
+        {
+            $_SESSION['adress'] = cleanUpInputs($adress);
+            //die(var_dump(ctype_alnum($adresse)));
+            if (!ctype_alnum($adress)) {
+                $_SESSION['adressErr'] = "* ne peut pas contenir seulement les chiffres mais doit aussi contenir des lettres";
+            }
         }
         if (empty($createur)) {
             $_SESSION['createurErr'] = "* Le nom du createur est obligatoire";
         } else {
-            $createur = cleanUpInputs($createur);
+            $_SESSION['createur'] = cleanUpInputs($createur);
             // check if name only contains letters and whitespace
             if (!preg_match("/^[a-zA-Z-' ]*$/",$createur)) {
                 $_SESSION['createurErr'] = "* Seules les lettres et les espaces blancs sont autorisés";

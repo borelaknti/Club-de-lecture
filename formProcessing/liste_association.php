@@ -9,7 +9,7 @@ $associationList = $associations->findAll();
 ?>
 <?php
 
-$htmlTable =  '<table border="1" class="list"> 
+$htmlTable =  '<table class="list"> 
                     <tr>
                         <th> numero </th> <th> Nom </th> <th>adresse</th> <th>Date de creation</th> <th>nom du createur</th> <th colspan="2">action</th>
                     </tr>';

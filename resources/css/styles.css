@@ -463,3 +463,19 @@ th{
 .aff{
 	text-decoration: none;
 }
+
+.legend
+{
+	font-size: 20px;
+	margin-top: 225px;
+	margin-left: 195px;
+	color: white;
+}
+
+.titre-det
+{
+	position: relative;
+	font-size: 30px;
+	top: -10px;
+	color: white;
+}

@@ -43,10 +43,15 @@ $user = $asso->findAssociation($_GET['id']);
             }
         ?>
 		<div class="tab-member">
-			<div>
+			<div class="titre-det">
 				<h5 > Liste des Membres de l'association <?php echo $user[0]->nomAssociation; ?> </h5>
 			</div>
 			<?php echo $htmlTable; ?>
+		</div>
+		<div class="legend">
+			<i class='fas fa-info-circle '></i> <label> Information </label> <br> <br>
+			<i class='fas fa-check'></i><label>  Rendre inactif </label> <br> <br>
+			<i class='fas fa-ban'></i><label>  Rendre actif </label> <br> <br>
 		</div>
 		<?php include_once "../layouts/footer.php"; ?>
 	</div>	
