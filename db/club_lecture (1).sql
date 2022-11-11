@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : mar. 01 nov. 2022 à 14:56
+-- Généré le : mer. 09 nov. 2022 à 02:20
 -- Version du serveur : 8.0.21
 -- Version de PHP : 7.4.9
 
@@ -44,8 +44,7 @@ INSERT INTO `association` (`numAssociation`, `nomAssociation`, `adresseAssociati
 (2, 'Cardio', '95 Rue jasques cartier', '2022-10-19', 'Binam'),
 (3, 'Stikers', '96 Rue jacques cartier', '2022-10-21', 'rodrigo'),
 (4, 'binance', '97 rue Jacques cartier', '2022-10-21', 'jiji'),
-(5, 'voyageur', '98 Rue jacques cartier', '2022-10-19', 'nancy'),
-(7, 'qwert', '54 rue boul vert', '2022-10-28', 'raphael');
+(5, 'voyageur', '98 Rue jacques cartier', '2022-10-19', 'nancy');
 
 -- --------------------------------------------------------
 
@@ -64,7 +63,7 @@ CREATE TABLE `utilisateur` (
   `login_utilisateur` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `mot_de_passe` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `utilisateur_email` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `email_time` timestamp NULL DEFAULT NULL
+  `email_time` varchar(15) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -72,17 +71,19 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`numUtilisateur`, `nomUtilisateur`, `prenomUtilisateur`, `dateNaissance`, `etatUtilisateur`, `adresseUtilisateur`, `sexeUtilisateur`, `login_utilisateur`, `mot_de_passe`, `utilisateur_email`, `email_time`) VALUES
-(1, 'NTI AkOUMBA', 'Borel Giovanni', '2000-08-21', 'A', '94 rue jacques cartier', 'M', 'borel', 'borel2021', NULL, NULL),
-(2, 'philip', 'morris', '2022-09-08', 'I', '94 rue jacques cartier', 'M', 'morris', 'morris2021', NULL, NULL),
 (3, 'dom', 'perrin', '2022-10-12', 'A', 'dfffhdfsg', 'm', 'koko', '$2y$10$ORwOA.AYWlsgSkQ8bJLVI.bImNGXEwwEFQsBpgNUwdk5J5uT0853O', 'borelaknti@gmail.com', NULL),
-(4, 'gabriel', 'jesus', '2022-10-19', 'I', '96 rue jacques cartier', 'masculin', 'gabi', '$2y$10$HjhJ5duRJd2DIWr92uenjOQB82RTIRFoqXu9WAzjWCo0No8zX8/8a', 'gabriel@gmail.com', '0000-00-00 00:00:00'),
-(5, 'john', 'anderson', '2022-10-19', 'A', '97 rue jacques cartier', 'feminin', 'john', '$2y$10$ZVAIWopJoOQ2KApjVcLwqe/oQ9IApBBYEd32dDpoO1rQAOztJ6vRK', 'john@gmail.com', '0000-00-00 00:00:00'),
-(6, 'emet', 'jonathan', '2022-10-19', 'A', 'dfffhdfsg', 'masculin', 'emet', '$2y$10$nxRhG4N79u1VQem7dvlUFufytFvaafbvuJhZ3bCeNRSa72SxKcwjG', 'emet@hotmail.com', '0000-00-00 00:00:00'),
-(7, 'ewtret', 'anderson', '2022-10-18', 'A', '96 rue jacques cartier', 'masculin', 'anderson', '$2y$10$/MYn/5I13/kIm93BXBE4se4WkOdsjgbU8qfmdg4dUZjvGDvjSAgKq', 'emet@hotmail.com', '0000-00-00 00:00:00'),
-(8, 'borel', 'perrin', '2022-10-19', 'A', '96 rue jacques cartier', 'masculin', 'jiji', '$2y$10$.07y9ccm9faM6/YuIRh86O5UNJiLe0lHFOieQfyd/5fddHpgs9YHK', 'emet@hotmail.com', '0000-00-00 00:00:00'),
-(9, 'sale', 'bonet', '2022-10-22', 'A', '94 rue jacques cartier', 'masculin', NULL, NULL, 'sale@gmail.com', NULL),
-(10, 'fits', 'dev', '2022-10-22', 'I', 'assdadsa', 'masculin', NULL, NULL, 'emet@hotmail.com', '0000-00-00 00:00:00'),
-(11, 'fits', 'dev', '2022-10-22', 'A', 'assdadsa', 'masculin', NULL, NULL, 'emet@hotmail.com', '0000-00-00 00:00:00');
+(4, 'gabriel', 'jesus', '2022-10-19', 'I', '96 rue jacques cartier', 'masculin', 'gabi', '$2y$10$nsdYvswBf/7qvoNYk8AKj.vYAPVRzV4OG3eaVVn7B/KPlYq74D82C', 'gabriel@gmail.com', '1667393731'),
+(5, 'john', 'anderson', '2022-10-19', 'A', '97 rue jacques cartier', 'feminin', 'john', '$2y$10$4nRc9/ydeC1lUccvJG3/u.CH/JzsbKeugpq6P9zHg0ihh9K8uZqFa', 'john@gmail.com', '1667568408'),
+(6, 'emet', 'jonathan', '2022-10-19', 'A', 'dfffhdfsg', 'masculin', 'emet', '$2y$10$nxRhG4N79u1VQem7dvlUFufytFvaafbvuJhZ3bCeNRSa72SxKcwjG', 'emet@hotmail.com', '0000-00-00 00:0'),
+(7, 'ewtret', 'anderson', '2022-10-18', 'A', '96 rue jacques cartier', 'masculin', 'anderson', '$2y$10$/MYn/5I13/kIm93BXBE4se4WkOdsjgbU8qfmdg4dUZjvGDvjSAgKq', 'emet@hotmail.com', '0000-00-00 00:0'),
+(8, 'borel', 'perrin', '2022-10-19', 'A', '96 rue jacques cartier', 'masculin', 'jiji', '$2y$10$.07y9ccm9faM6/YuIRh86O5UNJiLe0lHFOieQfyd/5fddHpgs9YHK', 'emet@hotmail.com', '0000-00-00 00:0'),
+(9, 'sale', 'bonet', '2022-10-22', 'I', '94 rue jacques cartier', 'masculin', NULL, NULL, 'sale@gmail.com', NULL),
+(10, 'fits', 'dev', '2022-10-22', 'I', 'assdadsa', 'masculin', NULL, NULL, 'emet@hotmail.com', '0000-00-00 00:0'),
+(11, 'fits', 'dev', '2022-10-22', 'A', 'assdadsa', 'masculin', NULL, NULL, 'emet@hotmail.com', '0000-00-00 00:0'),
+(12, 'jerry', 'perry', '2011-02-04', 'A', '96 rue jacques cartier', 'masculin', 'jerry', '$2y$10$33RsY3JQqQbdAWr5Q19JWeq3/4eK/wi5r0FU2FbheJD4VfG43Kvnm', 'jerry@gmail.com', NULL),
+(14, 'philip', 'morris', '2011-02-10', 'A', '96 rue jacques cartier', 'masculin', 'morris', '$2y$10$7pYxpAuyjJWKQC6yEIDxuOGiQu/lY3OFZrDPdz0d9fT/BE2dBjVeu', 'philip@gmail.com', '1667568196'),
+(16, 'joel', 'mathiew', '2015-07-08', 'A', '192.168.0.0', 'masculin', NULL, NULL, 'emet@hotmail.com', NULL),
+(17, 'charles', 'nanga', '2015-03-08', 'A', '192.168.0.0', 'masculin', NULL, NULL, 'emet@hotmail.com', NULL);
 
 -- --------------------------------------------------------
 
@@ -106,7 +107,8 @@ INSERT INTO `utilisateurassocier` (`id`, `fknumAssociation`, `fknumUtilisateur`,
 (4, 1, 9, NULL),
 (5, 4, 9, NULL),
 (6, 5, 11, NULL),
-(7, 2, 11, NULL);
+(7, 2, 11, NULL),
+(8, 2, 16, NULL);
 
 --
 -- Index pour les tables déchargées
@@ -146,13 +148,13 @@ ALTER TABLE `association`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `numUtilisateur` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `numUtilisateur` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateurassocier`
 --
 ALTER TABLE `utilisateurassocier`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Contraintes pour les tables déchargées
