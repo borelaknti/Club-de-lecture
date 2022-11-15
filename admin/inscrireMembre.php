@@ -46,6 +46,11 @@ $email = $_SESSION['email'] ?? '';
                     '</div>';
             }
         ?>
+        <!--
+           À corriger pour la dernière itération : les formulaires et boutons, ce serait mieux d'avoir un fond légèrement
+           opaque afin de bien pouvoir lire le texte.
+           Enlever cellpadding et cellspacing n'est plus utilisé dans le HTML. Ajouter le css dans la classe tabVelo
+       -->
 		<div class="insc-membre">
 		<form id="inscrire" action="../formProcessing/inscrire_Membre.php" method="post">
 			<fieldset>

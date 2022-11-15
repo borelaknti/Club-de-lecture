@@ -45,6 +45,12 @@ $createur = $_SESSION['createur'] ?? '';
             }
         ?>
 		<div class="insc-membre">
+
+            <!--
+               À corriger pour la dernière itération : les formulaires et boutons, ce serait mieux d'avoir un fond légèrement
+               opaque afin de bien pouvoir lire le texte.
+               Enlever cellpadding et cellspacing n'est plus utilisé dans le HTML. Ajouter le css dans la classe tabVelo
+           -->
 			<form id="inscrire-association" action="../formProcessing/inscrire_Association.php" method="post">
 			<fieldset>
 				<table class="tabVelo" cellpadding="10" cellspacing="5">

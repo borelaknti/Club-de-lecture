@@ -33,6 +33,10 @@ $user = $asso->findAssociationMember($_GET['id']);
 		<div class="titreInsc">
 			<h1>A propos de <?php echo $userList[$_GET['id']-1]->nomUtilisateur;?> </h1>
 		</div>
+        <!--
+            À corriger pour la dernière itération : les formulaires et boutons, ce serait mieux d'avoir un fond légèrement
+            opaque afin de bien pouvoir lire le texte. Enlever cellpadding et cellspacing n'est plus utilisé dans le HTML
+        -->
 		<div class="insc-membre">
 			<fieldset>
 				<table class="tabVelo" cellpadding="10" cellspacing="5">

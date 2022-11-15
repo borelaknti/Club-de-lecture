@@ -9,7 +9,9 @@ $userList = $users->findMemberAssociation($_GET['id']);
 //die(var_dump(count($userList))); // verifier le parametre quand le tableau est vide
 ?>
 <?php
-
+/*
+ * Enlever border n'est plus utilisé dans le HTML. Ajouter le css dans la classe list
+ */
 $htmlTable =  '<table border="1" class="list"> 
                     <tr>
                         <th> numero </th> <th> Nom </th> <th> Prenom </th>  <th>etat</th> <th>email</th> <th colspan="2">action</th>

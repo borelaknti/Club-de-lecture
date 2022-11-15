@@ -16,6 +16,15 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
 }
 
 $users = new Users();
+
+/*
+ * Corrections : Utiliser findAll() n'est pas bon dans ce cas, car on envoie
+ * une id d'usager donc il faut seulement récupérer cet usager afin de faire
+ * l'activation/désactivation et non toute la liste.
+ * Sinon cela ne fonctionne pas normalement chez moi et c'est la façon de faire.
+ * Faire une fonction findById($id) dans Users().
+ * Utiliser 'I' et 'A' au lieu de juste I et A.
+ */
 $userList = $users->findAll();
 if ($userList[$_GET['id']-1]->etatUtilisateur == 'A'){
     //die(var_dump($userArray));

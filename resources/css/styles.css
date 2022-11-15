@@ -42,6 +42,11 @@
 	height: 100vh;
 }
 .error-message {
+	/*
+		Ajout de la position pour placer les erreurs sous le navigation
+		et au dessus des formulaires afin quelle soit visible
+	 */
+
     color: red;
     background-color: #ffbbbb;
     padding: 10px 2px 0 2px;

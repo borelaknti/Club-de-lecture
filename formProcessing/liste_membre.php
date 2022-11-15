@@ -10,6 +10,10 @@ $userList = $users->findAllMember();
 ?>
 <?php
 
+/*
+ * Ajouter une classe afin de mettre du style dans les rangés avec du texte noir sur une page
+ * avec un fond qui possède une image.
+ */
 $htmlTable =  '<table class="list"> 
                     <tr>
                         <th> numero </th> <th> Nom </th> <th> Prenom </th>  <th>etat</th> <th>email</th> <th colspan="2">action</th>

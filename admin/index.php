@@ -50,6 +50,10 @@ $_SESSION['createur'] = '';
     		include_once "../layouts/navigationAdmin.php";
 		?>
 
+        <!--
+            À corriger pour la dernière itération : les formulaires et boutons, ce serait mieux d'avoir un fond légèrement
+            opaque afin de bien pouvoir lire le texte.
+        -->
 		<div class="Big-button">
 			<div class="">
 				<a href="inscrireMembre.php" class="link" > <button class="button1 button " >   Nouveau Membre  </button> </a> 

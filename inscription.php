@@ -9,6 +9,11 @@ require_once("includes/functions.php");
 require_once("includes/Users.php");
 require_once("includes/session.php");
 
+/*
+ * À corriger pour la finale : d'abord déclarer un objet de la classe session, puis appeler la fonction logout().
+ * session_destroy() permet quand même de se déconnecter.
+ */
+
 $message = '';
 $fnameErr = $lnameErr = $emailErr =  $birthdayErr = $addressErr = $usernameErr = $passwordErr= $passwordConfirmationErr = "";
 
@@ -170,6 +175,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     '</div>';
             }
         ?>
+        <!--
+            Pour la deuxième itération : les formulaires et boutons, ce serait bien d'avoir un fond légèrement opaque afin de bien pouvoir lire le texte.
+            (voir pour les tableaux de listes.)
+        -->
 		<form id="login" action="inscription.php" method="post">
 			<fieldset>
 				<legend>La lecture d’un roman jette sur la vie une lumière</legend>

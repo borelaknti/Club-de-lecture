@@ -62,6 +62,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         {
             $_SESSION['adress'] = cleanUpInputs($adress);
             //die(var_dump(ctype_alnum($adresse)));
+            /*
+            * Corrections : dans la validation des adresses, il faut aussi permettre les espaces.
+             * Donc créer une fonction de validation personnalisée et utiliser preg_match() avec une expression régulière.
+            */
             if (!ctype_alnum($adress)) {
                 $_SESSION['adressErr'] = "* ne peut pas contenir seulement les chiffres mais doit aussi contenir des lettres";
             }

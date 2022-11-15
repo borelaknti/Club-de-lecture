@@ -10,7 +10,10 @@ require_once("includes/Users.php");
 require_once("includes/session.php");
 
 //$message = '';
-
+/*
+ * À corriger pour la finale : d'abord déclarer un objet de la classe session, puis appeler la fonction login().
+ * session_destroy() permet quand même de se déconnecter.
+ */
 $page = "connexion";
 
 $active = 'active';
@@ -79,6 +82,10 @@ if(isset($_POST['submit'])){
                     '</div>';
             }
         ?>
+        <!--
+            Pour la dernière itération : les formulaires et boutons, ce serait bien d'avoir un fond légèrement opaque afin de bien pouvoir lire le texte.
+            (voir pour les tableaux de listes.)
+        -->
 		<form id="login" action="connexion.php" method="post">
 			<fieldset >
 				<legend>La lecture d’un roman jette sur la vie une lumière</legend>

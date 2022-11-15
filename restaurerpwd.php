@@ -95,6 +95,10 @@ if(isset($_POST['submit'])){
                     '</div>';
             }
         ?>
+        <!--
+            Pour la dernière itération : les formulaires et boutons, ce serait bien d'avoir un fond légèrement opaque afin de bien pouvoir lire le texte.
+            (voir pour les tableaux de listes.)
+        -->
 		<div class="rest">
 			<form id="restaurer" action="restaurerpwd.php" method="post">
 				<fieldset>

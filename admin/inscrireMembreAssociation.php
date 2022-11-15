@@ -44,6 +44,11 @@ $userList = $users->findActifMember();
                     '</div>';
             }
         ?>
+        <!--
+            Pour la dernière itération avoir le PHP pour aller chercher les valeurs des options des menus déroulants (liste des noms de membres et noms des associations).
+            Pour la dernière itération : les formulaires et boutons, ce serait mieux d'avoir un fond légèrement opaque afin de bien pouvoir lire le texte.
+            Enlever cellpadding et cellspacing n'est plus utilisé dans le HTML. Ajouter le css dans la classe tabVelo
+        -->
 		<div class="insc-membre">
 			<form id="inscrire-mb-as" action="../formProcessing/inscrire_Membre_Association.php" method="post">
 			<fieldset>
