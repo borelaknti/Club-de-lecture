@@ -27,10 +27,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $partner = new UtilisateurAssocier();
         //die(var_dump($nom,$prenom,$date,$adress));
         if (empty($member)) {
-            $_SESSION['memberErr'] = "* Le choix du membre est obligatoire";
+            $_SESSION['memberErr'] = " Le choix du membre est obligatoire";
         } 
         if (empty($association)) {
-            $_SESSION['associationErr'] = "* Le choix d'une association est obligatoire";
+            $_SESSION['associationErr'] = " Le choix d'une association est obligatoire";
         } 
         //die(var_dump($nomErr,$prenom,$date,$adress));
         if (empty($_SESSION['msg']) && empty($_SESSION['memberErr']) && empty($_SESSION['associationErr'])){

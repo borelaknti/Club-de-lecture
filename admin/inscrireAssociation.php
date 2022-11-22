@@ -15,6 +15,7 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
 }
 
 $message = $_SESSION['msg'] ?? '';
+$forgot = $_SESSION['forgot'] ?? '';
 $nomErr = $_SESSION['nomErr'] ?? '';
 $dateErr = $_SESSION['dateErr'] ?? '';
 $adressErr = $_SESSION['adressErr'] ?? '';
@@ -31,44 +32,76 @@ $createur = $_SESSION['createur'] ?? '';
 	<?php include_once "../layouts/adminHeader.php"; ?>
 </head>
 <body>
-	<div class="container">
-		<div class="titreInsc">
-			<h1>Inscrire une nouvelle association</h1>
-		</div>
+	<div class="general-form-img">
+		<div class="form-dispo-membre offset-md-4">
+			<div class="offset-md-2 mb-5">
+				<h4> Inscrire une nouvelle association </h4>
+			</div>
 		<?php
-		//die(var_dump($message));
+		//die(var_dump($msg));
             if ($message){
+                	echo 
+                    '<div class="row big-error">
+                        <div class="col-sm-9 offset-md-1">
+                            '.
+                                outputError($message).
+                    '
+                        </div>
+                    </div>';
+            }
+            if ($forgot){
                 echo 
-                    '<div class="error-message">'.
-                            outputMessage($message).
-                    '</div>';
+                    '<div class="row big-error">
+                        <div class="col-sm-9 offset-md-1">
+                            '.
+                                outputSuccess($forgot).
+                    '
+                        </div>
+                    </div>';;
             }
         ?>
-		<div class="insc-membre">
-			<form id="inscrire-association" action="../formProcessing/inscrire_Association.php" method="post">
-			<fieldset>
-				<table class="tabVelo" cellpadding="10" cellspacing="5">
-					<tr>
-						<td><label class="nom"> Nom de l'association:</label></td> <td><input type="text" name="nom" id="nom" size="40" value="<?php echo htmlentities($nom);?>" required> <span class="error"> <?php echo $nomErr;?></span> </td>
-					</tr>
-					<tr>
-						<td><label class="nom"> Adresse :</label></td> <td><input type="text" name="adress" id="adress"  size="40" value="<?php echo htmlentities($adress);?>" required> <span class="error"> <?php echo $adressErr;?></span> </td>
-					</tr>
-					<tr>
-						<td><label class="nom"> Date de creation :</label></td> <td><input type="date" name="date" id="date" value="<?php echo htmlentities($date);?>" required> <span class="error"> <?php echo $dateErr;?></span> </td> 
-					</tr>
-					<tr>
-						<td><label class="nom"> Nom du createur : </label></td> <td><input type="text" name="createur" id="createur" size="40" value="<?php echo htmlentities($createur);?>" required> <span class="error"> <?php echo $createurErr;?></span> </td>
-					</tr>
-				</table>
-				<div class="endbutton">
-					<button class="buttonEnd " type="submit" name="submit" >  Soumettre le formulaire  </button>
-					<a  href="index.php"  > <button type="button" class="buttonEnd " >  Retour au menu  </button> </a>
-				</div>
-			</fieldset>
-		</form>
+        <div class="insc-pos-membre  offset-md-1 mb-4">
+				<form id="inscrire-association" action="../formProcessing/inscrire_Association.php" method="post">
+  					<div class="form-group row">
+                        <label  class="col-sm-3 col-form-label "> Nom de l'association:  </label>
+                        <div class="col-sm-8">
+                            <input type="text" class=" form-control mb-3"  name="nom" id="nom"   value="<?php echo htmlentities($nom);?>" required />
+                           <?php echo outputError($nomErr) ;?>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label  class="col-sm-3 col-form-label "> adresse:  </label>
+                        <div class="col-sm-8">
+                            <input type="text" class=" form-control mb-3"   name="adress" id="adress"  size="40" value="<?php echo htmlentities($adress);?>" required />
+                           <?php echo outputError($adressErr) ;?>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label  class="col-sm-3 col-form-label "> Date de creation:  </label>
+                        <div class="col-sm-8">
+                            <input type="date" class=" form-control mb-3" name="date" id="date" value="<?php echo htmlentities($date);?>" required />
+                            <?php echo outputError($dateErr);?> 
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label  class="col-sm-3 col-form-label "> Nom du createur :  </label>
+                        <div class="col-sm-8">
+                            <input type="text" class=" form-control mb-3" name="createur" id="createur" size="40" value="<?php echo htmlentities($createur);?>" required />
+                           <?php echo outputError($createurErr) ;?>
+                        </div>
+                    </div>
+  					<div class="row offset-md-1">
+						<button type="submit" name="submit" class="btn btn-success col-sm-10 p-2 mb-2" >  Soumettre le formulaire   </button> <br>
+						<a  href="index.php" class="link btn btn-success col-sm-10  " role="button">   Retour au menu   </a>
+					</div>
+  				</form>
+			</div>
 		</div>
-		<?php include_once "../layouts/footer.php"; ?>
-	</div>	
+		<div class="row">
+			<footer class="footer-bottom">
+			<p>Copyright &copy;2022 Club de lecture. designe par <span> NTI AKOUMBA</span> </p>
+			</footer>
+		</div>	
+</div>		
 </body>
 </html>

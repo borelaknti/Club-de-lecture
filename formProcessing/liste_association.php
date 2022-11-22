@@ -30,7 +30,7 @@ if(count($associationList) > 0)
 }
 else 
 {
-	$htmlTable .=  '<tr><td colspan="5" class="alert alert-danger text-center"><em>Aucun dossier n\'a été trouvé.</em></td></tr>';
+	$htmlTable .=  '<tr><td colspan="5" ><em>Aucune association n\'a été trouvé.</em></td></tr>';
 }
 $htmlTable .=  '	</table> ';
 

@@ -22,7 +22,7 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
 	<?php include_once "../layouts/adminHeader.php"; ?>
 </head>
 <body>
-	<div class="container">
+	<div class="general-form-img">
 		<?php
 
     		$page = "association-list";

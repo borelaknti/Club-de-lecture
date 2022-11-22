@@ -31,26 +31,31 @@ $userList = $users->findActifMember();
 	<?php include_once "../layouts/adminHeader.php"; ?>
 </head>
 <body>
-	<div class="container">
-		<div class="titreInsc">
-			<h1>Inscrire un membre dans une association</h1>
-		</div>
+	<div class="general-form-img">
+		<div class="form-dispo-MA offset-md-4">
+			<div class="offset-md-2 mb-4">
+				<h4> Inscrire un membre dans une association</h4>
+			</div>
 		<?php
-		//die(var_dump($message));
+		//die(var_dump($msg));
             if ($message){
-                echo 
-                    '<div class=" error-message">'.
-                            outputMessage($message).
-                    '</div>';
+                	echo 
+                    '<div class="row big-error">
+                        <div class="col-sm-9 offset-md-1">
+                            '.
+                                outputError($message).
+                    '
+                        </div>
+                    </div>';
             }
         ?>
-		<div class="insc-membre">
-			<form id="inscrire-mb-as" action="../formProcessing/inscrire_Membre_Association.php" method="post">
-			<fieldset>
-					<table class="tabVelo" cellpadding="10" cellspacing="5">
-						<tr>
-							<td><label class="nom"> Membre :</label></td> <td> <select id="member" name="member"> 
-								<?php 
+        <div class=" insc-pos-MA offset-md-1 mb-4">
+				<form id="inscrire-mb-as" action="../formProcessing/inscrire_Membre_Association.php" method="post">
+  					<div class="form-group row mb-1">
+                        <label  class="col-sm-3 col-form-label "> Membre :  </label>
+                        <div class="col-sm-8">
+                            <select class="form-select form-control" id="member" name="member"> 
+                                <?php 
 								echo "<option selected disabled> choisir un membre</option>";
 								if(count($userList) > 0)
 								{ 
@@ -60,12 +65,15 @@ $userList = $users->findActifMember();
 									<?php }
 								}
 								?>
-							</select> 
-							<span class="error"> <?php echo $memberErr;?></span> </td> 
-						</tr>
-						<tr>
-							<td><label class="nom"> Association :</label></td> <td> <select id="association" name="association"> 
-								<?php 
+                            </select>
+                            <?php echo outputError($memberErr) ;?>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-5">
+                        <label  class="col-sm-3 col-form-label "> Association :  </label>
+                        <div class="col-sm-8">
+                            <select class="form-select form-control" id="association" name="association"> 
+                                <?php 
 								echo "<option selected disabled> choisir une associations </option>";
 								if(count($associationList) > 0)
 								{ 
@@ -75,19 +83,22 @@ $userList = $users->findActifMember();
 									<?php }
 								}
 								?>
-							</select> 
-							<span class="error"> <?php echo $associationErr;?></span> </td> 
-						</tr>
-					</table>
-					<div class="endbutton">
-						<button class="buttonEnd " type="submit" name="submit" >  Soumettre le formulaire  </button>
-						<a  href="index.php"  > <button type="button" class="buttonEnd " >  Retour au menu  </button> </a>
+                            </select>
+                            <?php echo outputError($associationErr) ;?>
+                        </div>
+                    </div>
+  					<div class="row offset-md-1">
+						<button type="submit" name="submit" class="btn btn-success col-sm-10 p-2 mb-2" >  Soumettre le formulaire   </button> <br>
+						<a  href="index.php" class="link btn btn-success col-sm-10  " role="button">   Retour au menu   </a>
 					</div>
-				</fieldset>
-			</form>
+  				</form>
+			</div>
 		</div>
-
-		<?php include_once "../layouts/footer.php"; ?>
-	</div>	
+		<div class="row">
+			<footer class="footer-bottom">
+			<p>Copyright &copy;2022 Club de lecture. designe par <span> NTI AKOUMBA</span> </p>
+			</footer>
+		</div>	
+</div>		
 </body>
 </html>

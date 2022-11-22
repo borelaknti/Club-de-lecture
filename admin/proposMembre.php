@@ -29,34 +29,46 @@ $user = $asso->findAssociationMember($_GET['id']);
 	<?php include_once "../layouts/adminHeader.php"; ?>
 </head>
 <body>
-	<div class="container">
-		<div class="titreInsc">
-			<h1>A propos de <?php echo $userList[$_GET['id']-1]->nomUtilisateur;?> </h1>
-		</div>
-		<div class="insc-membre">
-			<fieldset>
-				<table class="tabVelo" cellpadding="10" cellspacing="5">
-					<tr>
-						<td><label class="nom"> Nom :</label></td> <td> <?php echo $member->nomUtilisateur;?> </td>
-					</tr>
-					<tr>
-						<td><label class="nom"> Prenom :</label></td> <td> <?php echo $member->prenomUtilisateur;?> </td>
-					</tr>
-					<tr>
-						<td><label class="nom"> Date de naissance :</label></td> <td> <?php echo $member->dateNaissance;?> </td>
-					</tr>
-					<tr>
-						<td><label class="nom"> Adresse :</label></td> <td> <?php echo $member->adresseUtilisateur;?> </td>
-					</tr>
-					<tr>
-						<td><label class="nom"> Sexe :</label></td> <td> <?php echo $member->sexeUtilisateur;?> </td> 
-					</tr>
-					<tr>
-						<td><label class="nom"> Adresse Mail : </label></td> <td> <?php echo $member->utilisateur_email;?> </td>
-					</tr>
-					<tr>
-						<td><label class="nom"> Membre de l'association : </label></td> <td>
-					<?php 
+	<div class="general-form-img">
+		<div class="form-dispo-membre offset-md-4">
+			<div class="offset-md-2 mb-5">
+				<h4> A propos de <?php echo $member->nomUtilisateur;?>  </h4>
+			</div>
+        <div class="offset-md-1 mb-4">
+			<div class="form-group row mb-3 ">
+                <label  class=" inf-lab col-sm-4  offset-md-1 "> Nom : </label>
+                    <div class="col-sm-6">
+                        <label class="inf "> <?php echo $member->nomUtilisateur;?> </label> 
+ 					</div> 
+ 			</div>
+ 			<div class="form-group row mb-3 ">
+                <label  class=" inf-lab col-sm-4  offset-md-1 "> Prenom : </label>
+                    <div class="col-sm-6">
+                        <label class="inf "> <?php echo $member->prenomUtilisateur;?> </label> 
+ 					</div> 
+ 			</div>
+ 			<div class="form-group row mb-3 ">
+                <label  class=" inf-lab col-sm-4  offset-md-1 "> Date de naissance : </label>
+                    <div class="col-sm-6">
+                        <label class="inf "> <?php echo $member->adresseUtilisateur;?> </label> 
+ 					</div> 
+ 			</div>
+ 			<div class="form-group row mb-3 ">
+                <label  class=" inf-lab col-sm-4  offset-md-1 "> Sexe : </label>
+                    <div class="col-sm-6">
+                        <label class="inf "> <?php echo $member->sexeUtilisateur;?>  </label> 
+ 					</div> 
+ 			</div>
+ 			<div class="form-group row mb-3 ">
+                <label  class=" inf-lab col-sm-4  offset-md-1 "> Email : </label>
+                    <div class="col-sm-6">
+                        <label class="inf "> <?php echo $member->utilisateur_email;?> </label> 
+ 					</div> 
+ 			</div>
+ 			<div class="form-group row mb-5 ">
+                <label  class=" inf-lab col-sm-4  offset-md-1 "> Membre de l'association : </label>
+                    <div class="col-sm-6">
+                        <label class="inf "> <?php 
 					if(isset($user))
 					{
 						foreach ($user as $index)
@@ -65,14 +77,18 @@ $user = $asso->findAssociationMember($_GET['id']);
 					 	}
 					}else
 						echo "Aucune";
-					 ?>
-					 </td>
-					</tr>
-				</table>
-				<div class="endbutton">
-					<a  href="listeMembre.php"  > <button type="button" class="buttonEnd " >  Fermer  </button> </a>
-				</div>
-			</fieldset>
+					 ?> </label> 
+ 					</div> 
+ 			</div>
+		</div>
+		<div class="row offset-md-1">
+			<a  href="index.php" class="link btn btn-success col-sm-10  " role="button">   Retour au menu   </a>
+		</div>
+	</div>
+	<div class="row">
+			<footer class="footer-bottom">
+			<p>Copyright &copy;2022 Club de lecture. designe par <span> NTI AKOUMBA</span> </p>
+			</footer>
 		</div>
 	</div>	
 </body>

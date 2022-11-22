@@ -29,19 +29,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = new Users();
         //die(var_dump($birthday));
         if (empty($username)) {
-            $usernameErr = "* Le nom d'usager est obligatoire";
+            $usernameErr = "Le nom d'usager est obligatoire";
         } else {
             $username = cleanUpInputs($username);
 
-            if (!$user->userUnique($username)){
-                $usernameErr = "* Le nom d'usager existe déjà.";
+            if (!$user->userUnique($username)){//tester bien l'existance et l'inexistance
+                $usernameErr = "Le nom d'usager inexistant.";
             }
         }
         if (empty($password)) {
-            $passwordErr = "* Le mot de passe est obligatoire";
+            $passwordErr = "Le mot de passe est obligatoire";
         }
         if (empty($passwordConfirmation)) {
-            $passwordConfirmationErr = "* La confirmation du mot de passe est obligatoire";
+            $passwordConfirmationErr = " La confirmation du mot de passe est obligatoire";
         } 
         if ($password !== $passwordConfirmation){
             $message = "Les deux mots de passes ne sont pas identiques";
@@ -89,38 +89,61 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<?php include_once "layouts/header.php"; ?>
 </head>
 <body>
-	<div class="generalInsc rest">
-		<div class="rest">
+	<div class="generalInsc ">
+		<div class=" title">
+            <i class='fas  fa-angle-left '></i> <a class="back" href="index.html"> Page d'acceuil</a>
+        </div>
+        <div class="form-dispo-reint offset-md-4">
+            <div class="offset-md-2 mb-4">
+                <h5> Formulaire de reinitialisation du mot de passe</h5>
+            </div>
 			<?php
-            	if ($message){
-                	echo 
-                    	'<div class=" error-message">'.
-                            outputMessage($message).
-                    	'</div>';
-            		}
-        	?>
-			<form id="reinitialisation"  action="reinitialiserpwd.php" method="post">
-				<fieldset>
-					<legend>Formulaire de reinitialisation du mot de passe</legend>
-					<table class="tab-insc" cellpadding="10" cellspacing="15">
-						<tr>
-                        <td><label for="username">Username : </label> </td> <td> <input type="text" id="username" name="username" maxlength="30"  value="<?php echo htmlentities($username);?>" required /> <span class="error"> <?php echo $usernameErr;?></span></td>
-                    	</tr>
-					<tr>
-                        <td><label for="password">Password :</label> </td> <td> <input type="password" id="password" name="password" maxlength="30"  value=" <?php echo htmlentities($password);?>" required /> <span class="error"> <?php echo $passwordErr;?></span> </td>
-                    </tr>
-					<tr>
-                        <td><label for="password-confirmation">Password-confirmation:</label> </td> <td> <input type="password" id="password-confirmation" name="password-confirmation"value="<?php echo htmlentities($passwordConfirmation);?>" required /> <span class="error"> <?php echo $passwordConfirmationErr;?></span></td>
-                    </tr>
-					</table>
-					<div class="btn-insc">
-						<button  type="submit" name="submit" class="btn btn-clean"> restaurer </button> <br> <br>
-            			<a href="connexion.php"> <button type="button" class="btn btn-clean"> connexion </button> </a>
-					</div>
-				</fieldset>
-			</form>	
-		</div>
-		<?php include_once "layouts/footer.php"; ?>
-	</div>
+            if ($message){
+                echo 
+                    '<div class="row big-error">
+                        <div class="col-sm-9 offset-md-1">
+                            '.
+                                outputError($message).
+                    '
+                        </div>
+                    </div>';
+            }
+            ?>
+            <div class="offset-md-1 mb-4">
+                <form id="reinitialisation"  action="reinitialiserpwd.php" method="post">
+                    <div class="form-group row">
+                        <label  class="col-sm-3 col-form-label "> Username:  </label>
+                        <div class="col-sm-8">
+                            <input type="text" class=" form-control mb-3" id="username" name="username"   value="<?php echo htmlentities($username);?>" required/>
+                            <?php echo outputError($usernameErr);?>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label  class="col-sm-3 col-form-label "> Password:  </label>
+                        <div class="col-sm-8">
+                            <input type="password" class=" form-control mb-3" id="password" name="password"   value="<?php echo htmlentities($password);?>" required />
+                            <?php echo outputError($passwordErr);?> 
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label  class="col-sm-3 col-form-label "> Comfirmation password:  </label>
+                        <div class="col-sm-8">
+                            <input type="password" class=" form-control mb-3" id="password-confirmation" name="password-confirmation"value="<?php echo htmlentities($passwordConfirmation);?>" required />
+                             <?php echo outputError($passwordConfirmationErr);?>
+                        </div>
+                    </div>
+                    <div class="row offset-md-1">
+                        <button type="submit" name="submit" class="btn btn-success col-sm-10 p-2 mb-2" >  restaurer  </button> <br>
+                        <a  href="connexion.php" class="link btn btn-success col-sm-10  " role="button">   connexion   </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <footer class="footer-bottom">
+                <p>Copyright &copy;2022 Club de lecture. designe par <span> NTI AKOUMBA</span> </p>
+            </footer>
+        </div>
+    </div>
 </body>
 </html>

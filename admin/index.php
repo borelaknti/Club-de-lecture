@@ -15,6 +15,7 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
 }
 
 $_SESSION['msg'] = '';
+$_SESSION['forgot'] = '';
 $_SESSION['nomErr'] = '';
 $_SESSION['prenomErr'] = '';
 $_SESSION['dateErr'] = '';
@@ -40,7 +41,7 @@ $_SESSION['createur'] = '';
 	<?php include_once "../layouts/adminHeader.php"; ?>
 </head>
 <body>
-	<div class="container">
+	<div class="general-form-img">
 		<?php
 
     		$page = "home";
@@ -51,17 +52,39 @@ $_SESSION['createur'] = '';
 		?>
 
 		<div class="Big-button">
-			<div class="">
-				<a href="inscrireMembre.php" class="link" > <button class="button1 button " >   Nouveau Membre  </button> </a> 
-				<a href="inscrireAssociation.php" class="link" > <button  class="button2 button ">  Nouvelle Association  </button> </a>
+			<div>
+				<a href="inscrireMembre.php" class="link" > <button class="button1 button " > 
+					<span class="button__icon ">
+						<i class='fas fa-user-plus'></i>
+					</span>
+					<span class="button__text">Nouveau Membre</span>
+					    </button> </a> 
+				<a href="inscrireAssociation.php" class="link" > <button  class="button2 button ">  
+				<span class="button__icon">
+						<i class='fas fa-plus '></i>
+					</span>
+					<span class="button__text">Nouvelle Association </span>
+					     </button> </a>
 			</div>
-			<div class="">
-				<a  href="inscrireMembreAssociation.php" class="link" > <button class="button4 button" > ajouter un membre a une association  </button> </a>
-				<a  href="listeMembre" class="link" > <button class="button5 button" >  Desactiver un membre  </button> </a>
+			<div >
+				<a  href="inscrireMembreAssociation.php" class="link" > <button class="button4 button" >
+				<span class="button__icon">
+						<i class='fas fa-users '></i>
+					</span>
+					<span class="button__text">ajouter un membre <br> a une association  </span>
+					     </button> </a>
+				<a  href="listeMembre" class="link" > <button class="button5 button" > <span class="button__icon">
+						<i class='fas fa-ban '></i>
+					</span>
+					<span class=" bonus">Desactiver un membre  </span>   </button> </a>
 			</div>
 		</div>
 		
-		<?php include_once "../layouts/footer.php"; ?>
+		<div class="row">
+            <footer class="footer-bottom">
+                <p>Copyright &copy;2022 Club de lecture. designe par <span> NTI AKOUMBA</span> </p>
+            </footer>
+        </div>  
 	</div>	
 </body>
 </html>

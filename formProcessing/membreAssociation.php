@@ -10,7 +10,7 @@ $userList = $users->findMemberAssociation($_GET['id']);
 ?>
 <?php
 
-$htmlTable =  '<table border="1" class="list"> 
+$htmlTable =  '<table class="list"> 
                     <tr>
                         <th> numero </th> <th> Nom </th> <th> Prenom </th>  <th>etat</th> <th>email</th> <th colspan="2">action</th>
                     </tr>';
@@ -46,7 +46,7 @@ if( isset($userList) )
 }
 else 
 {
-	$htmlTable .=  '<tr><td colspan="6" class="alert alert-danger text-center"><em>Aucun dossier n\'a été trouvé.</em></td></tr>';
+	$htmlTable .=  '<tr><td colspan="6" ><em>Aucun utilisateur n\'a été trouvé.</em></td></tr>';
 }
 $htmlTable .=  '	</table> ';
 

@@ -158,57 +158,106 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<?php include_once "layouts/header.php"; ?>
 </head>
 <body>
-	<div class="generalInsc insc">
-		<div class="title">
-			<i class='fas  fa-angle-left '></i> <a class="back" href="index.php"> Page d'acceuil</a>
-		</div>
+	<div class="generalInsc">
+		<div class=" title">
+            <i class='fas  fa-angle-left '></i> <a class="back" href="index.php"> Page d'acceuil</a>
+        </div>
+        <div class="form-dispo offset-md-4">
+            <div class="offset-md-2 mb-4">
+                <h5> La lecture d’un roman jette sur la vie une lumière </h5>
+            </div>
         <?php
             if ($message){
                 echo 
-                    '<div class=" error-message">'.
-                            outputMessage($message).
-                    '</div>';
+                    '<div class="row big-error">
+                        <div class="col-sm-9 offset-md-1">
+                            '.
+                                outputError($message).
+                    '
+                        </div>
+                    </div>';
             }
         ?>
-		<form id="login" action="inscription.php" method="post">
-			<fieldset>
-				<legend>La lecture d’un roman jette sur la vie une lumière</legend>
-				<table class="tab-insc" cellpadding="10" cellspacing="5">
-					<tr> 
-                        <td><label for="fname">First name:</label> </td> <td><input type="text" id="fname" name="fname" maxlength="100"  value="<?php echo htmlentities($fname);?>" required /> <span class="error"> <?php echo $fnameErr;?></span> </td> 
-                    </tr>
-					<tr>
-                        <td><label for="lname">Last name:</label></td> <td><input type="text" id="lname" name="lname" maxlength="100"  value="<?php echo htmlentities($lname);?>" required /> <span class="error"> <?php echo $lnameErr;?></span> </td> 
-                    </tr>
-					<tr>
-                        <td><label for="email">Email:</label></td><td><input type="email" id="email" name="email" value="<?php echo htmlentities($email);?>" required /> <span class="error"> <?php echo $emailErr;?></span></td>
-                    </tr>
-					<tr>
-                        <td><label for="birthday">Birthday:</label> </td> <td> <input type="date" id="birthday" name="birthday" value="<?php echo htmlentities($birthday);?>" required /> <span class="error"> <?php echo $birthdayErr;?></span> </td>
-                    </tr>
-					<tr> 
-                        <td><label for="sexe">Sexe:</label> </td> <td> <select  name="sexe" id="sexe"> <option value="masculin"> Masculin</option>  <option value="feminin"> Feminin </option></select> </td>
-                    </tr>
-					<tr>
-                        <td><label for="adress">Address: </label> </td> <td> <input type="text" id="address" name="address" maxlength="150"  value="<?php echo htmlentities($address);?>" required /> <span class="error"> <?php echo $addressEr;?></span> </td>
-                    </tr>
-					<tr>
-                        <td><label for="username">Username : </label> </td> <td> <input type="text" id="username" name="username" maxlength="30"  value="<?php echo htmlentities($username);?>" required /> <span class="error"> <?php echo $usernameErr;?></span></td>
-                    </tr>
-					<tr>
-                        <td><label for="password">Password:</label> </td> <td> <input type="password" id="password" name="password" maxlength="30"  value="<?php echo htmlentities($password);?>" required /> <span class="error"> <?php echo $passwordErr;?></span> </td>
-                    </tr>
-					<tr>
-                        <td><label for="password-confirmation">Password-confirmation:</label> </td> <td> <input type="password" id="password-confirmation" name="password-confirmation"value="<?php echo htmlentities($passwordConfirmation);?>" required /> <span class="error"> <?php echo $passwordConfirmationErr;?></span></td>
-                    </tr>
-				</table>
-				<div class="btn-insc">
-					<button  class="btn btn-clean" type="submit" name="submit"> s'inscrire </button> <br> <br>
-            		<a href="connexion.php"> <button type="button" class="btn btn-clean"> connexion </button> </a>
-				</div>
-			</fieldset>
-		</form>
-		<?php include_once "layouts/footer.php"; ?>
-	</div>
+        <div class="insc-pos-form offset-md-1 mb-4">
+                <form id="login" action="inscription.php" method="post">
+                    <div class="form-group row">
+                        <label  class="col-sm-3 col-form-label "> First name:  </label>
+                        <div class="col-sm-8">
+                            <input type="text" class=" form-control mb-3"  id="fname" name="fname"  value="<?php echo htmlentities($fname);?>" required />
+                           <?php echo outputError($fnameErr) ;?>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label  class="col-sm-3 col-form-label "> Last name:  </label>
+                        <div class="col-sm-8">
+                            <input type="text" class=" form-control mb-3"  id="lname" name="lname"   value="<?php echo htmlentities($lname);?>" required />
+                            <?php echo outputError($lnameErr);?> 
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label  class="col-sm-3 col-form-label "> Email:  </label>
+                        <div class="col-sm-8">
+                            <input type="email" class=" form-control mb-3" id="email" name="email" value="<?php echo htmlentities($email);?>" required />
+                            <?php echo outputError($emailErr);?>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-1">
+                        <label  class="col-sm-3 col-form-label "> Sexe:  </label>
+                        <div class="col-sm-8">
+                            <select class="form-select form-control" name="sexe" id="sexe">
+                                <option value="masculin">masculin</option>
+                                <option value="feminin">feminin</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label  class="col-sm-3 col-form-label "> Birthday:  </label>
+                        <div class="col-sm-8">
+                            <input type="date" class=" form-control mb-3" id="birthday" name="birthday" value="<?php echo htmlentities($birthday);?>" required />
+                            <?php echo outputError($birthdayErr);?> 
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label  class="col-sm-3 col-form-label "> Address:  </label>
+                        <div class="col-sm-8">
+                            <input type="text" class=" form-control mb-3" id="address" name="address"   value="<?php echo htmlentities($address);?>" required />
+                            <?php echo outputError($addressErr);?>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label  class="col-sm-3 col-form-label "> Username:  </label>
+                        <div class="col-sm-8">
+                            <input type="text" class=" form-control mb-3" id="username" name="username"   value="<?php echo htmlentities($username);?>" required/>
+                            <?php echo outputError($usernameErr);?>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label  class="col-sm-3 col-form-label "> Password:  </label>
+                        <div class="col-sm-8">
+                            <input type="password" class=" form-control mb-3" id="password" name="password"   value="<?php echo htmlentities($password);?>" required />
+                            <?php echo outputError($passwordErr);?> 
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label  class="col-sm-3 col-form-label "> Comfirmation password:  </label>
+                        <div class="col-sm-8">
+                            <input type="password" class=" form-control mb-3" id="password-confirmation" name="password-confirmation"value="<?php echo htmlentities($passwordConfirmation);?>" required />
+                             <?php echo outputError($passwordConfirmation);?>
+                        </div>
+                    </div>
+                    <div class="row offset-md-1">
+                        <button type="submit" name="submit" class="btn btn-success col-sm-10 p-2 mb-2" >  S'inscrire  </button> <br>
+                        <a  href="connexion.php" class="link btn btn-success col-sm-10  " role="button">   se connecter   </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="row">
+            <footer class="footer-bottom">
+                <p>Copyright &copy;2022 Club de lecture. designe par <span> NTI AKOUMBA</span> </p>
+            </footer>
+        </div>  
+    </div>
 </body>
 </html>

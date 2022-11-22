@@ -33,50 +33,82 @@ $email = $_SESSION['email'] ?? '';
 	<?php include_once "../layouts/adminHeader.php"; ?>
 </head>
 <body>
-	<div class="container">
-		<div class="titreInsc">
-			<h1>Inscrire un nouveau membre</h1>
-		</div>
+	<div class="general-form-img">
+		<div class="form-dispo-membre offset-md-4">
+			<div class="offset-md-2 mb-5">
+				<h4> Inscrire un nouveau membre </h4>
+			</div>
 		<?php
-		//die(var_dump($message));
+		//die(var_dump($msg));
             if ($message){
-                echo 
-                    '<div class=" error-message">'.
-                            outputMessage($message).
-                    '</div>';
+                	echo 
+                    '<div class="row big-error">
+                        <div class="col-sm-9 offset-md-1">
+                            '.
+                                outputError($message).
+                    '
+                        </div>
+                    </div>';
             }
         ?>
-		<div class="insc-membre">
-		<form id="inscrire" action="../formProcessing/inscrire_Membre.php" method="post">
-			<fieldset>
-				<table class="tabVelo" cellpadding="10" cellspacing="5">
-					<tr>
-						<td><label class="nom"> Nom :</label></td> <td><input type="text" name="nom" id="nom" size="40" maxlength="100"  value="<?php echo htmlentities($nom);?>" required > <span class="error"> <?php echo $nomErr;?></span> </td>
-					</tr>
-					<tr>
-						<td><label class="nom"> Prenom :</label></td> <td><input type="text" name="prenom" id="prenom" maxlength="100"  value="<?php echo htmlentities($prenom);?>" required size="40"> <span class="error"> <?php echo $prenomErr;?></span> </td>
-					</tr>
-					<tr>
-						<td><label class="nom"> Date de naissance :</label></td> <td><input type="date" name="date" id="date" maxlength="100"  value="<?php echo htmlentities($date);?>" required size="40"> <span class="error"> <?php echo $dateErr;?></span> </td>
-					</tr>
-					<tr>
-						<td><label class="nom"> Adresse :</label></td> <td><input type="text" name="adresse" id="adresse" size="40" maxlength="100"  value="<?php echo htmlentities($adresse);?>" required size="40"> <span class="error"> <?php echo $adresseErr;?></span> </td>
-					</tr>
-					<tr> 
-                        <td><label for="sexe">Sexe:</label> </td> <td> <select  name="sexe" id="sexe"> <option value="masculin"> Masculin</option>  <option value="feminin"> Feminin </option></select> </td>
-                    </tr>
-					<tr>
-						<td><label class="nom"> Adresse Mail : </label></td> <td><input type="text" name="email" id="email" size="40" value="<?php echo htmlentities($email);?>" required size="40"> <span class="error"> <?php echo $emailErr;?></span> </td>
-					</tr>
-				</table>
-				<div class="endbutton">
-					<button class="buttonEnd " type="submit" name="submit">  Soumettre le formulaire  </button>
-					<a  href="index.php"  > <button type="button" class="buttonEnd " >  Retour au menu  </button> </a>
-				</div>
-			</fieldset>
-		</form>
-	</div>	
-		<?php include_once "../layouts/footer.php"; ?>
-	</div>	
+        <div class="insc-pos-membre  offset-md-1 mb-4">
+				<form id="inscrire" action="../formProcessing/inscrire_Membre.php" method="post">
+  					<div class="form-group row">
+                        <label  class="col-sm-3 col-form-label "> nom:  </label>
+                        <div class="col-sm-8">
+                            <input type="text" class=" form-control mb-3"  name="nom" id="nom"   value="<?php echo htmlentities($nom);?>" required />
+                           <?php echo outputError($nomErr) ;?>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label  class="col-sm-3 col-form-label "> prenom:  </label>
+                        <div class="col-sm-8">
+                            <input type="text" class=" form-control mb-3"  name="prenom" id="prenom"   value="<?php echo htmlentities($prenom);?>" required />
+                           <?php echo outputError($prenomErr) ;?>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label  class="col-sm-3 col-form-label "> Date de naissance:  </label>
+                        <div class="col-sm-8">
+                            <input type="date" class=" form-control mb-3" name="date" id="date"  value="<?php echo htmlentities($date);?>" required />
+                            <?php echo outputError($dateErr);?> 
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label  class="col-sm-3 col-form-label "> adresse:  </label>
+                        <div class="col-sm-8">
+                            <input type="text" class=" form-control mb-3"   name="adresse" id="adresse"  value="<?php echo htmlentities($adresse);?>" required />
+                           <?php echo outputError($adresseErr) ;?>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-1">
+                        <label  class="col-sm-3 col-form-label "> Sexe:  </label>
+                        <div class="col-sm-8">
+                            <select class="form-select form-control" name="sexe" id="sexe">
+                                <option value="masculin">masculin</option>
+                                <option value="feminin">feminin</option>
+                            </select>
+                        </div>
+                    </div>
+  					<div class="form-group row">
+                        <label  class="col-sm-3 col-form-label "> Adresse email:  </label>
+                        <div class="col-sm-8">
+                            <input type="email" class=" form-control mb-3"   name="email" id="email"  value="<?php echo htmlentities($email);?>" required />
+                           <?php echo outputError($emailErr) ;?>
+                        </div>
+                    </div>
+  					<div class="row offset-md-1">
+						<button type="submit" name="submit" class="btn btn-success col-sm-10 p-2 mb-2" >  Soumettre le formulaire   </button> <br>
+						<a  href="index.php" class="link btn btn-success col-sm-10  " role="button">   Retour au menu   </a>
+					</div>
+  				</form>
+			</div>
+		</div>
+		<div class="row">
+			<footer class="footer-bottom">
+			<p>Copyright &copy;2022 Club de lecture. designe par <span> NTI AKOUMBA</span> </p>
+			</footer>
+		</div>	
+</div>	
 </body>
 </html>

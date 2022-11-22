@@ -1,6 +1,6 @@
 <?php
 session_start();
-ini_set('display_errors', 'on');
+ini_set('display_errors', 'on'); 
 ini_set('log_errors', 1);
 ini_set('error_reporting', E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED);
 ob_start();
@@ -10,6 +10,7 @@ require_once("../includes/Association.php");
 require_once("../includes/session.php");
 
 $_SESSION['msg'] = '';
+$_SESSION['forgot'] = '';
 $_SESSION['nomErr'] = $_SESSION['adressErr'] = $_SESSION['dateErr'] =  $_SESSION['createurErr'] =  "";
 $_SESSION['nom'] = $_SESSION['adress'] = $_SESSION['date'] =  $_SESSION['createur'] =  "";
 
@@ -32,19 +33,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $association = new Association();
         //die(var_dump($nom,$prenom,$date,$adress));
         if (empty($nom)) {
-            $_SESSION['nomErr'] = "* Le nom de l'association est obligatoire";
+            $_SESSION['nomErr'] = "Le nom de l'association est obligatoire";
         } else {
             $_SESSION['nom'] = cleanUpInputs($nom);
             // check if name only contains letters and whitespace
-            if (!preg_match("/^[a-zA-Z-' ]*$/",$nom)) {
-                $_SESSION['nomErr'] = "* Seules les lettres et les espaces blancs sont autorisés";
+            if (!preg_match("/^[a-zA-Z-0-9' ]*$/",$nom)) {
+                $_SESSION['nomErr'] = "Seules les lettres et les espaces blancs sont autorisés";
             }
             if (strlen($nom) > 100) {
-                $_SESSION['nomErr'] = "* Le nom  de l'association doit comporter un maximum de 100 caractères.";
+                $_SESSION['nomErr'] = "Le nom  de l'association doit comporter un maximum de 100 caractères.";
             }
         }
         if (empty($date)) {
-            $_SESSION['dateErr'] = "* La date de creation est obligatoire";
+            $_SESSION['dateErr'] = "La date de creation est obligatoire";
         }
         else
         {
@@ -52,30 +53,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $dt = time();
             $dt = date("Y-m-d", $dt);
             if($date>$dt)
-                $_SESSION['dateErr'] = "* veillez entre une date de creation valide";
+                $_SESSION['dateErr'] = "veillez entre une date de creation valide";
             //die(var_dump($date>$dt));
         }  
         if (empty($adress)) {
-            $_SESSION['adressErr'] = "* l'adresse est obligatoire";
+            $_SESSION['adressErr'] = "l'adresse est obligatoire";
         }
         else
         {
             $_SESSION['adress'] = cleanUpInputs($adress);
             //die(var_dump(ctype_alnum($adresse)));
-            if (!ctype_alnum($adress)) {
-                $_SESSION['adressErr'] = "* ne peut pas contenir seulement les chiffres mais doit aussi contenir des lettres";
+            if (ctype_alnum($adress)) {
+                $_SESSION['adressErr'] = "l'adresse ne peut pas contenir seulement les chiffres mais doit aussi contenir des lettres";
             }
         }
         if (empty($createur)) {
-            $_SESSION['createurErr'] = "* Le nom du createur est obligatoire";
+            $_SESSION['createurErr'] = "Le nom du createur est obligatoire";
         } else {
             $_SESSION['createur'] = cleanUpInputs($createur);
             // check if name only contains letters and whitespace
             if (!preg_match("/^[a-zA-Z-' ]*$/",$createur)) {
-                $_SESSION['createurErr'] = "* Seules les lettres et les espaces blancs sont autorisés";
+                $_SESSION['createurErr'] = "Seules les lettres et les espaces blancs sont autorisés";
             }
             if (strlen($createur) > 100) {
-                $_SESSION['createurErr'] = "* Le nom du createur de l'association doit comporter un maximum de 100 caractères.";
+                $_SESSION['createurErr'] = "Le nom du createur de l'association doit comporter un maximum de 100 caractères.";
             }
         } 
         //die(var_dump($_SESSION['nomErr'],$prenom,$date,$adress));
@@ -93,7 +94,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 //die(var_dump($associationArray));
                 $result = $association->createAssociation($associationArray);
                 if ($result['success']){
-                    redirect_to("../admin/listeAssociation.php");
+                    $_SESSION['forgot'] = "l'association a bien ete cree";
+                    $_SESSION['nom'] = $_SESSION['adress'] = $_SESSION['date'] =  $_SESSION['createur'] =  "";
+                    redirect_to("../admin/inscrireAssociation.php");
                 }
                 else{
                     $_SESSION['msg'] = "Il y a eu une erreur lors de la création de l'association.";

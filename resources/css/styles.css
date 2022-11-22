@@ -31,7 +31,7 @@
 	background-color: black;
 	height: 100vh;
 }
-.container
+.general-form-img
 {
 	background-image: url("../images/ecran.jpg");
 	background-size: cover;
@@ -110,12 +110,12 @@ p.desc
 {
 	text-align: center;
 }
-.generalInsc fieldset {
+/*.generalInsc fieldset {
   border: 5px solid white;
   background-color: transparent;
   text-align: justify;
 
-}
+}*/
 .insc fieldset
 {
 	 width: 600px; 
@@ -128,19 +128,19 @@ p.desc
 	 width: 600px; 
   height: 380px;
 }
-.generalInsc legend {
+/*.generalInsc legend {
   color: white;
   padding: 5px 10px;
   color: white;
   font-size: 20px;
   text-align: center;
-}
-.generalInsc table
+}*/
+/*.generalInsc table
 {
 	color: white;
    font-size: 20px;
    margin-top: 25px;
-}
+}*/
 .conex table
 {
 	color: white;
@@ -153,7 +153,7 @@ p.desc
    font-size: 20px;
    margin-top: 75px;
 }
-.generalInsc input {
+/*.generalInsc input {
   margin: 5px;
   background:transparent;
   border: 1px solid #fff;
@@ -161,7 +161,7 @@ p.desc
   color: white;
   font-size: 20px;
   width: 245px;
-}
+}*/
 .conex input
 {
 	margin: 5px;
@@ -186,13 +186,13 @@ p.desc
 {
 	margin: auto;
 }
-.generalInsc form
+/*.generalInsc form
 {
 
 	position: relative;
 	top: 300px;
 	margin-left: 650px;
-}
+}*/
 .title
 {
 	font-size: 25px;
@@ -208,16 +208,16 @@ p.desc
 }
 .pass
 {
-	color: white;
+	color: black;
 	font-size: 15px;
 }
 .pwd
 {
 	font-size: 15px;
-	color: white;
+	color: black;
 	position: relative;
 	top: 20px;
-	margin-left: 350px;
+	margin-left: 390px;
 }
 nav
 {
@@ -312,17 +312,18 @@ footer
 .error {
     color: red;
 }
-.list tr:nth-child(even) 
+.list tr
 {
-	
 	background-color: #dddddd;
 }
-th{
- color: white;
+.list th{	
+ 	color: white;
+ 	background-color: black;
 }
 .list td,th 
 {
-	border: 1px solid #dddddd;
+	 border: 1px solid;
+  border-color: black;
 	padding: 8px;
 	text-align: center;
 }
@@ -331,19 +332,32 @@ th{
 	border-collapse: collapse;
 	width: 80%;
 }
+
+.list-detail tr
+{
+	background-color: #dddddd;
+}
+.list-detail td
+{
+	border: 1px solid;
+  border-color: black;
+	padding: 8px;
+	text-align: center;
+}
 .tab-member
 {
 	
 	position: relative;
 	top: 150px;
 	margin-left: 200px;
+	margin-right: 200px;
 }
 
 .Big-button
 {
 	text-align: center;
 	position: relative;
-	top: 100px ;
+	top: 200px ;
 	bottom: 150px ;
 }
 
@@ -357,7 +371,7 @@ th{
 	margin: 20px 10px;
 	margin-left: -10px;
 	height: 90px;
-	width: 330px; 
+	width: 330px;
 }
 .button2
 {
@@ -394,7 +408,7 @@ th{
 }
 .button 
 {
-	background: transparent;
+	/*background: transparent;
 	
   	padding: 30px 12px;
   	text-align: center;
@@ -402,13 +416,52 @@ th{
  	text-decoration: none;
  	display: inline-block;
  	font-size: 25px;
-  	cursor: pointer;
+  	cursor: pointer;*/
+  display: inline-block;
+	height: 50px;
+	padding: 30px ;
+	height: 150px;
+	width: 400px;
+	background: #d9d9d9;
+	border: none;
+	outline: none;
+	border-radius: 8px;
+	overflow: hidden;
+	font-family: "Quicksand", sans-serif;
+	font-size: 25px;
+	font-weight: 500;
+	cursor: pointer;
 }
-.Big-button a button :hover
+
+.button:hover {
+	background: #a6a6a6;
+}
+
+.button__text,
+.button__icon {
+	display: inline-flex;
+	align-items: center;
+	padding: 0 20px;
+}
+
+.button__text{
+	font-size: 20px;
+}
+.bonus{
+	display: inline-flex;
+	align-items: center;
+	padding-top: 0px;
+	padding-bottom: 24px;
+	font-size: 20px;
+}
+.button__icon {
+	font-size: 1em;
+}
+/*.Big-button a button :hover
 {
 	background: #f0f0f0;
 	border-radius: 6px;
-}
+}*/
 .titreInsc
 {
 	font-size: 30px;
@@ -471,6 +524,11 @@ th{
 	margin-left: 195px;
 	color: white;
 }
+.legend label
+{
+	padding-left: 10px;
+}
+
 
 .titre-det
 {
@@ -478,4 +536,176 @@ th{
 	font-size: 30px;
 	top: -10px;
 	color: white;
+}
+
+/*bootstrap*/
+
+ .title
+{
+	font-size: 25px;
+	color: white;
+	position: relative;
+	top: 25px;
+	margin-left: 25px;
+}
+
+.back
+{
+	color: white;
+	font-size: 25px;
+	text-decoration: none;
+}
+/*   inscription  */
+.form-dispo {
+    width: 660px;
+    height: 750px;
+    padding: 20px;
+    border-radius: 12px;
+    background: #ffffff;
+    margin-left: 700px;
+    margin-top: 35px;
+}
+
+.form-dispo-connex{
+	 	width: 660px;
+    height: 400px;
+    padding: 20px;
+    border-radius: 12px;
+    background: #ffffff;
+    margin-left: 700px;
+    margin-top: 105px;
+}
+
+.form-dispo-membre{
+	 	width: 660px;
+    height: 500px;
+    padding: 20px;
+    border-radius: 12px;
+    background: #ffffff;
+    position: relative;
+    margin-left: 700px;
+    top: 150px;
+}
+.form-dispo-MA
+{
+	width: 660px;
+    height: 400px;
+    padding: 20px;
+    border-radius: 12px;
+    background: #ffffff;
+    position: relative;
+    margin-left: 700px;
+    top: 150px;
+}
+.form-dispo-rest
+{
+		width: 660px;
+    height: 350px;
+    padding: 20px;
+    border-radius: 12px;
+    background: #ffffff;
+    margin-left: 700px;
+    margin-top: 145px;
+}
+.form-dispo-reint{
+		width: 660px;
+    height: 500px;
+    padding: 20px;
+    border-radius: 12px;
+    background: #ffffff;
+    margin-left: 700px;
+    margin-top: 145px;
+}
+
+.form-dispo-tab{
+		width: 660px;
+    height: auto;
+    padding: 20px;
+    border-radius: 12px;
+    background: #ffffff;
+    position: relative;
+    left: 500px;
+    top: 145px;
+}
+
+.form-dispo h1 {
+    font-size: 16px;
+    color: black;
+    /*position: relative;
+    top: 15px;*/
+}
+.insc-pos-error
+{
+	/*position: relative;
+	top: 50px;
+	right: 600px;*/
+}
+
+.form-pos label
+{
+	color: black;
+}
+
+.form-dispo select
+{
+	border-color: black;
+	color: black;
+}
+
+.error-message{
+	color: red;
+	background-color: #fdeBec;
+	padding: 10px;
+	transform: translateY(-10px);
+	text-align: center;
+	font-size: 14px;
+	border-radius: 8px;
+}
+
+.error{
+	color: red;
+	background-color: #fdeBec;
+	padding: 10px;
+	transform: translateY(-10px);
+	text-align: center;
+	font-size: 14px;
+	border-radius: 8px;
+}
+
+.insc-pos-form{
+	height: 575px;
+	overflow: hidden;
+	overflow-y: scroll;
+}
+
+.insc-pos-membre{
+	height: 300px;
+	overflow: hidden;
+	overflow-y: scroll;
+}
+
+.insc-pos-MA
+{
+	height: 200px;
+	overflow: hidden;
+	overflow-y: scroll;
+}
+.success{
+	color: green;
+	background-color: #d2ffd2;
+	padding: 10px;
+	transform: translateY(-10px);
+	text-align: center;
+	font-size: 14px;
+	border-radius: 8px;
+}
+.inf 
+{
+	font-weight: lighter;
+	font-size: 15px;
+}
+.inf-lab
+{
+	font-weight: blod;
+	font-size: 15px;
 }

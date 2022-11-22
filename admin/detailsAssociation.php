@@ -10,6 +10,7 @@ require_once("../includes/functions.php");
 require_once("../includes/Association.php");
 require_once("../includes/session.php");
 require_once("../formProcessing/membreAssociation.php");
+require_once("../formProcessing/details_association.php");
 
 if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
     redirect_to("../connexion");
@@ -25,7 +26,7 @@ $user = $asso->findAssociation($_GET['id']);
 	<?php include_once "../layouts/adminHeader.php"; ?>
 </head>
 <body>
-	<div class="container">
+	<div class="general-form-img">
 		<?php
 
     		$page = "member-list";
@@ -43,12 +44,17 @@ $user = $asso->findAssociation($_GET['id']);
             }
         ?>
 		<div class="tab-member">
-			<div class="titre-det">
-				<h5 > Liste des Membres de l'association <?php echo $user[0]->nomAssociation; ?> </h5>
+			<div class="titre-det offset-md-4">
+				<h2 > Liste des Membres de l'association <?php echo $user[0]->nomAssociation; ?> </h2>
 			</div>
-			<?php echo $htmlTable; ?>
+			<div class=" mb-5 offset-md-5">
+				<?php echo $htmlTab; ?> 
+			</div>
+			<div class=" mb-5 offset-md-2">
+				<?php echo $htmlTable; ?>
+			</div>
 		</div>
-		<div class="legend">
+		<div class="legend offset-md-3">
 			<i class='fas fa-info-circle '></i> <label> Information </label> <br> <br>
 			<i class='fas fa-check'></i><label>  Rendre inactif </label> <br> <br>
 			<i class='fas fa-ban'></i><label>  Rendre actif </label> <br> <br>

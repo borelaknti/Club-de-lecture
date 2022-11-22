@@ -17,6 +17,19 @@ function outputMessage($message = "") :string
     }
 }
 
+function outputError($msg)
+{
+    if ($msg){
+        return "<p class=\"error mt-3 \"> {$msg} </p>";
+            }
+}
+function outputSuccess($msg)
+{
+    if ($msg){
+        return "<p class=\"success mt-3 \"> {$msg} </p>";
+            }
+}
+
 function redirect_to($location, $status=302)
 {
    header('Location: '.$location, true, $status);

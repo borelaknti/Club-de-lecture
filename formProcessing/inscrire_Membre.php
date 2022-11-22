@@ -36,30 +36,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = new Users();
         //die(var_dump($birthday));
         if (empty($nom)) {
-            $_SESSION['nomErr'] = "* Le nom est obligatoire";
+            $_SESSION['nomErr'] = " Le nom est obligatoire";
         } else {
             $_SESSION['nom'] = cleanUpInputs($nom);
             // check if name only contains letters and whitespace
             if (!preg_match("/^[a-zA-Z-' ]*$/",$nom)) {
-                $_SESSION['nomErr'] = "* Seules les lettres et les espaces blancs sont autorisés";
+                $_SESSION['nomErr'] = " Seules les lettres et les espaces blancs sont autorisés";
             }
             if (strlen($nom) > 100) {
-                $_SESSION['nomErr'] = "* Le nom doit comporter un maximum de 100 caractères.";
+                $_SESSION['nomErr'] = " Le nom doit comporter un maximum de 100 caractères.";
             }
         }if (empty($prenom)) {
-            $_SESSION['prenomErr'] = "* Le prenom est obligatoire";
+            $_SESSION['prenomErr'] = " Le prenom est obligatoire";
         } else {
             $_SESSION['prenom'] = cleanUpInputs($prenom);
             // check if name only contains letters and whitespace
             if (!preg_match("/^[a-zA-Z-' ]*$/",$prenom)) {
-                $_SESSION['prenomErr'] = "* Seules les lettres et les espaces blancs sont autorisés";
+                $_SESSION['prenomErr'] = " Seules les lettres et les espaces blancs sont autorisés";
             }
             if (strlen($prenom) > 100) {
-                $_SESSION['prenomErr'] = "* Le prenom doit comporter un maximum de 100 caractères.";
+                $_SESSION['prenomErr'] = " Le prenom doit comporter un maximum de 100 caractères.";
             }
         }
         if (empty($date)) {
-            $_SESSION['dateErr'] = "* La date de naissance est obligatoire";
+            $_SESSION['dateErr'] = " La date de naissance est obligatoire";
         }
         else
         {
@@ -68,27 +68,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $dt = date("Y-m-d", $dt);
             $val = $dt - $date;
             if($val <= 6)
-                $_SESSION['dateErr'] = "* vous avez ".$val." ans et vous devez avoir au mois 7 ans";
+                $_SESSION['dateErr'] = " vous avez ".$val." ans et vous devez avoir au mois 7 ans";
             
             //die(var_dump( $val ));
         }
         if (empty($adresse)) {
-            $_SESSION['adresseErr'] = "* l'adresse est obligatoire";
+            $_SESSION['adresseErr'] = " l'adresse est obligatoire";
         }
         else
         {   $_SESSION['adresse'] = cleanUpInputs($adresse);
             //die(var_dump(ctype_alnum($adresse)));
             if (!ctype_alnum($adresse)) {
-                $_SESSION['adresseErr'] = "* ne peut pas contenir seulement les chiffres mais doit aussi contenir des lettres";
+                $_SESSION['adresseErr'] = " ne peut pas contenir seulement les chiffres mais doit aussi contenir des lettres";
             }
         }
         if (empty($email)) {
-            $_SESSION['emailErr'] = "* Le nom est obligatoire";
+            $_SESSION['emailErr'] = " Le nom est obligatoire";
         } else {
             $_SESSION['email'] = cleanUpInputs($email);
 
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $_SESSION['emailErr'] = "* Seules les lettres et les chiffres sont autorisés";
+                $_SESSION['emailErr'] = " Seules les lettres et les chiffres sont autorisés";
             }
         } 
 

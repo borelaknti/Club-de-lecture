@@ -54,48 +54,76 @@ if(isset($_POST['submit'])){
 	<?php include_once "layouts/header.php"; ?>
 </head>
 <body>
-	<div class="generalInsc conex">
-		<div class="title">
+	<div class="generalInsc">
+		<div class=" title">
 			<i class='fas  fa-angle-left '></i> <a class="back" href="index.php"> Page d'acceuil</a>
 		</div>
+		<div class="form-dispo-connex offset-md-4">
+			<div class="offset-md-2 mb-4">
+				<h5> La lecture d’un roman jette sur la vie une lumière </h5>
+			</div>
 		<?php
 		//die(var_dump($msg));
             if ($message){
-                echo 
-                	'<div class=" error-message">'.
-                    		outputMessage($message).
-                    '</div>';
+                	echo 
+                    '<div class="row big-error">
+                        <div class="col-sm-9 offset-md-1">
+                            '.
+                                outputError($message).
+                    '
+                        </div>
+                    </div>';
             }
             if ($msg){
                 echo 
-                	'<div class=" error-message">'.
-                    		outputMessage($msg).
-                    '</div>';
+                    '<div class="row big-error">
+                        <div class="col-sm-9 offset-md-1">
+                            '.
+                                outputError($msg).
+                    '
+                        </div>
+                    </div>';;
             }
             if ($forgot){
                 echo 
-                	'<div class=" error-message">'.
-                    		outputMessage($forgot).
-                    '</div>';
+                    '<div class="row big-error">
+                        <div class="col-sm-9 offset-md-1">
+                            '.
+                                outputSuccess($forgot).
+                    '
+                        </div>
+                    </div>';;
             }
         ?>
-		<form id="login" action="connexion.php" method="post">
-			<fieldset >
-				<legend>La lecture d’un roman jette sur la vie une lumière</legend>
-				<table class="tab-insc" cellpadding="10" cellspacing="5">
-					<tr><td><label >Login:</label></td><td><input type="text" id="" name="username" value="<?php echo htmlentities($username);?>" required/></td></tr>
-					<tr><td><label >Mot de passe:  </label> </td> <td> <input type="password" id="" name="password" value="<?php echo htmlentities($password);?>" required/></td></tr>
-				</table>
-				<div class="btn-insc">
-					 <button type="submit" name="submit" class="btn btn-clean"> connexion </button> <br> <br>
-					<a href="inscription.php"> <button  type="button" class="btn btn-clean"> s'inscrire </button> </a> 
-				</div>
-				<div class="pwd">
-					<a class="pass" href="restaurerpwd.php"> Mot de passe oublie</a> <i class='fas  fa-angle-right '></i> 
-				</div>
-			</fieldset>
-		</form>
-	</div>
-	<?php include_once "layouts/footer.php"; ?>
+        <div class="offset-md-1 mb-4">
+				<form id="login" action="connexion.php" method="post">
+  					<div class="form-group row">
+  						<label  class="col-sm-3 col-form-label "> Username:  </label>
+  						<div class="col-sm-8">
+  							<input type="text" class=" form-control mb-3"  name="username" value="<?php echo htmlentities($username);?>" required/>
+  						</div>
+  					</div>
+  					<div class="form-group row">
+  						<label  class="col-sm-3 col-form-label "> Password:  </label>
+  						<div class="col-sm-8">
+  							<input type="password" class=" form-control mb-3" id="" name="password" value="<?php echo htmlentities($password);?>" required/>
+  						</div>
+  					</div>
+  					<div class="row offset-md-1">
+						<button type="submit" name="submit" class="btn btn-success col-sm-10 p-2 mb-2" >  se connecter   </button> <br>
+						<a  href="inscription.php" class="link btn btn-success col-sm-10  " role="button">   S'inscrire  </a>
+					</div>
+					<div class="pwd">
+						<a class="pass" href="restaurerpwd.php"> Mot de passe oublie</a> <i class='fas  fa-angle-right '></i> 
+					</div>
+  				</form>
+			</div>
+		</div>
+		<div class="row">
+			<footer class="footer-bottom">
+			<p>Copyright &copy;2022 Club de lecture. designe par <span> NTI AKOUMBA</span> </p>
+			</footer>
+		</div>	 
+</div>
 </body>
 </html>

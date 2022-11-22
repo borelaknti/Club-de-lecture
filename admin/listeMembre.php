@@ -22,7 +22,7 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
 	<?php include_once "../layouts/adminHeader.php"; ?>
 </head>
 <body>
-	<div class="container">
+	<div class="general-form-img">
 		<?php
 
     		$page = "member-list";
@@ -31,14 +31,6 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
 
     		include_once "../layouts/navigationAdmin.php";
 		?>
-		<?php
-            if ($message){
-                echo 
-                	'<div class=" error-message">'.
-                    		outputMessage($_SESSION['message'] ).
-                    '</div>';
-            }
-        ?>
 		<div class="tab-member">
 			<?php echo $htmlTable; ?>
 		</div>
@@ -47,7 +39,11 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
 			<i class='fas fa-check'></i><label>  Rendre inactif </label> <br> <br>
 			<i class='fas fa-ban'></i><label>  Rendre actif </label> <br> <br>
 		</div>
-		<?php include_once "../layouts/footer.php"; ?>
+		<div class="row">
+            <footer class="footer-bottom">
+                <p>Copyright &copy;2022 Club de lecture. designe par <span> NTI AKOUMBA</span> </p>
+            </footer>
+        </div> 
 	</div>	
 </body>
 </html>

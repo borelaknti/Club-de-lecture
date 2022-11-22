@@ -10,7 +10,7 @@ $userList = $users->findAllMember();
 ?>
 <?php
 
-$htmlTable =  '<table class="list"> 
+$htmlTable =  '<table  class="list"> 
                     <tr>
                         <th> numero </th> <th> Nom </th> <th> Prenom </th>  <th>etat</th> <th>email</th> <th colspan="2">action</th>
                     </tr>';
@@ -46,7 +46,7 @@ if(count($userList) > 0 )
 }
 else 
 {
-	$htmlTable .=  '<tr><td colspan="6" class="alert alert-danger text-center"><em>Aucun dossier n\'a été trouvé.</em></td></tr>';
+	$htmlTable .=  '<tr><td colspan="6" ><em>Aucun utilisateur n\'a été trouvé.</em></td></tr>';
 }
 $htmlTable .=  '	</table> ';
 
