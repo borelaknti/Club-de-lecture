@@ -47,6 +47,36 @@ class Users extends DatabaseObjects
     }
 
     /**
+     * @param string $sql
+     * @return array|null
+     */
+    public static function findBySql(string $sql = ""): ?array
+    {
+        global $database;
+        $resultSet = $database->openConnection()->prepare($sql);
+        $resultSet->execute();
+        $resultSet->setFetchMode(PDO::FETCH_OBJ);
+        $results = null;
+
+        while ($row = $resultSet->fetchAll()){
+            $results = $row;
+        }
+
+        return $results;
+    }
+
+    /**
+     * @param $id
+     * @return array|null
+     */
+    public static function finduser($id): ?array
+    {
+        return static::findBySql("SELECT * FROM utilisateur u  WHERE u.numUtilisateur = $id");
+    }
+
+
+
+    /**
      * @param $userArray
      * @return array|false
      */

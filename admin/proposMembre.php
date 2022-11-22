@@ -82,7 +82,7 @@ $user = $asso->findAssociationMember($_GET['id']);
  			</div>
 		</div>
 		<div class="row offset-md-1">
-			<a  href="index.php" class="link btn btn-success col-sm-10  " role="button">   Retour au menu   </a>
+			<a  href="listeMembre.php" class="link btn btn-success col-sm-10  " role="button">   Retour au menu   </a>
 		</div>
 	</div>
 	<div class="row">

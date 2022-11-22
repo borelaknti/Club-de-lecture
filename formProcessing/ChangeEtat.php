@@ -16,11 +16,13 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
 }
 
 $users = new Users();
-$userList = $users->findAll();
-if ($userList[$_GET['id']-1]->etatUtilisateur == 'A'){
-    //die(var_dump($userArray));
+$user = $users->findUser($_GET['id']);
+//die(var_dump($user));
+if ($user[0]->etatUtilisateur == 'A'){
+    
     $var = I;
     $result = $users->updateEtat($_GET['id'],$var);
+    
     if ($result['success']){
         redirect_to("../admin/listeMembre.php");
     }
