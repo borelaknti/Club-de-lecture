@@ -60,7 +60,7 @@ $createur = $_SESSION['createur'] ?? '';
                     </div>';;
             }
         ?>
-        <div class="insc-pos-membre  offset-md-1 mb-4">
+        <div class=" <?php if(empty($_SESSION['msg']) && empty($_SESSION['nomErr']) && empty($_SESSION['createurErr']) && empty($_SESSION['dateErr']) && empty($_SESSION['adressErr'])) echo ""; else echo "insc-pos-membre"; ?>  offset-md-1 mb-4">
 				<form id="inscrire-association" action="../formProcessing/inscrire_Association.php" method="post">
   					<div class="form-group row">
                         <label  class="col-sm-3 col-form-label "> Nom de l'association:  </label>
@@ -84,7 +84,7 @@ $createur = $_SESSION['createur'] ?? '';
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label  class="col-sm-3 col-form-label "> Nom du createur :  </label>
+                        <label  class="col-sm-3 col-form-label "> Nom du createur:  </label>
                         <div class="col-sm-8">
                             <input type="text" class=" form-control mb-3" name="createur" id="createur" size="40" value="<?php echo htmlentities($createur);?>" required />
                            <?php echo outputError($createurErr) ;?>

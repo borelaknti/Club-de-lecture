@@ -24,8 +24,9 @@ $prenom = $_SESSION['prenom'] ?? '';
 $date = $_SESSION['date'] ?? '';
 $adresse = $_SESSION['adresse'] ?? '';
 $email = $_SESSION['email'] ?? '';
+$forgot = $_SESSION['forgot'] ?? '';
 
-//die(var_dump( $nom ));
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,7 +40,6 @@ $email = $_SESSION['email'] ?? '';
 				<h4> Inscrire un nouveau membre </h4>
 			</div>
 		<?php
-		//die(var_dump($msg));
             if ($message){
                 	echo 
                     '<div class="row big-error">
@@ -50,8 +50,18 @@ $email = $_SESSION['email'] ?? '';
                         </div>
                     </div>';
             }
+            if ($forgot){
+                echo 
+                    '<div class="row big-error">
+                        <div class="col-sm-9 offset-md-1">
+                            '.
+                                outputSuccess($forgot).
+                    '
+                        </div>
+                    </div>';;
+            }
         ?>
-        <div class="insc-pos-membre  offset-md-1 mb-4">
+        <div class=" <?php if(empty($_SESSION['msg']) && empty($_SESSION['nomErr']) && empty($_SESSION['prenomErr'])&& empty($_SESSION['adresseErr']) && empty($_SESSION['dateErr']) && empty($_SESSION['emailErr'])) echo ""; else echo "insc-pos-membre"; ?> offset-md-1 mb-4">
 				<form id="inscrire" action="../formProcessing/inscrire_Membre.php" method="post">
   					<div class="form-group row">
                         <label  class="col-sm-3 col-form-label "> nom:  </label>

@@ -9,6 +9,8 @@ require_once("includes/functions.php");
 require_once("includes/Users.php");
 require_once("includes/session.php");
 
+$session = new Session();
+
 $message = '';
 $fnameErr = $lnameErr = $emailErr =  $birthdayErr = $addressErr = $usernameErr = $passwordErr= $passwordConfirmationErr = "";
 
@@ -39,76 +41,78 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $passwordConfirmation = trim($_POST['password-confirmation']);
         
         $user = new Users();
-        //die(var_dump($birthday));
         if (empty($fname)) {
-            $fnameErr = "* Le nom est obligatoire";
+            $fnameErr = " Le nom est obligatoire";
         } else {
             $fname = cleanUpInputs($fname);
-            // check if name only contains letters and whitespace
             if (!preg_match("/^[a-zA-Z-' ]*$/",$fname)) {
-                $fnameErr = "* Seules les lettres et les espaces blancs sont autorisés";
+                $fnameErr = "Seules les lettres et les espaces blancs sont autorisés";
             }
             if (strlen($fname) > 100) {
-                $fnameErr = "* Le nom doit comporter un maximum de 100 caractères.";
+                $fnameErr = " Le nom doit comporter un maximum de 100 caractères.";
             }
         }if (empty($lname)) {
-            $lnameErr = "* Le prenom est obligatoire";
+            $lnameErr = " Le prenom est obligatoire";
         } else {
             $lname = cleanUpInputs($lname);
-            // check if name only contains letters and whitespace
             if (!preg_match("/^[a-zA-Z-' ]*$/",$lname)) {
-                $lnameErr = "* Seules les lettres et les espaces blancs sont autorisés";
+                $lnameErr = "Seules les lettres et les espaces blancs sont autorisés";
             }
             if (strlen($lname) > 100) {
-                $lnameErr = "* Le nom doit comporter un maximum de 100 caractères.";
+                $lnameErr = " Le nom doit comporter un maximum de 100 caractères.";
             }
         }
         if (empty($birthday)) {
-            $birthdayErr = "* La date de naissance est obligatoire";
+            $birthdayErr = "La date de naissance est obligatoire";
         } else {
             $date = '2012-01-01';
-            //die(var_dump($date < $birthday));
             if( $date < $birthday){
-                 $birthdayErr = "*la date est trop recente 2012-01-01";
+                 $birthdayErr = "la date est trop recente 2012-01-01";
                  
             }
         }
         if (empty($address)) {
-            $addressErr = "* l'addresse est obligatoire";
+            $addressErr = " l'addresse est obligatoire";
+        }
+        else
+        {
+            if (preg_match("/^[0-9-' ]*$/",$address)) {
+                $addressErr = "l'adresse ne peut pas contenir seulement les chiffres mais doit aussi contenir des lettres";
+            }
         }
         if (empty($username)) {
-            $usernameErr = "* Le nom d'usager est obligatoire";
+            $usernameErr = " Le nom d'usager est obligatoire";
         } else {
             $username = cleanUpInputs($username);
 
             if ($user->userUnique($username)){
-                $usernameErr = "* Le nom d'usager existe déjà.";
+                $usernameErr = " Le nom d'usager existe déjà.";
             }
 
             if (!preg_match("/^[a-zA-Z0-9]*$/",$username)) {
-                $usernameErr = "* Seules les lettres et les chiffres sont autorisés";
+                $usernameErr = "Seules les lettres et les chiffres sont autorisés";
             }
             if (strlen($username) > 15) {
-                $usernameErr = "* Le nom doit comporter un maximum de 15 caractères.";
+                $usernameErr = " Le nom doit comporter un maximum de 15 caractères.";
             }
         }
         if (empty($email)) {
-            $emailErr = "* Le nom est obligatoire";
+            $emailErr = "Le nom est obligatoire";
         } else {
             $email = cleanUpInputs($email);
 
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $emailErr = "* Seules les lettres et les chiffres sont autorisés";
+                $emailErr = " Seules les lettres et les chiffres sont autorisés";
             }
         }
         if (empty($password)) {
-            $passwordErr = "* Le mot de passe est obligatoire";
+            $passwordErr = " Le mot de passe est obligatoire";
         } else {
             $password = cleanUpInputs($password);
 
         }
         if (empty($passwordConfirmation)) {
-            $passwordConfirmationErr = "* La confirmation du mot de passe est obligatoire";
+            $passwordConfirmationErr = " La confirmation du mot de passe est obligatoire";
         } else {
             $passwordConfirmation = cleanUpInputs($passwordConfirmation);
 
@@ -125,14 +129,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if(!$res)
             {
             $userArray = $user->createUserArray($fname, $lname, $birthday, $address, $sexe,$username, $password, $email);
-            //die(var_dump($userArray));
             $result = $user->createUser($userArray);
-            //die(var_dump($res));
             
                if ($result['success']){
                 $session->newUserloggedIn($result['userid']);
                 $_SESSION['logIn'] = 'logged';
-                //$message = "Il y a eu une erreur lors de la création de l'usager.";
                 redirect_to("admin/index");
                 }
                 else{
@@ -162,7 +163,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<div class=" title">
             <i class='fas  fa-angle-left '></i> <a class="back" href="index.php"> Page d'acceuil</a>
         </div>
-        <div class="form-dispo offset-md-4">
+        <div class="form-dispo  offset-md-4">
             <div class="offset-md-2 mb-4">
                 <h5> La lecture d’un roman jette sur la vie une lumière </h5>
             </div>
@@ -178,7 +179,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>';
             }
         ?>
-        <div class="insc-pos-form offset-md-1 mb-4">
+        <div class="<?php if(empty($message) && empty($lnameErr)&& empty($fnameErr) && empty($usernameErr) && empty($birthdayErr) && empty($emailErr) && empty($passwordErr) && empty($passwordConfirmationErr)) echo ""; else echo "insc-pos-form"; ?> offset-md-1 mb-4">
                 <form id="login" action="inscription.php" method="post">
                     <div class="form-group row">
                         <label  class="col-sm-3 col-form-label "> First name:  </label>
@@ -242,7 +243,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label  class="col-sm-3 col-form-label "> Comfirmation password:  </label>
                         <div class="col-sm-8">
                             <input type="password" class=" form-control mb-3" id="password-confirmation" name="password-confirmation"value="<?php echo htmlentities($passwordConfirmation);?>" required />
-                             <?php echo outputError($passwordConfirmation);?>
+                             <?php echo outputError($passwordConfirmationErr);?>
                         </div>
                     </div>
                     <div class="row offset-md-1">

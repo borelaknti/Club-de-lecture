@@ -18,6 +18,7 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
 $message = $_SESSION['msg'] ?? '';
 $memberErr= $_SESSION['memberErr'] ?? '';
 $associationErr = $_SESSION['associationErr'] ?? '';
+$forgot = $_SESSION['forgot'] ?? '';
 
 $users = new Users();
 $associations = new Association();
@@ -37,7 +38,6 @@ $userList = $users->findActifMember();
 				<h4> Inscrire un membre dans une association</h4>
 			</div>
 		<?php
-		//die(var_dump($msg));
             if ($message){
                 	echo 
                     '<div class="row big-error">
@@ -48,8 +48,18 @@ $userList = $users->findActifMember();
                         </div>
                     </div>';
             }
+            if ($forgot){
+                echo 
+                    '<div class="row big-error">
+                        <div class="col-sm-9 offset-md-1">
+                            '.
+                                outputSuccess($forgot).
+                    '
+                        </div>
+                    </div>';;
+            }
         ?>
-        <div class=" insc-pos-MA offset-md-1 mb-4">
+        <div class="  <?php if(empty($_SESSION['msg']) && empty($_SESSION['memberErr']) && empty($_SESSION['associationErr'])) echo ""; else echo "insc-pos-MA"; ?> offset-md-1 mb-4">
 				<form id="inscrire-mb-as" action="../formProcessing/inscrire_Membre_Association.php" method="post">
   					<div class="form-group row mb-1">
                         <label  class="col-sm-3 col-form-label "> Membre :  </label>

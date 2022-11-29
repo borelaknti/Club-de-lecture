@@ -4,13 +4,6 @@
 }
 .general
 {
-	/*
-	position: relative;
-	height: 100vh;
-	background: linear-gradient(rgba(0, 0, 0, .5),rgba(0, 0, 0, .1)),url("../Image/index.jpg");
-	background-size: cover;
-	background-position: center;
-	padding: 0 8%;*/
 	
 	background-image: url("../images/index.jpg");
 	background-size: cover;
@@ -110,12 +103,7 @@ p.desc
 {
 	text-align: center;
 }
-/*.generalInsc fieldset {
-  border: 5px solid white;
-  background-color: transparent;
-  text-align: justify;
 
-}*/
 .insc fieldset
 {
 	 width: 600px; 
@@ -128,19 +116,7 @@ p.desc
 	 width: 600px; 
   height: 380px;
 }
-/*.generalInsc legend {
-  color: white;
-  padding: 5px 10px;
-  color: white;
-  font-size: 20px;
-  text-align: center;
-}*/
-/*.generalInsc table
-{
-	color: white;
-   font-size: 20px;
-   margin-top: 25px;
-}*/
+
 .conex table
 {
 	color: white;
@@ -153,15 +129,7 @@ p.desc
    font-size: 20px;
    margin-top: 75px;
 }
-/*.generalInsc input {
-  margin: 5px;
-  background:transparent;
-  border: 1px solid #fff;
-  outline: 0 ;
-  color: white;
-  font-size: 20px;
-  width: 245px;
-}*/
+
 .conex input
 {
 	margin: 5px;
@@ -186,13 +154,7 @@ p.desc
 {
 	margin: auto;
 }
-/*.generalInsc form
-{
 
-	position: relative;
-	top: 300px;
-	margin-left: 650px;
-}*/
 .title
 {
 	font-size: 25px;
@@ -408,15 +370,7 @@ footer
 }
 .button 
 {
-	/*background: transparent;
-	
-  	padding: 30px 12px;
-  	text-align: center;
-  	color: white;
- 	text-decoration: none;
- 	display: inline-block;
- 	font-size: 25px;
-  	cursor: pointer;*/
+	/
   display: inline-block;
 	height: 50px;
 	padding: 30px ;
@@ -457,11 +411,7 @@ footer
 .button__icon {
 	font-size: 1em;
 }
-/*.Big-button a button :hover
-{
-	background: #f0f0f0;
-	border-radius: 6px;
-}*/
+
 .titreInsc
 {
 	font-size: 30px;
@@ -578,7 +528,7 @@ footer
 
 .form-dispo-membre{
 	 	width: 660px;
-    height: 500px;
+    height: 600px;
     padding: 20px;
     border-radius: 12px;
     background: #ffffff;
@@ -631,8 +581,6 @@ footer
 .form-dispo h1 {
     font-size: 16px;
     color: black;
-    /*position: relative;
-    top: 15px;*/
 }
 .insc-pos-error
 {

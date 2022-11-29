@@ -17,10 +17,9 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
 
 $users = new Users();
 $user = $users->findUser($_GET['id']);
-//die(var_dump($user));
 if ($user[0]->etatUtilisateur == 'A'){
     
-    $var = I;
+    $var = 'I';
     $result = $users->updateEtat($_GET['id'],$var);
     
     if ($result['success']){
@@ -32,8 +31,7 @@ if ($user[0]->etatUtilisateur == 'A'){
 }
 else
 {
-    //die(var_dump($userArray));
-    $var = A;
+    $var = 'A';
     $result = $users->updateEtat($_GET['id'],$var);
     if ($result['success']){
         redirect_to("../admin/listeMembre.php");

@@ -6,7 +6,7 @@ include_once realpath(dirname(__DIR__)) .  '/layouts/header.php';
 
 $asso = new Association();
 $user = $asso->findAssociation($_GET['id']);   
-//die(var_dump($user)); // verifier le parametre quand le tableau est vide
+
 ?>
 <?php
 

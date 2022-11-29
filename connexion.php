@@ -9,7 +9,7 @@ require_once("includes/functions.php");
 require_once("includes/Users.php");
 require_once("includes/session.php");
 
-//$message = '';
+$session = new Session();
 
 $page = "connexion";
 
@@ -17,10 +17,9 @@ $active = 'active';
 
 if($_SESSION['logIn']=='logged'){
     redirect_to("admin/index");
-    //header("Location: admin/index.php");
 }
 
-//$session = new Session();
+
 
 $message = '';
 $forgot = $_SESSION['forgot'] ?? '';
@@ -32,7 +31,6 @@ if(isset($_POST['submit'])){
 
     $user = new Users();
     $foundUser = $user->authenticate($username,$password);
-    //check database to check if it exists
 
     if($foundUser){
         $session->login($foundUser);
@@ -63,7 +61,6 @@ if(isset($_POST['submit'])){
 				<h5> La lecture d’un roman jette sur la vie une lumière </h5>
 			</div>
 		<?php
-		//die(var_dump($msg));
             if ($message){
                 	echo 
                     '<div class="row big-error">

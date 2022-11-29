@@ -31,14 +31,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$createur = trim($_POST['createur']); 
         
         $association = new Association();
-        //die(var_dump($nom,$prenom,$date,$adress));
+       
         if (empty($nom)) {
             $_SESSION['nomErr'] = "Le nom de l'association est obligatoire";
         } else {
             $_SESSION['nom'] = cleanUpInputs($nom);
-            // check if name only contains letters and whitespace
+           
             if (!preg_match("/^[a-zA-Z-0-9' ]*$/",$nom)) {
                 $_SESSION['nomErr'] = "Seules les lettres et les espaces blancs sont autorisés";
+            }
+            if (preg_match("/^[0-9-.' ]*$/",$nom)) {
+                $_SESSION['nomErr'] = " Seules les lettres et les espaces blancs sont autorisés";
             }
             if (strlen($nom) > 100) {
                 $_SESSION['nomErr'] = "Le nom  de l'association doit comporter un maximum de 100 caractères.";
@@ -52,9 +55,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['date'] = cleanUpInputs($date);
             $dt = time();
             $dt = date("Y-m-d", $dt);
-            if($date>$dt)
+            if($date < $dt)
                 $_SESSION['dateErr'] = "veillez entre une date de creation valide";
-            //die(var_dump($date>$dt));
+            
         }  
         if (empty($adress)) {
             $_SESSION['adressErr'] = "l'adresse est obligatoire";
@@ -62,8 +65,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         else
         {
             $_SESSION['adress'] = cleanUpInputs($adress);
-            //die(var_dump(ctype_alnum($adresse)));
-            if (ctype_alnum($adress)) {
+            
+            if (preg_match("/^[0-9-.' ]*$/",$adress)) {
                 $_SESSION['adressErr'] = "l'adresse ne peut pas contenir seulement les chiffres mais doit aussi contenir des lettres";
             }
         }
@@ -71,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['createurErr'] = "Le nom du createur est obligatoire";
         } else {
             $_SESSION['createur'] = cleanUpInputs($createur);
-            // check if name only contains letters and whitespace
+         
             if (!preg_match("/^[a-zA-Z-' ]*$/",$createur)) {
                 $_SESSION['createurErr'] = "Seules les lettres et les espaces blancs sont autorisés";
             }
@@ -79,19 +82,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['createurErr'] = "Le nom du createur de l'association doit comporter un maximum de 100 caractères.";
             }
         } 
-        //die(var_dump($_SESSION['nomErr'],$prenom,$date,$adress));
+     
         if (empty($_SESSION['msg']) && empty($_SESSION['nomErr']) && empty($_SESSION['createurErr']) && empty($_SESSION['dateErr']) && empty($_SESSION['adressErr']) ){
 
             $association = new Association();
             $associationList = $association->findAll();
             if(searchAssociation($nom,$associationList)) 
             {
-                $_SESSION['msg'] = "Il y a deja une association a ce nom";
+                $_SESSION['msg'] = "Il y a deja une association au nom de".$nom;
                 redirect_to("../admin/inscrireAssociation.php");
             } else
             {
                 $associationArray = $association->createAssociationArray($nom, $createur, $date, $adress);
-                //die(var_dump($associationArray));
+                
                 $result = $association->createAssociation($associationArray);
                 if ($result['success']){
                     $_SESSION['forgot'] = "l'association a bien ete cree";

@@ -27,10 +27,6 @@ class PhpMail
         $mail->isHTML(true); // use HTML message
         $mail->Subject = $subject;
         $mail->Body = $message;
-        //var_dump($message);
-        //var_dump($subject);
-        //var_dump($from);
-        //die(var_dump($to));
 
         // SEND
         if( !$mail->send() ){
@@ -42,7 +38,6 @@ class PhpMail
             exit;
         }
         else{
-            // return true if message is send
             return true;
         }
 

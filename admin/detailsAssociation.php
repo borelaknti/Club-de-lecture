@@ -18,7 +18,6 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
 
 $asso = new Association();
 $user = $asso->findAssociation($_GET['id']);
-//die(var_dump($user));
 ?>
 <!DOCTYPE html>
 <html>

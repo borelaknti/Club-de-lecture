@@ -12,7 +12,6 @@ require_once("includes/session.php");
 $_SESSION['forgot'] = '';
 $_SESSION['msg'] = '';
 
-//$img = "../resources/images/index.jpg";
 ?>
 <!DOCTYPE html>
 <html>

@@ -105,7 +105,6 @@ class DatabaseObjects{
         $sql = "DELETE  FROM utilisateurassocier  WHERE utilisateurassocier.fknumAssociation = $id";
         global $database;
         $req = $database->openConnection()->prepare($sql);
-        //die(var_dump($clientsArray));
         $result = $req->execute();
         if ($result){
             return ['success'=>true];
@@ -126,7 +125,6 @@ class DatabaseObjects{
         $sql = "DELETE  FROM association  WHERE association.numAssociation = $id";
         global $database;
         $req = $database->openConnection()->prepare($sql);
-        //die(var_dump($clientsArray));
         $result = $req->execute();
         if ($result){
             return ['success'=>true];
@@ -145,10 +143,8 @@ class DatabaseObjects{
     {
        
         $sql = "UPDATE utilisateur SET etatUtilisateur= '".$etat."' WHERE utilisateur.numUtilisateur= $id";
-        //die(var_dump($sql));
         global $database;
         $req = $database->openConnection()->prepare($sql);
-        //die(var_dump($clientsArray));
         $result = $req->execute();
         if ($result){
             return ['success'=>true];
@@ -195,7 +191,6 @@ class DatabaseObjects{
 
         $resultSet = $database->openConnection()->prepare($sql);
         $results = $resultSet->execute(array($partnerArray["fknumAssociation"],$partnerArray["fknumUtilisateur"],$partnerArray["dateAjout"]));
-        //die(var_dump($results));
         if ($results){
             if ($database->lastInsertId() > 0)
             {
@@ -218,7 +213,6 @@ class DatabaseObjects{
 
         $resultSet = $database->openConnection()->prepare($sql);
         $results = $resultSet->execute(array($associationArray["nomAssociation"],$associationArray["adresseAssociation"],$associationArray["Datecreation"],$associationArray["nomCreateur"]));
-        //die(var_dump($results));
         if ($results){
             if ($database->lastInsertId() > 0)
             {

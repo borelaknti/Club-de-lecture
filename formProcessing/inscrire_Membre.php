@@ -10,6 +10,7 @@ require_once("../includes/Users.php");
 require_once("../includes/session.php");
 
 $_SESSION['msg'] = '';
+$_SESSION['forgot'] = '';
 $_SESSION['nomErr'] = $_SESSION['prenomErr'] = $_SESSION['emailErr'] =  $_SESSION['dateErr'] = $_SESSION['adresseErr'] = $_SESSION['sexeErr'] =  "";
 $_SESSION['nom'] = $_SESSION['prenom'] = $_SESSION['email'] =  $_SESSION['date'] = $_SESSION['adresse'] = $_SESSION['sexe'] =  "";
 
@@ -34,13 +35,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sexe = trim($_POST['sexe']);
         
         $user = new Users();
-        //die(var_dump($birthday));
+        
         if (empty($nom)) {
             $_SESSION['nomErr'] = " Le nom est obligatoire";
         } else {
             $_SESSION['nom'] = cleanUpInputs($nom);
-            // check if name only contains letters and whitespace
-            if (!preg_match("/^[a-zA-Z-' ]*$/",$nom)) {
+           
+            if (!preg_match("/^[a-zA-Z-0-9-' ]*$/",$nom)) {
+                $_SESSION['nomErr'] = " Seules les lettres et les espaces blancs sont autorisés";
+            }
+            if (preg_match("/^[0-9-.' ]*$/",$prenom)) {
                 $_SESSION['nomErr'] = " Seules les lettres et les espaces blancs sont autorisés";
             }
             if (strlen($nom) > 100) {
@@ -50,8 +54,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['prenomErr'] = " Le prenom est obligatoire";
         } else {
             $_SESSION['prenom'] = cleanUpInputs($prenom);
-            // check if name only contains letters and whitespace
-            if (!preg_match("/^[a-zA-Z-' ]*$/",$prenom)) {
+            
+            if (!preg_match("/^[a-zA-Z-0-9-' ]*$/",$prenom)) {
+                $_SESSION['prenomErr'] = " Seules les lettres et les espaces blancs sont autorisés";
+            }
+            if (preg_match("/^[0-9-.' ]*$/",$prenom)) {
                 $_SESSION['prenomErr'] = " Seules les lettres et les espaces blancs sont autorisés";
             }
             if (strlen($prenom) > 100) {
@@ -70,16 +77,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if($val <= 6)
                 $_SESSION['dateErr'] = " vous avez ".$val." ans et vous devez avoir au mois 7 ans";
             
-            //die(var_dump( $val ));
         }
         if (empty($adresse)) {
             $_SESSION['adresseErr'] = " l'adresse est obligatoire";
         }
         else
         {   $_SESSION['adresse'] = cleanUpInputs($adresse);
-            //die(var_dump(ctype_alnum($adresse)));
-            if (!ctype_alnum($adresse)) {
-                $_SESSION['adresseErr'] = " ne peut pas contenir seulement les chiffres mais doit aussi contenir des lettres";
+            
+            if (preg_match("/^[0-9-.' ]*$/",$adresse)) {
+                $_SESSION['adresseErr'] = "l'adresse ne peut pas contenir seulement les chiffres mais doit aussi contenir des lettres";
             }
         }
         if (empty($email)) {
@@ -103,10 +109,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }else
             {
                 $userArray = $user->createUserMember($nom, $prenom, $date, $adresse, $sexe, $email);
-                //die(var_dump($userArray));
                 $result = $user->createMember($userArray);
                 if ($result['success']){
-                    redirect_to("../admin/listeMembre.php");
+                    $_SESSION['forgot'] = "le membre a bien ete cree";
+                    $_SESSION['nom'] = $_SESSION['prenom'] = $_SESSION['email'] =  $_SESSION['date'] = $_SESSION['adresse'] = $_SESSION['sexe'] =  "";
+                    redirect_to("../admin/inscrireMembre.php");
                 }
                 else{
                     $_SESSION['msg'] = "Il y a eu une erreur lors de la création de l'usager.";

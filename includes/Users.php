@@ -24,8 +24,7 @@ class Users extends DatabaseObjects
 
         $sql  = "SELECT * FROM utilisateur ";
         $sql .= "WHERE login_utilisateur = ?";
-        //$sql .= "LIMIT 1";
-        //$sql = "SELECT * FROM utilisateur  WHERE loginUtilisateur = 'borel' ";
+      
 
         $resultSet = $database->openConnection()->prepare($sql);
         $resultSet->execute(array($this->username));
@@ -35,10 +34,10 @@ class Users extends DatabaseObjects
             $resultArray = $row;
         }
 
-        //die(var_dump($this->verifyPassword($this->password,$resultArray['motDePasse'])));
+        
         if(!empty($resultArray) && $this->verifyPassword($this->password,$resultArray['mot_de_passe'])){
             $_SESSION['logIn'] = 'logged';
-            //die(var_dump($resultArray));
+            
             return array_shift($resultArray);
         }else{
             $_SESSION['logIn'] = 'false';
@@ -112,7 +111,7 @@ class Users extends DatabaseObjects
 
         $resultSet = $database->openConnection()->prepare($sql);
         $results = $resultSet->execute(array($userArray["nomUtilisateur"],$userArray["prenomUtilisateur"],$userArray["dateNaissance"],$userArray["etatUtilisateur"],$userArray["adresseUtilisateur"],$userArray["sexeUtilisateur"],$userArray["login_utilisateur"],$userArray["mot_de_passe"],$userArray["utilisateur_email"]));
-        //die(var_dump($results));
+        
         if ($results){
             if ($database->lastInsertId() > 0)
             {
@@ -159,7 +158,6 @@ class Users extends DatabaseObjects
     public function passwordTime($email)
     {
         global $database;
-        //$timeStamp = [':timestamp' =>time()];
         $timeStamp = time();
         $sql = "UPDATE utilisateur SET email_time = '".$timeStamp."' Where utilisateur_email = '".$email."' ";
         $resultSet = $database->openConnection()->prepare($sql);
@@ -220,7 +218,6 @@ class Users extends DatabaseObjects
         {
             $storedTime = $row[0]['email_time'];
         }
-        //die(var_dump($time));
         if(($time-$storedTime)/60 < 60)
         {
             return true;
@@ -281,10 +278,7 @@ class Users extends DatabaseObjects
     private function verifyPassword(string $password,string $hashedPassword): bool
     {
        return password_verify ($password, $hashedPassword); //utiliser lors de la creation d'un utilisateur a partir du formulaire pour l'encryption
-        //if(strcmp($password,$hashedPassword) == 0 )
-           // return true;
-        //else
-          //  return false;
+        
     }
 
 }

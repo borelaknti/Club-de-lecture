@@ -21,7 +21,7 @@ $asso = new Association();
 $userList = $users->findAllMember();
 $member = aPropos($_GET['id'],$userList);
 $user = $asso->findAssociationMember($_GET['id']);
-//die(var_dump($member));
+
 ?>
 <!DOCTYPE html>
 <html>

@@ -12,8 +12,7 @@ require_once("includes/session.php");
 require_once("includes/PhpMail.php");
 
 
-//$page = "forget-password";
-//$active = "active";
+
 $message = $_SESSION['message'] ?? '';;
 $forgot = $_SESSION['forgot'] ?? '';
 $msg = $_SESSION['msg'] ?? '';
@@ -22,8 +21,7 @@ $emailErr = "";
 if(empty($_SESSION['logIn']) && $_SESSION['logIn'] == 'logged'){
     redirect_to("../admin/index.php");
 }
-	//die("23");
-
+	
 if(isset($_POST['submit'])){
 
    	$email = cleanUpInputs($_POST['email']);
@@ -41,7 +39,6 @@ if(isset($_POST['submit'])){
     			$url = $_SERVER['HTTP_ORIGIN'].'/reinitialiserpwd.php';
     			
         		$emailMessage = '<a href="'.$url.'"> cliquer ici pour changer le mot de passe. </a>';
-        		//die(var_dump($emailMessage));
   	    		$mail->send_mail_by_PHPMailer($email,"fitsdev21@gmail.com",'courriel de changement de mot de passe',$emailMessage);
         		$_SESSION['forgot'] = "le courriel de changement de mot de passe a ete envoye";
         		$_SESSION['msg']= "";
@@ -79,7 +76,7 @@ if(isset($_POST['submit'])){
 				<h5> La lecture d’un roman jette sur la vie une lumière </h5>
 			</div>
 		<?php
-		//die(var_dump($msg));
+		
             if ($message){
                 	echo 
                     '<div class="row big-error">
@@ -117,7 +114,7 @@ if(isset($_POST['submit'])){
   						<label  class="col-sm-3 col-form-label "> Email:  </label>
   						<div class="col-sm-8">
   							<input type="email" class=" form-control mb-3" id="email" name="email" value="<?php echo htmlentities($email);?>" required/>
-  							<?php //echo outputError($fnameErr) ;?>
+  							<?php echo outputError($fnameErr) ;?>
   						</div>
   					</div>
   					<div class="row offset-md-1">

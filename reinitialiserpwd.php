@@ -27,13 +27,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $passwordConfirmation = trim($_POST['password-confirmation']);
         
         $user = new Users();
-        //die(var_dump($birthday));
         if (empty($username)) {
             $usernameErr = "Le nom d'usager est obligatoire";
         } else {
             $username = cleanUpInputs($username);
 
-            if (!$user->userUnique($username)){//tester bien l'existance et l'inexistance
+            if (!$user->userUnique($username)){
                 $usernameErr = "Le nom d'usager inexistant.";
             }
         }
@@ -51,28 +50,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $user = new Users();
             $userPasswordArray = $user->createResetPasswordArray($username, $password);
-            //die(var_dump($userArray));
+            
             if ($user->checkLinkExpired($username,time())){
-            	//die(var_dump($user->checkLinkExpired($username,time())));
+            	
             	$result = $user->updatePwd($userPasswordArray);
-            	//$result = ['success'=> false];
+            	
             	if ($result['success']){
             		$_SESSION['forgot'] = "reinitialisation  reussi";
             		$_SESSION['msg'] = '';
             		redirect_to("connexion.php");
             	}else
             	{
-            		//die(var_dump("connexion ecchoue"));
+            		
             		$_SESSION['forgot'] = "";
-            		//$_SESSION['message'] = "";
+            		
             		$_SESSION['msg'] = 'echec de la modification du mot de passe';
             		redirect_to("restaurerpwd.php");
             	}
                 
             }
             else{
-                //$message = "Il y a eu une erreur lors de la création de l'usager.";
-                //die(var_dump("lien expire"));
+                
                 $_SESSION['msg'] = 'le lien a expire';
                 $_SESSION['logIn'] = "false";
                 $_SESSION['forgot'] = '';

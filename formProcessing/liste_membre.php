@@ -6,7 +6,7 @@ include_once realpath(dirname(__DIR__)) .  '/layouts/header.php';
 
 $users = new Users();
 $userList = $users->findAllMember();   
-//die(var_dump(count($userList))); // verifier le parametre quand le tableau est vide
+
 ?>
 <?php
 

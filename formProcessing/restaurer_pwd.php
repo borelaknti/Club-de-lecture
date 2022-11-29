@@ -12,8 +12,7 @@ require_once("../includes/session.php");
 require_once("../includes/PhpMail.php");
 
 
-//$page = "forget-password";
-//$active = "active";
+
 $message = "";
 $emailErr = "";
 
@@ -34,18 +33,14 @@ if(isset($_POST['submit'])){
         if($result["success"])
         {
             $mail = new PHPMail();
-            //try{
+           
                 $url = $_SERVER['HTTP_ORIGIN'].'/password-reset';
                 $emailMessage = '<a href="'.$url.'">cliquer ici pour changer le mot de passe. </a>';
                 $mail->send_mail_by_PHPMAILER($email,"borelaknti@gmail.com",'courriel de changement de mot de passe',$emailMessage);
                 $_SESSION['forgot'] = "le courriel de changement de mot de passe a ete envoye";
                  
                 redirect_to('/connexion.php');
-            //}
-            //catch($e)
-            //{
-            //  $e.errorMessage();
-            //}
+            
         }
 
         }
