@@ -17,13 +17,13 @@ function outputMessage($message = "") :string
     }
 }
 
-function outputError($msg)
+function outputError($msg) :string
 {
     if ($msg){
         return "<p class=\"error mt-3 \"> {$msg} </p>";
             }
 }
-function outputSuccess($msg)
+function outputSuccess($msg) :string
 {
     if ($msg){
         return "<p class=\"success mt-3 \"> {$msg} </p>";

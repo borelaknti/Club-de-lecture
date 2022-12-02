@@ -227,12 +227,15 @@ nav ul li a:hover
 {
 	background: #f0f0f0;
 	border-radius: 6px;
+	width: 30px;
 }
 
 .navg
 {
 	background: #f0f0f0;
 	border-radius: 6px;
+	margin-left: 10px;
+	margin-right: 10px;
 }
 
 .choix
