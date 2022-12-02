@@ -12,6 +12,7 @@ require_once("../includes/session.php");
 $_SESSION['msg'] = '';
 $_SESSION['forgot'] = '';
 $_SESSION['memberErr'] = $_SESSION['associationErr'] = "";
+$_SESSION['member'] = $_SESSION['association'] = "";
 
 if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
     redirect_to("../admin/index.php");
@@ -28,17 +29,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $partner = new UtilisateurAssocier();
         if (empty($member)) {
             $_SESSION['memberErr'] = " Le choix du membre est obligatoire";
+            
         } 
         if (empty($association)) {
             $_SESSION['associationErr'] = " Le choix d'une association est obligatoire";
+            
         } 
         if (empty($_SESSION['msg']) && empty($_SESSION['memberErr']) && empty($_SESSION['associationErr'])){
+
 
             $partner = new UtilisateurAssocier();
             $partnerList = $partner->findAll();
             if(searchPartner($member,$association,$partnerList))
             {
                 $_SESSION['msg'] = "le membre appartient deja au club ";
+                $_SESSION['member'] = cleanUpInputs($member);
+                $_SESSION['association'] = cleanUpInputs($association);
                 redirect_to("../admin/inscrireMembreAssociation.php");
             }
             else
@@ -51,6 +57,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
                 else{
                     $_SESSION['msg'] = "Il y a eu une erreur lors de l'ajout d'un membre dans une association.";
+                    $_SESSION['member'] = cleanUpInputs($member);
+                    $_SESSION['association'] = cleanUpInputs($association);
                     redirect_to("../admin/inscrireMembreAssociation.php");
                 }
             }

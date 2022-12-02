@@ -18,6 +18,8 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
 $message = $_SESSION['msg'] ?? '';
 $memberErr= $_SESSION['memberErr'] ?? '';
 $associationErr = $_SESSION['associationErr'] ?? '';
+$member= $_SESSION['member'] ?? '';
+$association = $_SESSION['association'] ?? '';
 $forgot = $_SESSION['forgot'] ?? '';
 
 $users = new Users();
@@ -66,9 +68,21 @@ $userList = $users->findActifMember();
                         <div class="col-sm-8">
                             <select class="form-select form-control" id="member" name="member"> 
                                 <?php 
-								echo "<option selected disabled> choisir un membre</option>";
-								if(count($userList) > 0)
+								
+								if(!empty($member))
+								{ $memb = $users->findUser($member);
+									?>
+									<option value="<?php echo $memb[0]->numUtilisateur ?>" selected > <?php echo $memb[0]->nomUtilisateur ?></option>;
+								<?php 
+									foreach ($userList as $user)
+    								{  if($user->numUtilisateur != $memb[0]->numUtilisateur) {?>
+    									<option value="<?php echo $user->numUtilisateur ?> ">  <?php echo $user->nomUtilisateur ?> </option>
+									<?php }
+									}
+								}
+								elseif(count($userList) > 0)
 								{ 
+									echo "<option selected disabled> choisir un membre</option>";
 									foreach ($userList as $user)
     								{  ?>
     									<option value="<?php echo $user->numUtilisateur ?> ">  <?php echo $user->nomUtilisateur ?> </option>
@@ -84,9 +98,21 @@ $userList = $users->findActifMember();
                         <div class="col-sm-8">
                             <select class="form-select form-control" id="association" name="association"> 
                                 <?php 
-								echo "<option selected disabled> choisir une associations </option>";
-								if(count($associationList) > 0)
+								
+								if(!empty($association))
+								{ $assoc = $associations->findAssociation($association);
+									?>
+									<option value="<?php echo $assoc[0]->numAssociation ?>" selected > <?php echo $assoc[0]->nomAssociation ?></option>;
+								<?php 
+									foreach ($associationList as $asso)
+    								{  if($asso->numAssociation != $assoc[0]->numAssociation) {?>
+    									<option value="<?php echo $asso->numAssociation ?> ">  <?php echo $asso->nomAssociation ?> </option>
+									<?php }
+									}
+								}
+								elseif(count($associationList) > 0)
 								{ 
+									echo "<option selected disabled> choisir une associations </option>";
 									foreach ($associationList as $asso)
     								{  ?>
     									<option value="<?php echo $asso->numAssociation ?> ">  <?php echo $asso->nomAssociation ?> </option>
