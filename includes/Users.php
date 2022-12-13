@@ -73,6 +73,14 @@ class Users extends DatabaseObjects
         return static::findBySql("SELECT * FROM utilisateur u  WHERE u.numUtilisateur = $id");
     }
 
+    /**
+     * @param $username
+     * @return array|null
+     */
+    public static function findMail($username): ?array
+    {
+        return static::findBySql("SELECT utilisateur.utilisateur_email FROM utilisateur   WHERE utilisateur.login_utilisateur = '".$username."'");
+    }
 
 
     /**
@@ -138,6 +146,34 @@ class Users extends DatabaseObjects
 
         $resultSet = $database->openConnection()->prepare($sql);
         $resultSet->execute(array($this->username));
+
+        $resultArray = [];
+        while ($row = $resultSet->fetchAll()){
+            $resultArray = $row;
+        }
+
+        if(!empty($resultArray)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * @param $email
+     * @return bool
+     */
+    public function emailUnique($email): bool
+    {
+        global $database;
+
+        $this->email = cleanUpInputs($email);
+        $sql  = "SELECT * FROM utilisateur ";
+        $sql .= "WHERE utilisateur_email = ? ";
+        $sql .= "LIMIT 1";
+
+        $resultSet = $database->openConnection()->prepare($sql);
+        $resultSet->execute(array($this->email));
 
         $resultArray = [];
         while ($row = $resultSet->fetchAll()){

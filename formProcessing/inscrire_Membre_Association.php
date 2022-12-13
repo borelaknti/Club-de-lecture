@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $partnerList = $partner->findAll();
             if(searchPartner($member,$association,$partnerList))
             {
-                $_SESSION['msg'] = "le membre appartient deja au club ";
+                $_SESSION['msg'] = "le membre appartient déja au club ";
                 $_SESSION['member'] = cleanUpInputs($member);
                 $_SESSION['association'] = cleanUpInputs($association);
                 redirect_to("../admin/inscrireMembreAssociation.php");
@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $partnerArray = $partner->createPartnerArray($member, $association);
                 $result = $partner->createPartner($partnerArray);
                 if ($result['success']){
-                    $_SESSION['forgot'] = "le membre a bien ete ajouter dans l'association";
+                    $_SESSION['forgot'] = "le membre a bien été ajouter dans l'association";
                     redirect_to("../admin/inscrireMembreAssociation.php");
                 }
                 else{

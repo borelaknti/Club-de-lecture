@@ -38,7 +38,8 @@ if(isset($_POST['submit'])){
         redirect_to("../admin/index");
     }else{
         $message = "La combinaison nom d'utilisateur/mot de passe est incorrecte.";
-
+        $forgot = '';
+        $_SESSION['forgot'] = '';
         $_SESSION['logIn'] = 'false';
     }
 }else {

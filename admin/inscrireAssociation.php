@@ -38,7 +38,6 @@ $createur = $_SESSION['createur'] ?? '';
 				<h4> Inscrire une nouvelle association </h4>
 			</div>
 		<?php
-		//die(var_dump($msg));
             if ($message){
                 	echo 
                     '<div class="row big-error">

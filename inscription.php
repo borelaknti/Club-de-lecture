@@ -101,6 +101,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             $email = cleanUpInputs($email);
 
+            if ($user->emailUnique($email)){
+                $emailErr = " l'email  existe déjà.";
+            }
+
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 $emailErr = " Seules les lettres et les chiffres sont autorisés";
             }

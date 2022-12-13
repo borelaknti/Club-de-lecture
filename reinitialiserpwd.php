@@ -10,7 +10,8 @@ require_once("includes/Users.php");
 require_once("includes/session.php");
 
 $message = '';
- $usernameErr = $passwordErr= $passwordConfirmationErr = "";
+$usernameErr = $passwordErr= $passwordConfirmationErr = "";
+$mail = $_GET['email'];
 
 if($_SESSION['logIn']=='logged'){
     redirect_to("admin/index.php");
@@ -32,9 +33,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             $username = cleanUpInputs($username);
 
-            if (!$user->userUnique($username)){
-                $usernameErr = "Le nom d'usager inexistant.";
+            $ml = $user->findMail($username);
+            $email = $_POST['email'];
+            if ($ml[0]->utilisateur_email != $email ){
+                $usernameErr = "Erreur sur Le nom d'usager .";
             }
+
+            if(empty($ml))
+                $usernameErr = "l'administrateur inexistant .";
         }
         if (empty($password)) {
             $passwordErr = "Le mot de passe est obligatoire";
@@ -89,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 	<div class="generalInsc ">
 		<div class=" title">
-            <i class='fas  fa-angle-left '></i> <a class="back" href="index.html"> Page d'acceuil</a>
+            <i class='fas  fa-angle-left '></i> <a class="back" href="index.php"> Page d'acceuil</a>
         </div>
         <div class="form-dispo-reint offset-md-4">
             <div class="offset-md-2 mb-4">
@@ -109,6 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ?>
             <div class="offset-md-1 mb-4">
                 <form id="reinitialisation"  action="reinitialiserpwd.php" method="post">
+                    <input type="hidden"  name="email"   value="<?php echo $mail;?>" />
                     <div class="form-group row">
                         <label  class="col-sm-3 col-form-label "> Username:  </label>
                         <div class="col-sm-8">

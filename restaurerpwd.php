@@ -21,7 +21,7 @@ $emailErr = "";
 if(empty($_SESSION['logIn']) && $_SESSION['logIn'] == 'logged'){
     redirect_to("../admin/index.php");
 }
-	
+	 
 if(isset($_POST['submit'])){
 
    	$email = cleanUpInputs($_POST['email']);
@@ -36,7 +36,7 @@ if(isset($_POST['submit'])){
     	{
     		$mail = new PhpMail();
     		try{
-    			$url = $_SERVER['HTTP_ORIGIN'].'/reinitialiserpwd.php';
+    			$url = $_SERVER['HTTP_ORIGIN'].'/reinitialiserpwd.php?email='.$email.'';
     			
         		$emailMessage = '<a href="'.$url.'"> cliquer ici pour changer le mot de passe. </a>';
   	    		$mail->send_mail_by_PHPMailer($email,"fitsdev21@gmail.com",'courriel de changement de mot de passe',$emailMessage);

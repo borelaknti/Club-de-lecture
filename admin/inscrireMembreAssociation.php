@@ -112,7 +112,7 @@ $userList = $users->findActifMember();
 								}
 								elseif(count($associationList) > 0)
 								{ 
-									echo "<option selected disabled> choisir une associations </option>";
+									echo "<option selected disabled> choisir une association </option>";
 									foreach ($associationList as $asso)
     								{  ?>
     									<option value="<?php echo $asso->numAssociation ?> ">  <?php echo $asso->nomAssociation ?> </option>

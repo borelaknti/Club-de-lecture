@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
         if (empty($date)) {
-            $_SESSION['dateErr'] = "La date de creation est obligatoire";
+            $_SESSION['dateErr'] = "La date de création est obligatoire";
         }
         else
         {
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $dt = time();
             $dt = date("Y-m-d", $dt);
             if($date < $dt)
-                $_SESSION['dateErr'] = "veillez entre une date de creation valide";
+                $_SESSION['dateErr'] = "veuillez entre une date de creation valide";
             
         }  
         if (empty($adress)) {
@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
         if (empty($createur)) {
-            $_SESSION['createurErr'] = "Le nom du createur est obligatoire";
+            $_SESSION['createurErr'] = "Le nom du créateur est obligatoire";
         } else {
             $_SESSION['createur'] = cleanUpInputs($createur);
          
@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['createurErr'] = "Seules les lettres et les espaces blancs sont autorisés";
             }
             if (strlen($createur) > 100) {
-                $_SESSION['createurErr'] = "Le nom du createur de l'association doit comporter un maximum de 100 caractères.";
+                $_SESSION['createurErr'] = "Le nom du créateur de l'association doit comporter un maximum de 100 caractères.";
             }
         } 
      
@@ -89,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $associationList = $association->findAll();
             if(searchAssociation($nom,$associationList)) 
             {
-                $_SESSION['msg'] = "Il y a deja une association au nom de".$nom;
+                $_SESSION['msg'] = "Il y a déja une association au nom de".$nom;
                 redirect_to("../admin/inscrireAssociation.php");
             } else
             {

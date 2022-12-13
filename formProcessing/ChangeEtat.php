@@ -23,11 +23,11 @@ if ($user[0]->etatUtilisateur == 'A'){
     $result = $users->updateEtat($_GET['id'],$var);
     
     if ($result['success']){
-         $_SESSION['forgot'] = "le membre a bien ete desactive";
+         $_SESSION['forgot'] = "le membre a bien été desactivé";
         redirect_to("../admin/listeMembre.php");
     }
     else{
-        $_SESSION['message'] = "Il y a eu une erreur lors du changement d'etat.";
+        $_SESSION['message'] = "Il y a eu une erreur lors du changement d'état.";
     }
 }
 else
@@ -35,11 +35,11 @@ else
     $var = 'A';
     $result = $users->updateEtat($_GET['id'],$var);
     if ($result['success']){
-        $_SESSION['forgot'] = "le membre a bien ete active";
+        $_SESSION['forgot'] = "le membre a bien été activé";
         redirect_to("../admin/listeMembre.php");
     }
     else{
-        $message = "Il y a eu une erreur lors du changement d'etat.";
+        $message = "Il y a eu une erreur lors du changement d'état.";
         
     }
 }
