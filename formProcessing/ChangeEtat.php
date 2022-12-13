@@ -23,6 +23,7 @@ if ($user[0]->etatUtilisateur == 'A'){
     $result = $users->updateEtat($_GET['id'],$var);
     
     if ($result['success']){
+         $_SESSION['forgot'] = "le membre a bien ete desactive";
         redirect_to("../admin/listeMembre.php");
     }
     else{
@@ -34,6 +35,7 @@ else
     $var = 'A';
     $result = $users->updateEtat($_GET['id'],$var);
     if ($result['success']){
+        $_SESSION['forgot'] = "le membre a bien ete active";
         redirect_to("../admin/listeMembre.php");
     }
     else{

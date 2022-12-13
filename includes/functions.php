@@ -8,7 +8,7 @@ function cleanUpInputs($inputs): string
     return htmlspecialchars($inputs);
 }
 
-function outputMessage($message = "") :string
+function outputMessage($message = "") 
 {
     if(!empty($message)){
         return "<p class=\"message text-danger\">{$message}</p>";
@@ -17,13 +17,13 @@ function outputMessage($message = "") :string
     }
 }
 
-function outputError($msg) :string
+function outputError($msg) 
 {
     if ($msg){
         return "<p class=\"error mt-3 \"> {$msg} </p>";
             }
 }
-function outputSuccess($msg) :string
+function outputSuccess($msg) 
 {
     if ($msg){
         return "<p class=\"success mt-3 \"> {$msg} </p>";

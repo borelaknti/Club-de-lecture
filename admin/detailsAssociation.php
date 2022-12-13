@@ -9,7 +9,7 @@ date_default_timezone_set('America/New_York');
 require_once("../includes/functions.php");
 require_once("../includes/Association.php");
 require_once("../includes/session.php");
-require_once("../formProcessing/membreAssociation.php");
+require_once("../formProcessing/AssociationMembre.php");
 require_once("../formProcessing/details_association.php");
 
 if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
@@ -18,6 +18,7 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
 
 $asso = new Association();
 $user = $asso->findAssociation($_GET['id']);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,7 +29,7 @@ $user = $asso->findAssociation($_GET['id']);
 	<div class="general-form-img">
 		<?php
 
-    		$page = "member-list";
+    		$page = "association-list";
 
     		$active = "navg";
 
@@ -55,8 +56,6 @@ $user = $asso->findAssociation($_GET['id']);
 		</div>
 		<div class="legend offset-md-3">
 			<i class='fas fa-info-circle '></i> <label> Information </label> <br> <br>
-			<i class='fas fa-check'></i><label>  Rendre inactif </label> <br> <br>
-			<i class='fas fa-ban'></i><label>  Rendre actif </label> <br> <br>
 		</div>
 		<?php include_once "../layouts/footer.php"; ?>
 	</div>	

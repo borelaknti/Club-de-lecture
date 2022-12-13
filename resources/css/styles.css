@@ -539,6 +539,16 @@ footer
     margin-left: 700px;
     top: 150px;
 }
+.propos-membre{
+	 	width: 600px;
+    height: 460px;
+    padding: 20px;
+    border-radius: 12px;
+    background: #ffffff;
+    position: relative;
+    margin-left: 700px;
+    top: 150px;
+}
 .form-dispo-MA
 {
 	width: 660px;

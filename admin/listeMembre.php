@@ -14,7 +14,7 @@ require_once("../formProcessing/liste_membre.php");
 if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
     redirect_to("../connexion");
 }
-
+$forgot = $_SESSION['forgot'] ?? '';
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,7 +31,20 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
 
     		include_once "../layouts/navigationAdmin.php";
 		?>
+		
 		<div class="tab-member">
+			<?php
+            if ($forgot){
+                echo 
+                    '<div class="row big-error">
+                        <div class="col-sm-8 offset-md-1">
+                            '.
+                                outputSuccess($forgot).
+                    '
+                        </div>
+                    </div>';;
+            }
+        	?>
 			<?php echo $htmlTable; ?>
 		</div>
 		<div class="legend">

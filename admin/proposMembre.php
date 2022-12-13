@@ -15,7 +15,7 @@ if(empty($_SESSION['logIn']) && $_SESSION['logIn'] !== 'logged'){
     redirect_to("../connexion");
 }
 
-
+$_SESSION['forgot'] = '';
 $users = new Users();
 $asso = new Association();
 $userList = $users->findAllMember();
@@ -30,7 +30,7 @@ $user = $asso->findAssociationMember($_GET['id']);
 </head>
 <body>
 	<div class="general-form-img">
-		<div class="form-dispo-membre offset-md-4">
+		<div class="propos-membre offset-md-4">
 			<div class="offset-md-2 mb-5">
 				<h4> A propos de <?php echo $member->nomUtilisateur;?>  </h4>
 			</div>
@@ -82,7 +82,11 @@ $user = $asso->findAssociationMember($_GET['id']);
  			</div>
 		</div>
 		<div class="row offset-md-1">
-			<a  href="listeMembre.php" class="link btn btn-success col-sm-10  " role="button">   Retour au menu   </a>
+			<?php if($_GET['page'] == "association")
+					echo '<a  href="detailsAssociation.php?id='. $_GET['idAsso'].'" class="link btn btn-success col-sm-10  " role="button">   Retour au menu   </a>';
+				  else
+				  	echo '<a  href="listeMembre.php" class="link btn btn-success col-sm-10  " role="button">   Retour au menu   </a>';
+			?>
 		</div>
 	</div>
 	<div class="row">
