@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['date'] = cleanUpInputs($date);
             $dt = time();
             $dt = date("Y-m-d", $dt);
-            if($date < $dt)
+            if($date > $dt)
                 $_SESSION['dateErr'] = "veuillez entre une date de creation valide";
             
         }  

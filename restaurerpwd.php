@@ -50,7 +50,7 @@ if(isset($_POST['submit'])){
 		    }
 		}else
 		{
-			$message = "erreur de reinitialisation du mot de passe";
+			$message = "erreur de réinitialisation du mot de passe";
 		}
 
 		}

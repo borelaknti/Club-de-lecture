@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             	$result = $user->updatePwd($userPasswordArray);
             	
             	if ($result['success']){
-            		$_SESSION['forgot'] = "reinitialisation  reussi";
+            		$_SESSION['forgot'] = "réinitialisation  réussi";
             		$_SESSION['msg'] = '';
             		redirect_to("connexion.php");
             	}else
@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             		
             		$_SESSION['forgot'] = "";
             		
-            		$_SESSION['msg'] = 'echec de la modification du mot de passe';
+            		$_SESSION['msg'] = 'échec de la modification du mot de passe';
             		redirect_to("restaurerpwd.php");
             	}
                 

@@ -93,6 +93,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             $_SESSION['email'] = cleanUpInputs($email);
 
+            if ($user->emailUnique($email)){
+                $_SESSION['emailErr'] = " l'email  existe déjà.";
+            }
+            
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 $_SESSION['emailErr'] = " Seules les lettres et les chiffres sont autorisés";
             }
@@ -111,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $userArray = $user->createUserMember($nom, $prenom, $date, $adresse, $sexe, $email);
                 $result = $user->createMember($userArray);
                 if ($result['success']){
-                    $_SESSION['forgot'] = "le membre a bien ete cree";
+                    $_SESSION['forgot'] = "le membre a bien été crée";
                     $_SESSION['nom'] = $_SESSION['prenom'] = $_SESSION['email'] =  $_SESSION['date'] = $_SESSION['adresse'] = $_SESSION['sexe'] =  "";
                     redirect_to("../admin/inscrireMembre.php");
                 }
