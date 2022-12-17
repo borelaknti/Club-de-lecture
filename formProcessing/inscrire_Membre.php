@@ -89,7 +89,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
         if (empty($email)) {
-            $_SESSION['emailErr'] = " Le nom est obligatoire";
+            /*
+             * Corrections : Mauvais message d'erreur.
+             */
+            $_SESSION['emailErr'] = " Le email est obligatoire";
         } else {
             $_SESSION['email'] = cleanUpInputs($email);
 

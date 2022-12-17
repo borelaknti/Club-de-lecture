@@ -97,7 +97,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
         if (empty($email)) {
-            $emailErr = "Le nom est obligatoire";
+            /*
+             * Corrections : Mauvais message d'erreur.
+             */
+            $emailErr = "Le email est obligatoire";
         } else {
             $email = cleanUpInputs($email);
 
